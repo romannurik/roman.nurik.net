@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="#00BCD4">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Hi, I'm Roman. I'm a design advocate at Google in New York.">
+    <title>Roman Nurik</title>
+
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="chrome-touch-icon-192x192.png">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Roman Nurik">
+    <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png">
+
+    <link rel="openid.server" href="http://www.myopenid.com/server">
+    <link rel="openid.delegate" href="http://roman.nurik.myopenid.com/">
+    <link rel="author" href="https://plus.google.com/+RomanNurik">
+
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Alegreya:400,400italic,700,700italic">
+    <link rel="stylesheet" href="styles/main.css">
+  </head>
+  <body>
+
+    <div class="top"></div>
+    <div class="content-container">
+      <div class="content">
+        <div class="avatar"></div>
+
+        <p>Hi, I’m Roman.</p>
+        <p>I’m a <a href="https://medium.com/@romannurik/walk-then-talk-3b935bfe5484">design advocate</a><br>
+          at Google in New York.</p>
+        <p>I do a lot of Android stuff and created
+          <a href="http://code.muzei.co">Muzei</a>.</p>
+
+        <!-- icons thanks to https://github.com/shalinguyen/socialicious -->
+        <div class="icons">
+          <a rel="me" href="https://twitter.com/romannurik" class="twitter"></a>
+          <a rel="me" href="https://plus.google.com/+RomanNurik/posts" class="googleplus"></a>
+          <a rel="me" href="https://medium.com/@romannurik" class="medium"></a>
+          <a rel="me" href="https://dribbble.com/romannurik" class="dribbble"></a>
+          <a rel="me" href="https://github.com/romannurik" class="github"></a>
+          <!-- <a rel="me" href="https://foursquare.com/romannurik" class="foursquare"></a> -->
+          <a rel="me" class="email obfuscated" href="" data-email="roman nurik net" class="email"></a>
+        </div>
+      </div>
+    </div>
+    <div class="bottom"></div>
+
+    <script>
+      // Show my email address
+      (function() {
+        var emailNode = document.querySelector('.email.obfuscated');
+        if (emailNode.dataset) {
+          var obfuscated = emailNode.dataset.email;
+          emailNode.setAttribute('href', 'mailto:' + obfuscated
+                .replace(/ /, "@")
+                .replace(/ /, "."));
+          console.log(obfuscated);
+        }
+      })();
+    </script>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-2196791-2', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+  </body>
+</html>

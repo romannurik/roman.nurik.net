@@ -1,0 +1,8 @@
+._*
+.DS_Store
+Thumbs.db
+_sandbox
+node_modules
+.sass-cache
+dist
+.tmp
