@@ -1,6 +1,6 @@
 // Vars and mixins
 
-$colorPrimary: #00BCD4;
+$colorPrimary: #00BFA5;
 
 $avatarSize: 128px;
 $avatarSizeSmall: 96px;
@@ -36,7 +36,7 @@ body {
 
 body {
   position: relative;
-  font-family: alegreya, serif;
+  font-family: 'source sans pro', serif;
   font-weight: 400;
   min-height: 100%;
   width: 100%;
@@ -89,11 +89,11 @@ body {
     display: flex;
     flex-direction: column;
 
-    font-size: 28px;
-    @include respond-to(handhelds) { font-size: 24px; }
+    font-size: 24px;
+    // @include respond-to(handhelds) { font-size: 24px; }
 
     line-height: 32px;
-    @include respond-to(handhelds) { line-height: 28px; }
+    // @include respond-to(handhelds) { line-height: 32px; }
 
     a {
       display: inline-block;
@@ -114,7 +114,7 @@ body {
 
       &:hover {
         transform: translateY(-2px);
-        text-shadow: 0 4px 0 rgba(#000, 0.1);
+        text-shadow: 0 1px 1px rgba(#000, 0.2), 0 4px 4px rgba(#000, 0.1);
       }
     }
 
@@ -179,7 +179,7 @@ body {
 
       filter: drop-shadow(0 0 0 rgba(#000, 0));
       &:hover {
-        filter: drop-shadow(0 4px 0 rgba(#000, 0.1));
+        filter: drop-shadow(0 1px 1px rgba(#000, 0.2)) drop-shadow(0 4px 4px rgba(#000, 0.1));
       }
     }
 
