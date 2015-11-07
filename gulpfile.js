@@ -82,18 +82,15 @@ gulp.task('fonts', function () {
 // Compile and Automatically Prefix Stylesheets
 gulp.task('styles', function () {
   // For best performance, don't add Sass partials to `gulp.src`
-  return gulp.src([
+  return $.rubySass([
       'app/styles/*.scss',
       'app/styles/**/*.css',
       'app/styles/components/components.scss'
-    ])
+    ], {
+      style: 'expanded',
+      precision: 10
+    })
     .pipe($.changed('styles', {extension: '.scss'}))
-    .pipe($.rubySass({
-        style: 'expanded',
-        precision: 10
-      })
-      .on('error', console.error.bind(console))
-    )
     .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
     .pipe(gulp.dest('.tmp/styles'))
     // Concatenate And Minify Styles
