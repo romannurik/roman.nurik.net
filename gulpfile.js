@@ -136,7 +136,10 @@ gulp.task('html', function () {
 });
 
 // Clean Output Directory
-gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
+gulp.task('clean', function() {
+  del(['.tmp', 'dist']);
+  $.cache.clearAll();
+});
 
 // Watch Files For Changes & Reload
 gulp.task('serve', ['styles'], function () {
