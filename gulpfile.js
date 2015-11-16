@@ -25,7 +25,9 @@ var $ = require('gulp-load-plugins')();
 var del = require('del');
 var runSequence = require('run-sequence');
 var browserSync = require('browser-sync');
+var swig = require('gulp-swig');
 var pagespeed = require('psi');
+var frontMatter = require('gulp-front-matter');
 var reload = browserSync.reload;
 
 var AUTOPREFIXER_BROWSERS = [
@@ -64,7 +66,7 @@ gulp.task('images', function () {
 gulp.task('copy', function () {
   return gulp.src([
     'app/*',
-    '!app/*.html',
+    '!app/html',
     'node_modules/apache-server-configs/dist/.htaccess'
   ], {
     dot: true
@@ -103,32 +105,32 @@ gulp.task('styles', function () {
 gulp.task('html', function () {
   var assets = $.useref.assets({searchPath: '{.tmp,app}'});
 
-  return gulp.src('app/**/*.html')
+  return gulp.src([
+      'app/html/**/*.html',
+      '!app/html/**/_*.html'
+    ])
+    .pipe(frontMatter({
+      property: 'frontMatter',
+      remove: true
+    }))
+    .pipe(swig({
+      data: function(file) {
+        return file.frontMatter;
+      },
+      defaults: {
+        cache: false
+      }
+    }))
     .pipe(assets)
     // Concatenate And Minify JavaScript
     .pipe($.if('*.js', $.uglify({preserveComments: 'some'})))
-    // Remove Any Unused CSS
-    // Note: If not using the Style Guide, you can delete it from
-    // the next line to only include styles your project uses.
-    .pipe($.if('*.css', $.uncss({
-      html: [
-        'app/index.html',
-        'app/styleguide.html'
-      ],
-      // CSS Selectors for UnCSS to ignore
-      ignore: [
-        /.navdrawer-container.open/,
-        /.app-bar.open/
-      ]
-    })))
     // Concatenate And Minify Styles
     // In case you are still using useref build blocks
     .pipe($.if('*.css', $.csso()))
     .pipe(assets.restore())
     .pipe($.useref())
-    // Update Production Style Guide Paths
-    .pipe($.replace('components/components.css', 'components/main.min.css'))
     // Minify Any HTML
+    .pipe(gulp.dest('.tmp'))
     .pipe($.if('*.html', $.minifyHtml()))
     // Output Files
     .pipe(gulp.dest('dist'))
@@ -142,7 +144,7 @@ gulp.task('clean', function() {
 });
 
 // Watch Files For Changes & Reload
-gulp.task('serve', ['styles'], function () {
+gulp.task('serve', ['styles', 'html'], function () {
   browserSync({
     notify: false,
     // Run as an https by uncommenting 'https: true'
@@ -152,7 +154,7 @@ gulp.task('serve', ['styles'], function () {
     server: ['.tmp', 'app']
   });
 
-  gulp.watch(['app/**/*.html'], reload);
+  gulp.watch(['app/html/**/*.html'], ['html', reload]);
   gulp.watch(['app/styles/**/*.{scss,css}'], ['styles', reload]);
   gulp.watch(['app/scripts/**/*.js'], ['jshint']);
   gulp.watch(['app/images/**/*'], reload);
