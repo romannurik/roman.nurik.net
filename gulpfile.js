@@ -26,7 +26,6 @@ var del = require('del');
 var runSequence = require('run-sequence');
 var browserSync = require('browser-sync');
 var swig = require('gulp-swig');
-var pagespeed = require('psi');
 var frontMatter = require('gulp-front-matter');
 var reload = browserSync.reload;
 
@@ -48,7 +47,10 @@ gulp.task('jshint', function () {
     .pipe(reload({stream: true, once: true}))
     .pipe($.jshint())
     .pipe($.jshint.reporter('jshint-stylish'))
-    .pipe($.if(!browserSync.active, $.jshint.reporter('fail')));
+    .pipe($.if(!browserSync.active, $.jshint.reporter('fail')))
+    .pipe($.uglify({preserveComments: 'some'}))
+    .pipe(gulp.dest('dist/scripts'))
+    .pipe($.size({title: 'scripts'}));
 });
 
 // Optimize Images
@@ -66,8 +68,7 @@ gulp.task('images', function () {
 gulp.task('copy', function () {
   return gulp.src([
     'app/*',
-    '!app/html',
-    'node_modules/apache-server-configs/dist/.htaccess'
+    '!app/html'
   ], {
     dot: true
   }).pipe(gulp.dest('dist'))
@@ -177,16 +178,11 @@ gulp.task('default', ['clean'], function (cb) {
   runSequence('styles', ['jshint', 'html', 'images', 'fonts', 'copy'], cb);
 });
 
-// Run PageSpeed Insights
-// Update `url` below to the public URL for your site
-gulp.task('pagespeed', pagespeed.bind(null, {
-  // By default, we use the PageSpeed Insights
-  // free (no API key) tier. You can use a Google
-  // Developer API key if you have one. See
-  // http://goo.gl/RkN0vE for info key: 'YOUR_API_KEY'
-  url: 'https://example.com',
-  strategy: 'mobile'
-}));
+// Deploy to GitHub pages
+gulp.task('deploy', function() {
+  return gulp.src('dist/**/*', {dot: true})
+    .pipe($.ghPages());
+});
 
 // Load custom tasks from the `tasks` directory
 try { require('require-dir')('tasks'); } catch (err) {}
