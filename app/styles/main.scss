@@ -36,7 +36,7 @@ body {
 
 body {
   position: relative;
-  font-family: 'source sans pro', serif;
+  //font-family: 'source sans pro', sans-serif;
   font-weight: 400;
   min-height: 100%;
   width: 100%;
@@ -85,7 +85,7 @@ body {
     position: relative;
     padding: $mainPadding;
     width: 300px;
-    color: rgba(#fff, 0.75);
+    color: rgba(#fff, 0.8);
     display: flex;
     flex-direction: column;
 
@@ -101,20 +101,34 @@ body {
       font-weight: 700;
       color: #fff;
       text-decoration: none;
-      -webkit-transition: -webkit-transform 0.1s ease-out,
-          text-shadow 0.1s ease-out,
-          -webkit-filter 0.1s ease-out;
-      transition: transform 0.1s ease-out,
-          text-shadow 0.1s ease-out,
-          -webkit-filter 0.1s ease-out,
-          -moz-filter 0.1s ease-out,
-          filter 0.1s ease-out;
-      transform: translateY(0);
-      text-shadow: 0 0 0 rgba(#000, 0);
+      z-index: 0;
 
-      &:hover {
-        transform: translateY(-2px);
-        text-shadow: 0 1px 1px rgba(#000, 0.2), 0 4px 4px rgba(#000, 0.1);
+      &:before {
+        position: absolute;
+        content: '';
+        background-color: darken($colorPrimary, 7%);
+        background-position: 50% 0;
+        left: -6px;
+        right: -6px;
+        border-radius: 5px;
+        top: 0;
+        bottom: 0;
+        z-index: -1;
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.15s ease, visibility 0s linear 0.15s;
+      }
+
+      &:hover:before {
+        opacity: 0.5;
+        visibility: visible;
+        transition: opacity 0.15s ease;
+      }
+
+      &:active:before {
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 0.15s ease;
       }
     }
 
@@ -129,8 +143,9 @@ body {
     }
 
     p {
+      width: 256px;
       text-align: center;
-      margin: 16px 0;
+      margin: 16px auto;
       @include respond-to(handhelds) { margin: 8px; }
     }
   }
@@ -171,21 +186,29 @@ body {
       height: 32px;
       padding: 8px; /* make the touch target bigger */
 
-      background-repeat: no-repeat;
-      background-position: 50% 50%;
+      &:before {
+        left: 0;
+        right: 0;
+      }
 
-      background-size: 32px 32px;
-      @include respond-to(handhelds) { background-size: 24px 24px; }
+      &:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
 
-      filter: drop-shadow(0 0 0 rgba(#000, 0));
-      &:hover {
-        filter: drop-shadow(0 1px 1px rgba(#000, 0.2)) drop-shadow(0 4px 4px rgba(#000, 0.1));
+        background-size: 32px 32px;
+        @include respond-to(handhelds) { background-size: 24px 24px; }
       }
     }
 
     $links: twitter dribbble foursquare github medium foursquare googleplus email;
     @each $link in $links {
-      .#{$link} { background-image: url(../images/icon_#{$link}.svg); }
+      .#{$link}:after { background-image: url(../images/icon_#{$link}.svg); }
     }
   }
 
