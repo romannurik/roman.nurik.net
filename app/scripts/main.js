@@ -8,6 +8,5 @@
     emailNode.setAttribute('href', 'mailto:' + obfuscated
           .replace(/ /, '@')
           .replace(/ /, '.'));
-    console.log(obfuscated);
   }
 })();
