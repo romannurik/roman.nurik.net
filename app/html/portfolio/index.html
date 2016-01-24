@@ -44,7 +44,7 @@ This is my design portfolio, covering work at Google as well as side projects re
     <div class="pages">
       {% for page in project.pages %}
       <div class="page {{ page.extra_classes }} {% if page.video %}video{% endif %} {% if page.image %}image{% endif %}" style="background-color: {{ page.color | material_color }} {% if project.pager_height %}; height:{{project.pager_height}}px{% endif %}">
-        <div class="media loader-parent" {% if page.color2 %} style="color:{{ page.color2 | material_color }}"{% endif %}>
+        <div tabindex="0" class="media loader-parent" {% if page.color2 %} style="color:{{ page.color2 | material_color }}"{% endif %}>
           <div
             {% if page.offset_media %}style="transform: translate({{ page.offset_media }});"{% endif %}
             {% if page.device_frame %}class="device-frame device-{{ page.device_frame }}"{% endif %}>

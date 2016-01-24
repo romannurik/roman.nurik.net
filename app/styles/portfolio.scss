@@ -244,6 +244,7 @@ section.project {
         justify-content: center;
         overflow: hidden;
         padding: 24px;
+        outline: 0; // no outline on focus; definitely not ideal
 
         & > div {
           flex: 0 0 auto;

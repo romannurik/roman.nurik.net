@@ -148,6 +148,7 @@ require('./_jquery-wheelswipe');
 
 
   Carousel.prototype.preventDefaultBrowserBehaviors = function() {
+    var me = this;
     this.$carousel
         .on('dragstart', function(ev) {
           ev.preventDefault();
@@ -161,6 +162,16 @@ require('./_jquery-wheelswipe');
         .on('wheel', function(e) {
           if (Math.abs(e.originalEvent.deltaX)) {
             e.preventDefault();
+          }
+        })
+        // prevent tab-focus from scrolling the carousel weirdly
+        .on('focusin', function(ev) {
+          var $page = $(ev.target).parents('.page');
+          if ($page.length) {
+            setTimeout(function() {
+              me.$carousel.scrollLeft(0);
+              me.snapToPage($page.index(), true);
+            }, 0);
           }
         });
   };
@@ -228,9 +239,13 @@ require('./_jquery-wheelswipe');
       }
 
       var me = this;
-      this.$pageDots.find('.page-dot').each(function(index) {
-        $(this).toggleClass('active', index == me.currentPage);
-      });
+      if (this.$pageDots) {
+        this.$pageDots.find('.page-dot').each(function(index) {
+          $(this).toggleClass('active', index == me.currentPage);
+        });
+      }
+
+      this.$carousel.trigger('carouselpagechanged');
     }
   };
 

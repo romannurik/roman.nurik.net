@@ -76,7 +76,11 @@ function setupFullscreen() {
     }, 10);
   }
 
-  $('.page:not(.no-fullscreen) .media').click(function() {
+  $('.page:not(.no-fullscreen) .media').on('click keydown', function(ev) {
+    if (ev.type == 'keydown' && ev.keyCode != 13) {
+      return;
+    }
+
     $fullscreen.removeClass('loaded loading');
     if ($(this).parents('.panning').length > 0) {
       return;
@@ -99,6 +103,11 @@ function setupFullscreen() {
 
 
 function setupKeyboardNav() {
+  $('.pages').on('carouselpagechanged', function() {
+    var currentPage = $(this).carousel('getPage');
+    // $(this).find('.page').eq(currentPage).find('.media').focus();
+  });
+
   $(document).on('keydown', function(e) {
     if (e.keyCode == 37 || e.keyCode == 39) {
       // left and right keys
