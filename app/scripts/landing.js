@@ -1,10 +1,12 @@
-'use strict';
+$(document).ready(function() {
+  FastClick.attach(document.body);
 
-// Show my email address
-var emailNode = document.querySelector('.email.obfuscated');
-if (emailNode.dataset) {
-  var obfuscated = emailNode.dataset.email;
-  emailNode.setAttribute('href', 'mailto:' + obfuscated
-        .replace(/ /, '@')
-        .replace(/ /, '.'));
-}
+  // Show my email address
+  var $emailLinks = $('.email.obfuscated');
+  if ($emailLinks.data('email')) {
+    var obfuscated = $emailLinks.data('email');
+    $emailLinks.attr('href', 'mailto:' + obfuscated
+          .replace(/ /, '@')
+          .replace(/ /, '.'));
+  }
+});
