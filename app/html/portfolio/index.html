@@ -1,0 +1,88 @@
+---
+title: Design Portfolio
+---
+{% extends '../_subpage.html' %}
+
+{% block css %}
+<link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="/styles/portfolio.css" />
+{% endblock %}
+
+{% block js %}
+<script src="/lib/hammerjs/hammer.min.js"></script>
+<script src="/lib/fastclick/lib/fastclick.js"></script>
+<script src="/scripts/portfolio.js"></script>
+{% endblock %}
+
+{% block subpage-body %}
+{% parent %}
+
+<header>
+  <h1>{{ title }}</h1>
+  <div class="intro">
+  {% markdown %}
+This is my design portfolio, covering work at Google as well as side projects related to my work as an Android design advocate. I've got even more work up on [Dribbble](https://dribbble.com/romannurik).
+  {% endmarkdown %}
+  </div>
+</header>
+
+<main>
+
+  {% for project in projects %}
+  <section class="project {{ project.extra_classes }}">
+    <div class="info">
+      <h2>{{ project.name }}</h2>
+      <p class="date">{{ project.date }}</p>
+      {{ project.description | markdown }}
+      {% if project.actions %}
+      <div class="actions">
+        {% for action in project.actions %}
+        <a href="{{ action.url }}">{{ action.caption }}</a>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+    <div class="pages">
+      {% for page in project.pages %}
+      <div class="page {{ page.extra_classes }} {% if page.video %}video{% endif %} {% if page.image %}image{% endif %}" style="background-color: {{ page.color | material_color }} {% if project.pager_height %}; height:{{project.pager_height}}px{% endif %}">
+        <div class="media loader-parent" {% if page.color2 %} style="color:{{ page.color2 | material_color }}"{% endif %}>
+          <div
+            {% if page.offset_media %}style="transform: translate({{ page.offset_media }});"{% endif %}
+            {% if page.device_frame %}class="device-frame device-{{ page.device_frame }}"{% endif %}>
+          {% if page.image %}
+          <!-- <div class="media image" style="background-image: url(/media/{{ page.image }});"></div> -->
+          <img src="/media/{{ page.image }}">
+          {% endif %}
+          {% if page.video %}
+          <video loop preload="none">
+            <source src="/media/{{ page.video }}.mp4" type="video/mp4">
+            <source src="/media/{{ page.video }}.webm" type="video/webm">
+          </video>
+          <img class="thumb" src="/media/{{ page.video }}-thumb.png">
+          {% endif %}
+          </div>
+          <svg class="loading-spinner" width="64" height="64" viewbox="0 0 64 64">
+            <circle cx="32" cy="32" r="20" fill="none" stroke-width="6" stroke-miterlimit="10" stroke="#ccc" />
+          </svg>
+        </div>
+        {% if page.caption %}
+        <div class="caption">
+          {{ page.caption | markdown }}
+        </div>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+  {% endfor %}
+
+</main>
+
+<footer>
+{% markdown %}
+Hand-coded using HTML/Swig, JavaScript/jQuery, Sass, Gulp, and more.
+[See the source](https://github.com/romannurik/roman.nurik.net)
+{% endmarkdown %}
+</footer>
+
+{% endblock %}

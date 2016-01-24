@@ -1,66 +1,33 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="theme-color" content="#00BFA5">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="Hi, I'm Roman. I'm a designer and design advocate at Google in New York.">
-    <title>Roman Nurik</title>
+{% extends '_base.html' %}
 
-    <meta name="mobile-web-app-capable" content="yes">
-    <link rel="icon" sizes="192x192" href="chrome-touch-icon-192x192.png">
+{% block css %}
+<link rel="stylesheet" href="/styles/landing.css">
+{% endblock %}
 
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="Roman Nurik">
-    <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png">
+{% block js %}
+<script src="/scripts/landing.js"></script>
+{% endblock %}
 
-    <link rel="openid.server" href="http://www.myopenid.com/server">
-    <link rel="openid.delegate" href="http://roman.nurik.myopenid.com/">
-    <link rel="author" href="https://plus.google.com/+RomanNurik">
+{% block page-body %}
+  <div class="top"></div>
+  <div class="content-container">
+    <div class="content">
+      <div class="avatar"></div>
 
-    <link rel="stylesheet" href="styles/main.css">
-  </head>
-  <body class="tk-tenso">
+      <p>Hi, I’m Roman.</p>
+      <p>I’m a designer and <a href="https://medium.com/@romannurik/walk-then-talk-3b935bfe5484">design advocate</a> at Google in New York.</p>
+      <p>I do web and Android stuff like <a href="http://code.muzei.co">Muzei</a>. See more in my <a href="/portfolio/">portfolio</a>.</p>
 
-    <div class="top"></div>
-    <div class="content-container">
-      <div class="content">
-        <div class="avatar"></div>
-
-        <p>Hi, I’m Roman.</p>
-        <p>I’m a designer and <a href="https://medium.com/@romannurik/walk-then-talk-3b935bfe5484">design advocate</a> at Google in New York.</p>
-        <p>I do web and Android stuff like <a href="http://code.muzei.co">Muzei</a>. See more in my <a href="http://romannurik.github.io/portfolio/">portfolio</a>.</p>
-
-        <!-- icons thanks to https://github.com/shalinguyen/socialicious -->
-        <div class="icons">
-          <a rel="me" href="https://twitter.com/romannurik" title="Twitter" class="twitter"></a>
-          <a rel="me" href="https://plus.google.com/+RomanNurik/posts" title="Google+" class="googleplus"></a>
-          <a rel="me" href="https://medium.com/@romannurik" title="Medium" class="medium"></a>
-          <a rel="me" href="https://dribbble.com/romannurik" title="Dribbble" class="dribbble"></a>
-          <a rel="me" href="https://github.com/romannurik" title="GitHub" class="github"></a>
-          <!-- <a rel="me" href="https://foursquare.com/romannurik" class="foursquare"></a> -->
-          <a rel="me" href="" title="Email" class="email obfuscated" data-email="roman nurik net"></a>
-        </div>
+      <!-- icons thanks to https://github.com/shalinguyen/socialicious -->
+      <div class="icons">
+        <a rel="me" href="https://twitter.com/romannurik" title="Twitter" class="twitter"></a>
+        <a rel="me" href="https://plus.google.com/+RomanNurik/posts" title="Google+" class="googleplus"></a>
+        <a rel="me" href="https://medium.com/@romannurik" title="Medium" class="medium"></a>
+        <a rel="me" href="https://dribbble.com/romannurik" title="Dribbble" class="dribbble"></a>
+        <a rel="me" href="https://github.com/romannurik" title="GitHub" class="github"></a>
+        <a rel="me" href="" title="Email" class="email obfuscated" data-email="roman nurik net"></a>
       </div>
     </div>
-    <div class="bottom"></div>
-
-    <script src="https://use.typekit.net/kpt3ulr.js"></script>
-    <script>try{Typekit.load({ async: true });}catch(e){}</script>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="scripts/main.js"></script>
-
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-2196791-2', 'auto');
-      ga('send', 'pageview');
-    </script>
-  </body>
-</html>
+  </div>
+  <div class="bottom"></div>
+{% endblock %}

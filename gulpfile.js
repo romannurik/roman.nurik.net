@@ -1,33 +1,51 @@
-/**
+/*
+ * Copyright 2015 Google Inc.
  *
- *  Web Starter Kit
- *  Copyright 2014 Google Inc. All rights reserved.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License
- *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
+
+// Based on the Web Starter Kit
+// https://developers.google.com/web/tools/starter-kit
 
 'use strict';
 
-// Include Gulp & Tools We'll Use
-var gulp = require('gulp');
-var $ = require('gulp-load-plugins')();
+// Include Node packages
 var del = require('del');
 var runSequence = require('run-sequence');
 var browserSync = require('browser-sync');
-var swig = require('gulp-swig');
-var frontMatter = require('gulp-front-matter');
+var browserify = require('browserify');
+var source = require('vinyl-source-stream');
+var buffer = require('vinyl-buffer');
+var swig = require('swig');
+var swigExtras = require('swig-extras');
 var reload = browserSync.reload;
+var yaml = require('js-yaml');
+var fs = require('fs');
+var through = require('through2');
+var extend = require('util')._extend;
+var path = require('path');
+var merge = require('merge-stream');
+var requireDir = require('require-dir');
+
+// Include Gulp and plugins
+var gulp = require('gulp');
+var $ = require('gulp-load-plugins')();
+var exclude = require('gulp-ignore').exclude;
+
+// Include local packages
+var locals = {};
+try { locals = requireDir('local_node_modules', {camelcase:true}); } catch (err) {}
+
 
 var AUTOPREFIXER_BROWSERS = [
   'ie >= 10',
@@ -42,37 +60,75 @@ var AUTOPREFIXER_BROWSERS = [
 ];
 
 // Lint JavaScript
-gulp.task('jshint', function () {
-  return gulp.src('app/scripts/**/*.js')
-    .pipe(reload({stream: true, once: true}))
-    .pipe($.jshint())
-    .pipe($.jshint.reporter('jshint-stylish'))
-    .pipe($.if(!browserSync.active, $.jshint.reporter('fail')))
-    .pipe($.uglify({preserveComments: 'some'}))
-    .pipe(gulp.dest('dist/scripts'))
-    .pipe($.size({title: 'scripts'}));
+gulp.task('js', function() {
+  var streams = [];
+  if (fs.existsSync('app/scripts')) {
+    fs.readdirSync('app/scripts').forEach(function(file) {
+      if (file.match(/^[^_].+\.js$/)) {
+        streams.push(browserify('app/scripts/' + file)
+            .bundle()
+            .pipe(source(file))
+            .pipe(buffer())
+            .pipe(gulp.dest('.tmp/scripts'))
+            .pipe($.uglify({preserveComments: 'some'}))
+            .pipe(gulp.dest('dist/scripts')));
+      }
+    });
+  }
+
+  if (streams.length) {
+    return merge(streams);
+  }
+});
+
+// Bower
+gulp.task('bower', function() {
+  return $.bower()
+      .pipe(exclude('**/.*'))
+      .pipe(exclude('**/*.md'))
+      .pipe(exclude('**/*.json'))
+      .pipe(exclude('**/*.coffee'))
+      .pipe(exclude('**/src/**'))
+      .pipe(gulp.dest('dist/lib'));
 });
 
 // Optimize Images
-gulp.task('images', function () {
-  return gulp.src('app/images/**/*')
+gulp.task('media', function () {
+  var stream1 = gulp.src('app/media/**/*')
+    .pipe(gulp.dest('dist/media'))
+    .pipe($.size({title: 'media'}));
+
+  var stream2 = gulp.src('app/images/**/*')
     .pipe($.cache($.imagemin({
       progressive: true,
-      interlaced: true
+      interlaced: true,
+      svgoPlugins: [{removeTitle: true}],
     })))
     .pipe(gulp.dest('dist/images'))
     .pipe($.size({title: 'images'}));
+
+  return merge(stream1, stream2);
 });
 
-// Copy All Files At The Root Level (app)
+// Copy All Files At The Root Level (app) and lib
 gulp.task('copy', function () {
   return gulp.src([
     'app/*',
-    '!app/html'
+    '!app/html',
+    '!app/data'
+  ], {dot: true})
+    .pipe(gulp.dest('dist'))
+    .pipe($.size({title: 'copy'}));
+});
+
+// Libs
+gulp.task('lib', function () {
+  return gulp.src([
+    'app/lib/**/*'
   ], {
     dot: true
-  }).pipe(gulp.dest('dist'))
-    .pipe($.size({title: 'copy'}));
+  }).pipe(gulp.dest('dist/lib'))
+    .pipe($.size({title: 'lib'}));
 });
 
 // Copy Web Fonts To Dist
@@ -88,7 +144,6 @@ gulp.task('styles', function () {
   return $.rubySass([
       'app/styles/*.scss',
       'app/styles/**/*.css',
-      'app/styles/components/components.scss'
     ], {
       style: 'expanded',
       precision: 10
@@ -102,34 +157,97 @@ gulp.task('styles', function () {
     .pipe($.size({title: 'styles'}));
 });
 
-// Scan Your HTML For Assets & Optimize Them
+// HTML
 gulp.task('html', function () {
-  var assets = $.useref.assets({searchPath: '{.tmp,app}'});
+  var globalData = {};
+
+  if (fs.existsSync('app/data')) {
+    fs.readdirSync('app/data').forEach(function(filename) {
+      var path = 'app/data/' + filename;
+      var stat = fs.statSync(path);
+      if (stat.isFile() && /.yaml$/.test(filename)) {
+        var obj = yaml.safeLoad(fs.readFileSync(path, 'utf8'));
+        globalData[filename.replace(/\..*/, '')] = obj;
+      }
+    });
+  }
+
+  var pages = [];
 
   return gulp.src([
       'app/html/**/*.html',
       '!app/html/**/_*.html'
     ])
-    .pipe(frontMatter({
+    // Extract frontmatter
+    .pipe($.frontMatter({
       property: 'frontMatter',
       remove: true
     }))
-    .pipe(swig({
+    // Start populating context data for the file, globalData, followed by file's frontmatter
+    .pipe($.tap(function(file, t) {
+      file.contextData = extend(extend({}, globalData), file.frontMatter);
+    }))
+    // Handle generator files
+    .pipe($.if('$*.html', through.obj(function(file, enc, callback) {
+      // Pull out generator info and find the collection
+      var gen = file.frontMatter.generate;
+      var collection = globalData[gen.collection];
+      // Create a new file for each item in the collection
+      for (var i = 0; i < collection.length; i++) {
+        var item = collection[i];
+        var newFile = file.clone();
+        newFile.contextData[gen.variable] = item;
+        newFile.path = path.join(newFile.base,
+            swig.render(gen.filename, {locals: newFile.contextData}));
+        this.push(newFile);
+      }
+      callback();
+    })))
+    // Populate the global pages collection
+    // Wait for all files first (to collect all front matter)
+    .pipe($.util.buffer())
+    .pipe(through.obj(function(filesArray, enc, callback) {
+      var me = this;
+      filesArray.forEach(function(file) {
+        var pageInfo = {path: file.path, data: file.frontMatter || {}};
+        pages.push(pageInfo);
+      });
+      // Re-emit each file into the stream
+      filesArray.forEach(function(file) {
+        me.push(file);
+      });
+      callback();
+    }))
+    .pipe($.tap(function(file, t) {
+      // Finally, add pages array to collection
+      file.contextData = extend(file.contextData, {all_pages: pages});
+    }))
+    // Run everything through swig templates
+    .pipe($.swig({
+      setup: function(sw) {
+        swigExtras.useTag(sw, 'markdown');
+        swigExtras.useFilter(sw, 'markdown');
+        swigExtras.useFilter(sw, 'trim');
+        sw.setFilter('material_color', function(input) {
+          var parts = input.toLowerCase().split(/\s+/g);
+          if (parts[0] == 'material' && parts.length >= 3) {
+            return locals.materialColor(parts[1], parts[2]);
+          }
+          return input;
+        });
+      },
       data: function(file) {
-        return file.frontMatter;
+        return file.contextData;
       },
       defaults: {
         cache: false
       }
     }))
-    .pipe(assets)
     // Concatenate And Minify JavaScript
     .pipe($.if('*.js', $.uglify({preserveComments: 'some'})))
     // Concatenate And Minify Styles
     // In case you are still using useref build blocks
     .pipe($.if('*.css', $.csso()))
-    .pipe(assets.restore())
-    .pipe($.useref())
     // Minify Any HTML
     .pipe(gulp.dest('.tmp'))
     .pipe($.if('*.html', $.minifyHtml()))
@@ -145,20 +263,25 @@ gulp.task('clean', function() {
 });
 
 // Watch Files For Changes & Reload
-gulp.task('serve', ['styles', 'html'], function () {
+gulp.task('serve', ['styles', 'bower', 'html'], function () {
   browserSync({
     notify: false,
     // Run as an https by uncommenting 'https: true'
     // Note: this uses an unsigned certificate which on first access
     //       will present a certificate warning in the browser.
     // https: true,
-    server: ['.tmp', 'app']
+    server: {
+      baseDir: ['.tmp', 'app']
+    }
   });
 
+  gulp.watch(['app/data/**/*'], ['html', reload]);
   gulp.watch(['app/html/**/*.html'], ['html', reload]);
   gulp.watch(['app/styles/**/*.{scss,css}'], ['styles', reload]);
-  gulp.watch(['app/scripts/**/*.js'], ['jshint']);
+  gulp.watch(['app/scripts/**/*.js'], ['js', reload]);
+  gulp.watch(['app/media/**/*'], reload);
   gulp.watch(['app/images/**/*'], reload);
+  gulp.watch(['app/templates/**/*'], reload);
 });
 
 // Build and serve the output from the dist build
@@ -175,7 +298,9 @@ gulp.task('serve:dist', ['default'], function () {
 
 // Build Production Files, the Default Task
 gulp.task('default', ['clean'], function (cb) {
-  runSequence('styles', ['jshint', 'html', 'images', 'fonts', 'copy'], cb);
+  runSequence('styles',
+      ['js', 'bower', 'html', 'media', 'fonts', 'lib', 'copy'],
+      cb);
 });
 
 // Deploy to GitHub pages
@@ -185,4 +310,4 @@ gulp.task('deploy', function() {
 });
 
 // Load custom tasks from the `tasks` directory
-try { require('require-dir')('tasks'); } catch (err) {}
+try { requireDir('tasks'); } catch (err) {}
