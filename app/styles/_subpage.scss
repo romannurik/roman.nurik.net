@@ -2,7 +2,7 @@
 
 $desktopSideMargin: 24px;
 $desktopWidth: 960px - $desktopSideMargin * 2;
-$desktopPagerWidth: $desktopWidth * 0.65;
+$desktopPagerWidth: $desktopWidth * .65;
 $intermediateWidth: 600px - $desktopSideMargin * 2;
 $narrowSideMargin: 16px;
 
@@ -41,7 +41,7 @@ nav.top-bar {
     padding-left: 48px;
     color: #fff;
 
-    &:before {
+    &::before {
       content: '';
       position: absolute;
       left: 0;
@@ -51,7 +51,7 @@ nav.top-bar {
       width: 36px;
       height: 36px;
       background-color: #525252;
-      background-image: url(/images/avatar.png);
+      background-image: url('/images/avatar.png');
       background-size: cover;
       border-radius: 50%;
     }
@@ -70,18 +70,22 @@ nav.top-bar {
 .top-bar-content,
 .page-content {
   width: $desktopWidth;
+
   @include stacked {
     width: $intermediateWidth;
   }
+
   @include narrow {
     box-sizing: border-box;
     width: 100%;
   }
 
   padding: 0 $desktopSideMargin;
+
   @include narrow {
     padding: 0 $narrowSideMargin;
   }
+
   margin: 0 auto;
 }
 
@@ -97,16 +101,19 @@ p {
   line-height: 20px;
 }
 
-pre, code {
+pre,
+code {
   font-family: 'fira-mono', monospace;
   color: $codeColor;
 }
 
-strong, b {
+strong,
+b {
   font-weight: 700;
 }
 
-em, i {
+em,
+i {
   font-style: italic;
 }
 
@@ -114,7 +121,8 @@ a {
   color: $linkColor;
 }
 
-ul, p {
+ul,
+p {
   margin: 0 0 20px 0;
 }
 

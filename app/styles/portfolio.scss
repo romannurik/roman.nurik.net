@@ -8,25 +8,28 @@ $pageDotSize: 8px;
 $pageDotPadding: 4px;
 
 header {
-  margin: 56px auto 56px auto;
+  margin: 56px auto;
   padding-bottom: 56px;
+
   @include narrow {
-    margin: 32px auto 32px auto;
+    margin: 32px auto;
     padding-bottom: 32px;
   }
 
-  border-bottom: 1px solid rgba(black, 0.1);
+  border-bottom: 1px solid rgba(black, .1);
 
   h1 {
     display: block;
     font-weight: 900;
     font-size: 48px;
     line-height: 56px;
+
     @include narrow {
       font-size: 32px;
       line-height: 40px;
     }
-    letter-spacing: -0.5px;
+
+    letter-spacing: -.5px;
     margin: 0;
     padding: 0;
 
@@ -71,13 +74,13 @@ header {
 
   visibility: hidden;
   opacity: 0;
-  transition: opacity 0.1s ease, visibility 0s linear 0.1s;
+  transition: opacity .1s ease, visibility 0s linear .1s;
 }
 
 .loader-parent.loading .loading-spinner {
   visibility: visible;
   opacity: 1;
-  transition: opacity 0.1s ease 0.5s, visibility 0s linear;
+  transition: opacity .1s ease .5s, visibility 0s linear;
 }
 
 @keyframes loading-spinner-rotate {
@@ -90,6 +93,7 @@ header {
   0% {
     transform: translate(32px, 32px) rotate(0deg) translate(-32px, -32px);
   }
+
   100% {
     transform: translate(32px, 32px) rotate(90deg) translate(-32px, -32px);
   }
@@ -100,11 +104,13 @@ header {
     stroke-dasharray: 5, 200;
     stroke-dashoffset: 0;
   }
+
   50% {
     stroke-dasharray: 92, 200;
     // stroke-dashoffset: -35;
     stroke-dashoffset: 0;
   }
+
   100% {
     stroke-dasharray: 5, 200;
     stroke-dashoffset: -92;
@@ -167,12 +173,14 @@ section.project {
   // layout
   display: flex;
   flex-direction: row;
+
   @include stacked {
     flex-direction: column;
   }
 
   .info {
     flex: 1 0 0;
+
     @include stacked {
       flex: 1 1 auto;
     }
@@ -184,11 +192,13 @@ section.project {
   .pages {
     width: $desktopPagerWidth;
     align-self: flex-start;
+
     @include stacked {
       width: 100%;
       left: 0;
       right: 0;
     }
+
     @include narrow {
       left: -8px;
       right: -8px;
@@ -214,10 +224,10 @@ section.project {
     .page-scroll {
       display: flex;
       flex-direction: row;
-      transform: translate3d(0,0,0);
+      transform: translate3d(0, 0, 0);
 
       &.animate-scroll {
-        transition: transform 0.2s ease;
+        transition: transform .2s ease;
       }
     }
 
@@ -246,7 +256,7 @@ section.project {
         padding: 24px;
         outline: 0; // no outline on focus; definitely not ideal
 
-        & > div {
+        > div {
           flex: 0 0 auto;
         }
 
@@ -254,13 +264,17 @@ section.project {
           .device-frame.device-#{$name} {
             background: transparent url(../images/frame_#{$name}.svg) no-repeat 0 0;
           }
+
           .device-frame.device-#{$name}_light {
             background: transparent url(../images/frame_#{$name}_light.svg) no-repeat 0 0;
           }
-          .device-frame.device-#{$name},        
+
+          .device-frame.device-#{$name},
           .device-frame.device-#{$name}_light {
             padding: #{$padding};
-            video, img {
+
+            video,
+            img {
               @content;
             }
           }
@@ -292,7 +306,7 @@ section.project {
       .caption {
         font-size: 14px;
         line-height: 20px;
-        background-color: rgba(white, 0.9);
+        background-color: rgba(white, .9);
         color: $textColor;
         padding: 16px 20px;
 
@@ -302,8 +316,8 @@ section.project {
       }
 
       &:not(.dark) .caption {
-        background-color: rgba(material-color('blue-grey', '900'), 0.9);
-        color: rgba(white, 0.7);
+        background-color: rgba(material-color('blue-grey', '900'), .9);
+        color: rgba(white, .7);
       }
 
       &:not(.dark) a {
@@ -312,7 +326,7 @@ section.project {
 
       &.video {
         .media {
-          &:before {
+          &::before {
             content: '';
             display: block;
             position: absolute;
@@ -320,11 +334,11 @@ section.project {
             top: 0;
             right: 0;
             bottom: 0;
-            background-color: rgba(white, 0.2);
+            background-color: rgba(white, .2);
             z-index: 1;
           }
 
-          &:after {
+          &::after {
             @include material-icons;
             content: 'play_circle_filled';
             font-size: 48px;
@@ -342,7 +356,7 @@ section.project {
           &:before,
           &:after {
             opacity: 1;
-            transition: opacity 0.2s ease;
+            transition: opacity .2s ease;
           }
 
           &:hover:before,
@@ -354,6 +368,7 @@ section.project {
             video {
               display: block;
             }
+
             .thumb {
               display: none;
             }
@@ -411,7 +426,7 @@ section.project {
         padding: $pageDotPadding;
         cursor: pointer;
 
-        &:after {
+        &::after {
           content: '';
           display: block;
           border: 1px solid $pageDotColor;
@@ -421,10 +436,10 @@ section.project {
           top: $pageDotPadding;
           right: $pageDotPadding;
           bottom: $pageDotPadding;
-          transition: border 0.2s ease;
+          transition: border .2s ease;
         }
 
-        &.active:after {
+        &.active::after {
           background: $pageDotColor;
         }
       }
@@ -438,13 +453,15 @@ section.project.tall .page {
 
 footer {
   color: $textColorSub;
-  margin: 56px 0 56px 0;
+  margin: 56px 0;
   padding-top: 56px;
+
   @include narrow {
     padding-top: 32px;
-    margin: 32px 0 32px 0;
+    margin: 32px 0;
   }
-  border-top: 1px solid rgba(black, 0.1);
+
+  border-top: 1px solid rgba(black, .1);
 }
 
 body.has-fullscreen {
@@ -465,17 +482,17 @@ body.has-fullscreen {
   display: flex;
   justify-content: center;
   transform: translate3d(0, 0, 0);
-  transition: opacity 0.2s ease, visibility 0s ease 0.2s;
+  transition: opacity .2s ease, visibility 0s ease .2s;
 
   body.has-fullscreen & {
     opacity: 1;
     visibility: visible;
-    transition: opacity 0.2s ease, visibility 0s linear;
+    transition: opacity .2s ease, visibility 0s linear;
   }
 
   padding: 64px;
 
-  &:after {
+  &::after {
     @include material-icons;
     content: 'close';
     color: $textColorSub;
@@ -487,13 +504,15 @@ body.has-fullscreen {
 
   @include stacked {
     padding: 32px;
-    &:after {
+
+    &::after {
       right: 8px;
       top: 8px;
     }
   }
 
-  img, video {
+  img,
+  video {
     flex: 1 0 0;
     object-fit: scale-down;
     object-position: 50% 50%;
