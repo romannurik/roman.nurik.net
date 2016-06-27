@@ -43,7 +43,7 @@ body {
   justify-content: center;
   flex: 0 0 auto;
 
-  &:before {
+  &::before {
     content: '';
     position: absolute;
     left: 0;
@@ -52,6 +52,7 @@ body {
     width: 100%;
 
     height: $avatarSize / 2 + $avatarBorder + $mainPadding;
+
     @include mobile {
       height: $avatarSizeSmall / 2 + $avatarBorderSmall + $mainPadding;
     }
@@ -78,7 +79,7 @@ body {
     text-decoration: none;
     z-index: 0;
 
-    &:before {
+    &::before {
       position: absolute;
       content: '';
       background-color: darken($colorPrimary, 7%);
@@ -91,19 +92,16 @@ body {
       z-index: -1;
       visibility: hidden;
       opacity: 0;
-      transition: opacity 0.15s ease, visibility 0s linear 0.15s;
     }
 
-    &:hover:before {
-      opacity: 0.5;
+    &:hover::before {
+      opacity: .5;
       visibility: visible;
-      transition: opacity 0.15s ease;
     }
 
-    &:active:before {
+    &:active::before {
       opacity: 1;
       visibility: visible;
-      transition: opacity 0.15s ease;
     }
   }
 
@@ -128,18 +126,20 @@ body {
 .avatar {
   width: $avatarSize;
   height: $avatarSize;
+
   @include mobile {
     width: $avatarSizeSmall;
     height: $avatarSizeSmall;
   }
 
-  background: url(../images/avatar.png);
+  background: url('../images/avatar.png');
   background-size: cover;
   border-radius: 50%;
   background-color: #525252;
   align-self: center;
 
   border: $avatarBorder solid white;
+
   @include mobile {
     border: $avatarBorderSmall solid white;
   }
@@ -150,21 +150,21 @@ body {
   flex-direction: row;
   justify-content: space-between;
 
-  margin: 0 -8px; /* account for extra icon padding */
+  margin: 0 -8px; // account for extra icon padding
   @include mobile { margin: 0; }
 
   a {
     display: block;
     width: 32px;
     height: 32px;
-    padding: 8px; /* make the touch target bigger */
+    padding: 8px; // make the touch target bigger
 
-    &:before {
+    &::before {
       left: 0;
       right: 0;
     }
 
-    &:after {
+    &::after {
       content: '';
       position: absolute;
       left: 0;
@@ -181,6 +181,6 @@ body {
 
   $links: twitter dribbble github medium googleplus email;
   @each $link in $links {
-    .#{$link}:after { background-image: url(../images/icon_#{$link}.svg); }
+    .#{$link}::after { background-image: url(../images/icon_#{$link}.svg); }
   }
 }
