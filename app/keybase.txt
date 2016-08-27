@@ -1,0 +1,54 @@
+==================================================================
+https://keybase.io/romannurik
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://roman.nurik.net
+  * I am romannurik (https://keybase.io/romannurik) on keybase.
+  * I have a public key ASDvVPuHkMAeImrSzwRNize1X9I-Lqev-73EEY49Zd-DCQo
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "eldest_kid": "0101591e41a705ab1c51f6c7d61ba76086f7da93574a57ffc2a23669963f1cd091c60a",
+            "host": "keybase.io",
+            "kid": "0120ef54fb8790c01e226ad2cf044d8b37b55fd23e2ea7affbbdc4118e3d65df83090a",
+            "uid": "c77f1df66dbcf5162eba94f17930f319",
+            "username": "romannurik"
+        },
+        "service": {
+            "hostname": "roman.nurik.net",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "client": {
+        "name": "keybase.io go client",
+        "version": "1.0.17"
+    },
+    "ctime": 1472267846,
+    "expire_in": 504576000,
+    "merkle_root": {
+        "ctime": 1472267802,
+        "hash": "5f1b98b236dee107046c5d3f6d39908e399ed5a9675a4239cb056273c23c8964b6d9dff84b9c2f96294cfdad9cd96617d0a45092a8f7ceaa07f1d011cdc41021",
+        "seqno": 604620
+    },
+    "prev": "4473b2d1b73cdfe5acd64798f01016488e79205eebf88210f09909064e8bc38a",
+    "seqno": 9,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEg71T7h5DAHiJq0s8ETYs3tV/SPi6nr/u9xBGOPWXfgwkKp3BheWxvYWTFAvh7ImJvZHkiOnsia2V5Ijp7ImVsZGVzdF9raWQiOiIwMTAxNTkxZTQxYTcwNWFiMWM1MWY2YzdkNjFiYTc2MDg2ZjdkYTkzNTc0YTU3ZmZjMmEyMzY2OTk2M2YxY2QwOTFjNjBhIiwiaG9zdCI6ImtleWJhc2UuaW8iLCJraWQiOiIwMTIwZWY1NGZiODc5MGMwMWUyMjZhZDJjZjA0NGQ4YjM3YjU1ZmQyM2UyZWE3YWZmYmJkYzQxMThlM2Q2NWRmODMwOTBhIiwidWlkIjoiYzc3ZjFkZjY2ZGJjZjUxNjJlYmE5NGYxNzkzMGYzMTkiLCJ1c2VybmFtZSI6InJvbWFubnVyaWsifSwic2VydmljZSI6eyJob3N0bmFtZSI6InJvbWFuLm51cmlrLm5ldCIsInByb3RvY29sIjoiaHR0cDoifSwidHlwZSI6IndlYl9zZXJ2aWNlX2JpbmRpbmciLCJ2ZXJzaW9uIjoxfSwiY2xpZW50Ijp7Im5hbWUiOiJrZXliYXNlLmlvIGdvIGNsaWVudCIsInZlcnNpb24iOiIxLjAuMTcifSwiY3RpbWUiOjE0NzIyNjc4NDYsImV4cGlyZV9pbiI6NTA0NTc2MDAwLCJtZXJrbGVfcm9vdCI6eyJjdGltZSI6MTQ3MjI2NzgwMiwiaGFzaCI6IjVmMWI5OGIyMzZkZWUxMDcwNDZjNWQzZjZkMzk5MDhlMzk5ZWQ1YTk2NzVhNDIzOWNiMDU2MjczYzIzYzg5NjRiNmQ5ZGZmODRiOWMyZjk2Mjk0Y2ZkYWQ5Y2Q5NjYxN2QwYTQ1MDkyYThmN2NlYWEwN2YxZDAxMWNkYzQxMDIxIiwic2Vxbm8iOjYwNDYyMH0sInByZXYiOiI0NDczYjJkMWI3M2NkZmU1YWNkNjQ3OThmMDEwMTY0ODhlNzkyMDVlZWJmODgyMTBmMDk5MDkwNjRlOGJjMzhhIiwic2Vxbm8iOjksInRhZyI6InNpZ25hdHVyZSJ9o3NpZ8RA8zi81p0XTAtMonmdrYA6pCp40vIov1GQrz4WNEIftF/BrqDgdTedLVaj0F5hTp6g26QD2HKmJSXyJp+NTpf0CqhzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIJy/9kLwsz6zHj67KM9/ETV3uI+523TvjKTaStejukD9o3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/romannurik
+
+==================================================================
