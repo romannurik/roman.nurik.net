@@ -21,18 +21,13 @@
 
 // Include Node packages
 var del = require('del');
+var fs = require('fs');
 var runSequence = require('run-sequence');
 var browserSync = require('browser-sync');
 var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
-var swig = require('swig');
-var swigExtras = require('swig-extras');
 var reload = browserSync.reload;
-var yaml = require('js-yaml');
-var fs = require('fs');
-var through = require('through2');
-var extend = require('util')._extend;
 var path = require('path');
 var merge = require('merge-stream');
 var requireDir = require('require-dir');
@@ -43,8 +38,8 @@ var $ = require('gulp-load-plugins')();
 var exclude = require('gulp-ignore').exclude;
 
 // Include local packages
-var locals = {};
-try { locals = requireDir('local_node_modules', {camelcase:true}); } catch (err) {}
+var localPlugins = {};
+try { localPlugins = requireDir('local_node_modules', {camelcase:true}); } catch (err) {}
 
 
 var AUTOPREFIXER_BROWSERS = [
@@ -59,11 +54,18 @@ var AUTOPREFIXER_BROWSERS = [
   'bb >= 10'
 ];
 
+
+function errorHandler(error) {
+  console.error(error.stack);
+  this.emit('end'); // http://stackoverflow.com/questions/23971388
+}
+
+
 // Lint JavaScript
 gulp.task('js', function() {
   var streams = [];
   if (fs.existsSync('app/scripts')) {
-    fs.readdirSync('app/scripts').forEach(function(file) {
+    fs.readdirSync('app/scripts').forEach(file => {
       if (file.match(/^[^_].+\.js$/)) {
         streams.push(browserify('app/scripts/' + file)
             .bundle()
@@ -76,9 +78,7 @@ gulp.task('js', function() {
     });
   }
 
-  if (streams.length) {
-    return merge(streams);
-  }
+  return merge(streams);
 });
 
 // Bower
@@ -131,24 +131,20 @@ gulp.task('lib', function () {
     .pipe($.size({title: 'lib'}));
 });
 
-// Copy Web Fonts To Dist
-gulp.task('fonts', function () {
-  return gulp.src(['app/fonts/**'])
-    .pipe(gulp.dest('dist/fonts'))
-    .pipe($.size({title: 'fonts'}));
-});
 
 // Compile and Automatically Prefix Stylesheets
 gulp.task('styles', function () {
   // For best performance, don't add Sass partials to `gulp.src`
-  return $.rubySass([
+  return gulp.src([
       'app/styles/*.scss',
       'app/styles/**/*.css',
-    ], {
-      style: 'expanded',
-      precision: 10
-    })
+    ])
     .pipe($.changed('styles', {extension: '.scss'}))
+    .pipe($.sass({
+      style: 'expanded',
+      precision: 10,
+      quiet: true
+    }).on('error', errorHandler))
     .pipe($.autoprefixer(AUTOPREFIXER_BROWSERS))
     .pipe(gulp.dest('.tmp/styles'))
     // Concatenate And Minify Styles
@@ -159,111 +155,38 @@ gulp.task('styles', function () {
 
 // HTML
 gulp.task('html', function () {
-  var globalData = {};
-
-  if (fs.existsSync('app/data')) {
-    fs.readdirSync('app/data').forEach(function(filename) {
-      var path = 'app/data/' + filename;
-      var stat = fs.statSync(path);
-      if (stat.isFile() && /.yaml$/.test(filename)) {
-        var obj = yaml.safeLoad(fs.readFileSync(path, 'utf8'));
-        globalData[filename.replace(/\..*/, '')] = obj;
-      }
-    });
-  }
-
-  var pages = [];
-
   return gulp.src([
       'app/html/**/*.html',
       '!app/html/**/_*.html'
     ])
-    // Extract frontmatter
-    .pipe($.frontMatter({
-      property: 'frontMatter',
-      remove: true
-    }))
-    // Start populating context data for the file, globalData, followed by file's frontmatter
-    .pipe($.tap(function(file, t) {
-      file.contextData = extend(extend({}, globalData), file.frontMatter);
-    }))
-    // Handle generator files
-    .pipe($.if('$*.html', through.obj(function(file, enc, callback) {
-      // Pull out generator info and find the collection
-      var gen = file.frontMatter.generate;
-      var collection = globalData[gen.collection];
-      // Create a new file for each item in the collection
-      for (var i = 0; i < collection.length; i++) {
-        var item = collection[i];
-        var newFile = file.clone();
-        newFile.contextData[gen.variable] = item;
-        newFile.path = path.join(newFile.base,
-            swig.render(gen.filename, {locals: newFile.contextData}));
-        this.push(newFile);
-      }
-      callback();
-    })))
-    // Populate the global pages collection
-    // Wait for all files first (to collect all front matter)
-    .pipe($.util.buffer())
-    .pipe(through.obj(function(filesArray, enc, callback) {
-      var me = this;
-      filesArray.forEach(function(file) {
-        var pageInfo = {path: file.path, data: file.frontMatter || {}};
-        pages.push(pageInfo);
-      });
-      // Re-emit each file into the stream
-      filesArray.forEach(function(file) {
-        me.push(file);
-      });
-      callback();
-    }))
-    .pipe($.tap(function(file, t) {
-      // Finally, add pages array to collection
-      file.contextData = extend(file.contextData, {all_pages: pages});
-    }))
-    // Run everything through swig templates
-    .pipe($.swig({
-      setup: function(sw) {
-        swigExtras.useTag(sw, 'markdown');
-        swigExtras.useFilter(sw, 'markdown');
-        swigExtras.useFilter(sw, 'trim');
-        sw.setFilter('material_color', function(input) {
-          var parts = input.toLowerCase().split(/\s+/g);
+    .pipe($.nucleus({
+      dataPath: 'app/data',
+      setupSwig: sw => {
+        sw.setFilter('slug', input => input.toLowerCase().replace(/[^\w]+/g, '-'));
+        sw.setFilter('material_color', input => {
+          let parts = input.toLowerCase().split(/\s+/g);
           if (parts[0] == 'material' && parts.length >= 3) {
-            return locals.materialColor(parts[1], parts[2]);
+            return localPlugins.materialColor(parts[1], parts[2]);
           }
           return input;
         });
-      },
-      data: function(file) {
-        return file.contextData;
-      },
-      defaults: {
-        cache: false
       }
     }))
-    // Concatenate And Minify JavaScript
-    .pipe($.if('*.js', $.uglify({preserveComments: 'some'})))
-    // Concatenate And Minify Styles
-    // In case you are still using useref build blocks
-    .pipe($.if('*.css', $.csso()))
-    // Minify Any HTML
     .pipe(gulp.dest('.tmp'))
     .pipe($.if('*.html', $.minifyHtml()))
-    // Output Files
     .pipe(gulp.dest('dist'))
     .pipe($.size({title: 'html'}));
 });
 
 // Clean Output Directory
-gulp.task('clean', function() {
-  del(['.tmp', 'dist']);
+gulp.task('clean', function(cb) {
+  del.sync(['.tmp', 'dist']);
   $.cache.clearAll();
+  cb();
 });
 
 // Watch Files For Changes & Reload
-gulp.task('serve', ['styles', 'bower', 'html'], function () {
+gulp.task('serve', ['styles', 'js', 'bower', 'html'], function () {
   browserSync({
     notify: false,
     // Run as an https by uncommenting 'https: true'
@@ -299,7 +222,7 @@ gulp.task('serve:dist', ['default'], function () {
 // Build Production Files, the Default Task
 gulp.task('default', ['clean'], function (cb) {
   runSequence('styles',
-      ['js', 'bower', 'html', 'media', 'fonts', 'lib', 'copy'],
+      ['js', 'bower', 'html', 'media', 'lib', 'copy'],
       cb);
 });
 
