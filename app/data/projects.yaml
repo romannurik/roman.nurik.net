@@ -1,5 +1,37 @@
 # List of my portfolio projects.
 
+
+- name: Firebase Console
+  date: August 2015 – Present
+  description: |
+    I'm currently a design lead and manager on the Firebase UX team, focusing on the [Firebase console](https://console.firebase.google.com) design system (components, spec documentation, Sketch UI kit) and other platform-level design and UX engineering projects.
+
+    Previously, I was UX lead for [Firebase Remote Config](https://firebase.google.com/products/remote-config/), [A/B Testing](https://firebase.google.com/docs/remote-config/abtest-config), the console onboarding experience, our UI prototyping system, the [Firebase plugin for Android Studio](https://developer.android.com/studio/write/firebase.html), and other smaller projects.
+
+  pages:
+  - image: firebase_overview.png
+    color: 'material light-blue 100'
+    device_frame: browser
+  - image: firebase_remoteconfig.png
+    color: 'material indigo 100'
+    device_frame: browser
+    caption: I was previously UX lead for [Firebase Remote Config](https://firebase.google.com/products/remote-config/), helping define the experience for an innovative new developer product.
+  - image: firebase_abtesting.png
+    color: 'material teal 100'
+    device_frame: browser
+    caption: I was also previously UX lead for [Firebase A/B Testing](https://firebase.google.com/docs/remote-config/abtest-config).
+  - image: firebase_download.gif
+    color: 'material grey 100'
+    extra_classes: no-padding
+    caption: I had the opportunity to design and implement a few small-scale icon animations throughout the console.
+  - image: firebase_loading.gif
+    color: 'material blue-grey 50'
+    caption: I had a chance to design a loading state, animating the [Firebase logomark designed by Ali Johnson](https://dribbble.com/shots/3140440-Firebase-Logo).
+
+
+###################################################################################################
+
+
 - name: Muzei Live Wallpaper
   date: September 2013 – February 2014
   extra_classes: tall
@@ -115,41 +147,6 @@
 ###################################################################################################
 
 
-- name: Android Design in Action Redesigns
-  date: 2012 and 2013
-  description: |
-    In 2012, I created and co-hosted a popular web video series on Android design, that now totals over a million views on YouTube.
-
-    The original idea was to put the UI guidance we were sharing with developers to practice by redesigning apps, nominated by the apps' developers, and discussing these explorations on a biweekly live broadcast.
-
-    The format eventually evolved, but we successfully produced about a dozen hypothetical designs over ~40 episodes, helping pave the way for better design in the Android app ecosystem.
-
-  actions:
-  - caption: Watch show
-    url: http://www.androiddesigninaction.com
-  - caption: More on Dribbble
-    url: https://dribbble.com/romannurik
- 
-  pages:
-  - image: adia_london_underground.png
-    color: 'material light-green 100'
-    caption: |
-      This [London Underground app redesign](https://www.youtube.com/watch?v=Gs8k_PDUL3s&index=37&list=PLWz5rJ2EKKc8j2B95zGMb8muZvrIy-wcF#t=2m14s) from Sep 2012 was one of my first for ADiA. Click the image for detailed notes.
-
-  - image: adia_kayak.png
-    color: 'material orange 100'
-    caption: |
-      My design explorations for [Kayak](https://www.youtube.com/watch?v=z0j15ytJCIg&list=PLWz5rJ2EKKc8j2B95zGMb8muZvrIy-wcF&index=34#t=50s) from Oct 2012 were among my favorites during ADiA. Click the image for detailed notes.
-
-  - image: adia_live_score_addicts.png
-    color: 'material green 100'
-    caption: |
-      This [soccer scores app redesign](https://www.youtube.com/watch?v=hpqUbpVx5Bo&list=PLWz5rJ2EKKc8j2B95zGMb8muZvrIy-wcF&index=23#t=2m30s) from Feb 2013 was a great vehicle for allowing me to explore data visualization.
-
-
-###################################################################################################
-
-
 - name: Design Tools
   description: |
     One of my biggest passions is creating designer and developer tools. Since 2010, I've worked on a number of small and large, mostly web-based tools that help designers and developers be more productive.
@@ -162,11 +159,17 @@
     color2: 'material teal 500'
     caption: "Like many other designers, I've switched to using Sketch for most of my UI work. In my unrelenting quest to improve my own productivity, I started writing Sketch plugins. [Sketch Artboard Tricks](https://github.com/romannurik/sketch-artboardtricks) is one that I wrote that many designers on my current team now use."
 
+  - image: tools_androidiconanimator.gif
+    color: 'material blue-grey 400'
+    color2: '#0099CC'
+    device_frame: browser
+    caption: The [Android Icon Animator](https://github.com/romannurik/AndroidIconAnimator/) was a foray into motion design tooling, and the genesis for the new and awesome [Shape Shifter](https://shapeshifter.design/) tool by Alex Lockwood. Built with [AngularJS](https://angularjs.org/).
+
   - video: tools_assetstudio
     color: 'material light-blue 100'
     color2: '#0099CC'
     device_frame: browser
-    caption: The [Android Asset Studio](http://j.mp/androidassetstudio) was one of the first tools I wrote, aiming to take the guesswork out of Android app icon sizing and effects. Plug in some values and it generates all the necessary assets for each screen density.
+    caption: The [Android Asset Studio](https://romannurik.github.io/AndroidAssetStudio/) was one of the first tools I wrote, aiming to take the guesswork out of Android app icon sizing and effects. Plug in some values and it generates all the necessary assets for each screen density.
 
   - video: tools_layervisualizer
     color: 'material cyan 100'
@@ -175,7 +178,7 @@
     caption: The [Layer Visualizer](https://github.com/romannurik/LayerVisualizer) was a quick tool I built for helping [teach material design](https://www.udacity.com/course/material-design-for-android-developers--ud862), specifically the depth relationships of material surfaces. [See on Dribbble](https://dribbble.com/shots/2238573-Google-I-O-App-Layer-Visualization)
 
   - video: tools_designpreview
-    extra_classes: dark no-padding
+    extra_classes: no-padding
     color: '#2D2D2D'
     color2: 'material deep-orange 500'
     caption: "[Android Design Preview](https://github.com/romannurik/AndroidDesignPreview) is a tool I co-wrote that allows designers to get a more realistic view of their UIs by mirroring a portion of their computer screen to an Android device."
@@ -263,24 +266,3 @@
     device_frame: wear_round_light
     extra_classes: circle no-fullscreen
     caption: I also designed, developed, launched and open-sourced a [watch face for Android Wear](https://play.google.com/store/apps/details?id=net.nurik.roman.formwatchface) using the FORM typeface.
-
-###################################################################################################
-
-
-- name: Motion Graphics
-  description: |
-    While I've always been interested in motion design, I've only had a few opportunities to work on motion projects at Google. The gallery to the right showcases some of those projects, most of which were built with After Effects.
-
-    *Aside: For UI motion, I prefer to do most of my motion work directly in code (i.e. CSS or Android UI toolkit) because interaction and motion are so intertwined.*
-
-  pages:
-  - video: motion_androiddev_introclip
-    color: '#000000'
-    color2: '#a4c639'
-    extra_classes: dark no-padding
-    caption: An intro bumper for our [Android Developers YouTube channel](http://youtube.com/androiddevelopers). One of the earlier forays into higher-quality videos for our team.
-
-  - image: motion_checked_in.gif
-    color: '#eee'
-    caption: An 'attendee has checked in' UI state transition for an attendee check-in app for Google Developers events. [See on Dribbble](https://dribbble.com/shots/1971437-Checked-in-state)
-    extra_classes: no-fullscreen no-padding

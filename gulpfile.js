@@ -14,30 +14,23 @@
  * limitations under the License.
  */
 
-// Based on the Web Starter Kit
-// https://developers.google.com/web/tools/starter-kit
-
-'use strict';
-
-// Include Node packages
-var del = require('del');
-var fs = require('fs');
-var runSequence = require('run-sequence');
-var browserSync = require('browser-sync');
 var browserify = require('browserify');
-var source = require('vinyl-source-stream');
+var browserSync = require('browser-sync');
 var buffer = require('vinyl-buffer');
-var reload = browserSync.reload;
-var path = require('path');
-var merge = require('merge-stream');
-var requireDir = require('require-dir');
-
-// Include Gulp and plugins
-var gulp = require('gulp');
-var $ = require('gulp-load-plugins')();
+var del = require('del');
 var exclude = require('gulp-ignore').exclude;
+var fs = require('fs');
+var gulp = require('gulp');
+var merge = require('merge-stream');
+var path = require('path');
+var reload = browserSync.reload;
+var requireDir = require('require-dir');
+var runSequence = require('run-sequence');
+var source = require('vinyl-source-stream');
 
-// Include local packages
+var $ = require('gulp-load-plugins')();
+
+// include local packages
 var localPlugins = {};
 try { localPlugins = requireDir('local_node_modules', {camelcase:true}); } catch (err) {}
 
@@ -72,7 +65,7 @@ gulp.task('js', function() {
             .pipe(source(file))
             .pipe(buffer())
             .pipe(gulp.dest('.tmp/scripts'))
-            .pipe($.uglify({preserveComments: 'some'}))
+            .pipe($.uglify())
             .pipe(gulp.dest('dist/scripts')));
       }
     });
@@ -229,8 +222,5 @@ gulp.task('default', ['clean'], function (cb) {
 // Deploy to GitHub pages
 gulp.task('deploy', function() {
   return gulp.src('dist/**/*', {dot: true})
-    .pipe($.ghPages());
+      .pipe($.ghPages());
 });
-
-// Load custom tasks from the `tasks` directory
-try { requireDir('tasks'); } catch (err) {}
