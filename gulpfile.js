@@ -92,11 +92,11 @@ gulp.task('media', function () {
     .pipe($.size({title: 'media'}));
 
   var stream2 = gulp.src('app/images/**/*')
-    .pipe($.cache($.imagemin({
+    .pipe($.imagemin({
       progressive: true,
       interlaced: true,
       svgoPlugins: [{removeTitle: true}],
-    })))
+    }))
     .pipe(gulp.dest('dist/images'))
     .pipe($.size({title: 'images'}));
 
