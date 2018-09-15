@@ -199,7 +199,7 @@
 ###################################################################################################
 
 
-- name: Material Icons
+- name: Material Product Icons
 
   description: |
     I’ve created a number of product icons following the [material design guidelines](https://www.google.com/design/spec/style/icons.html), for a number of purposes, including official Google products such as [Google Cloud Messaging](https://developers.google.com/cloud-messaging/), as well as unofficial apps such as [Nick Butcher](http://twitter.com/crafty)’s [Plaid](https://dribbble.com/shots/2344334-Plaid-Product-Icon).
