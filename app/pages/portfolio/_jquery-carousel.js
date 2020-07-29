@@ -1,4 +1,6 @@
-require('./_jquery-wheelswipe');
+import jQuery from 'jquery';
+import Hammer from 'hammerjs';
+import './_jquery-wheelswipe';
 
 (function($) {
 

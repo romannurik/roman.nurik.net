@@ -1,16 +1,19 @@
-require('./_jquery-carousel');
+import FastClick from 'fastclick';
+import $ from 'jquery';
+import './_jquery-carousel';
 
+export function PortfolioPage() {
+  $(document).ready(function() {
+    buildPagers();
+    setupMediaSizing();
+    setupVideoMedia();
+    setupFullscreen();
+    setupKeyboardNav();
 
-$(document).ready(function() {
-  buildPagers();
-  setupMediaSizing();
-  setupVideoMedia();
-  setupFullscreen();
-  setupKeyboardNav();
-
-  FastClick.attach(document.body);
-  $('.project a').attr('target', '_blank');
-});
+    FastClick.attach(document.body);
+    $('.project a').attr('target', '_blank');
+  });
+}
 
 
 function buildPagers() {

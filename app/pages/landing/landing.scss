@@ -1,0 +1,186 @@
+body.page-landing {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.page-landing {
+  $avatarSize: 128px;
+  $avatarSizeSmall: 96px;
+  $avatarBorder: 4px;
+  $avatarBorderSmall: $avatarBorder;
+
+  $mainPadding: 24px;
+
+  @mixin mobile {
+    @media only screen and (max-width: 360px) { @content; }
+  }
+
+  // Teh stylez
+
+  .top {
+    background-color: #fff;
+  }
+
+  .bottom {
+    width: 100%;
+    background-color: $colorPrimary;
+  }
+
+  .top,
+  .bottom {
+    flex: 1 0 auto;
+  }
+
+  .content-container {
+    position: relative;
+    width: 100%;
+    background-color: $colorPrimary;
+    display: flex;
+    justify-content: center;
+    flex: 0 0 auto;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      background-color: #fff;
+      width: 100%;
+
+      height: $avatarSize / 2 + $avatarBorder + $mainPadding;
+
+      @include mobile {
+        height: $avatarSizeSmall / 2 + $avatarBorderSmall + $mainPadding;
+      }
+    }
+  }
+
+  .content {
+    position: relative;
+    padding: $mainPadding;
+    width: 300px;
+    color: rgba(#fff, 0.8);
+    display: flex;
+    flex-direction: column;
+
+    font-size: 24px;
+
+    line-height: 32px;
+
+    a {
+      display: inline-block;
+      position: relative;
+      font-weight: 700;
+      color: #fff;
+      text-decoration: none;
+      z-index: 0;
+
+      &::before {
+        position: absolute;
+        content: '';
+        background-color: darken($colorPrimary, 7%);
+        background-position: 50% 0;
+        left: -6px;
+        right: -6px;
+        border-radius: 5px;
+        top: 0;
+        bottom: 0;
+        z-index: -1;
+        visibility: hidden;
+        opacity: 0;
+      }
+
+      &:hover::before {
+        opacity: .5;
+        visibility: visible;
+      }
+
+      &:active::before {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+
+    p:first-of-type {
+      margin-top: 32px;
+      @include mobile { margin-top: 24px; }
+    }
+
+    p:last-of-type {
+      margin-bottom: 40px;
+      @include mobile { margin-bottom: 32px; }
+    }
+
+    p {
+      width: 256px;
+      text-align: center;
+      margin: 16px auto;
+      @include mobile { margin: 8px; }
+    }
+  }
+
+  .avatar {
+    width: $avatarSize;
+    height: $avatarSize;
+
+    @include mobile {
+      width: $avatarSizeSmall;
+      height: $avatarSizeSmall;
+    }
+
+    background: url('../images/avatar.png');
+    background-size: cover;
+    border-radius: 50%;
+    background-color: #525252;
+    align-self: center;
+
+    border: $avatarBorder solid white;
+
+    @include mobile {
+      border: $avatarBorderSmall solid white;
+    }
+  }
+
+  .icons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    margin: 0 -8px; // account for extra icon padding
+    @include mobile { margin: 0; }
+
+    a {
+      display: block;
+      width: 32px;
+      height: 32px;
+      padding: 8px; // make the touch target bigger
+
+      &::before {
+        left: 0;
+        right: 0;
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+
+        background-size: 32px 32px;
+        @include mobile { background-size: 24px 24px; }
+      }
+    }
+
+    $links: twitter dribbble github medium googleplus email;
+    @each $link in $links {
+      .#{$link}::after { background-image: url(../images/icon_#{$link}.svg); }
+    }
+  }
+}

@@ -19,6 +19,8 @@
     <link rel="openid.server" href="http://www.myopenid.com/server">
     <link rel="openid.delegate" href="http://roman.nurik.myopenid.com/">
     <link rel="author" href="https://plus.google.com/+RomanNurik">
+    <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="/app.css">
 
     {% block css %}
     {% endblock %}
@@ -27,15 +29,19 @@
     <script>try{Typekit.load(/*{ async: true }*/);}catch(e){}</script>
 
   </head>
-  <body>
+  <body class="{{ pageClasses }}">
 
-    {% block page-body %}
+    {% block pagebody %}
     {% endblock %}
 
-    <script src="/lib/jquery/dist/jquery.min.js"></script>
-    <script src="/lib/fastclick/lib/fastclick.js"></script>
-    {% block js %}
-    {% endblock %}
+    <script src="/app.js"></script>
+
+    {% block js %}{% endblock %}
+
+    {% if pageController %}
+    <script>new pages.{{ pageController }}();</script>
+    {% endif %}
+
 
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

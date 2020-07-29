@@ -1,20 +1,13 @@
 ---
 title: Design Portfolio
+destination: /portfolio/index.html
+pageClasses: page-portfolio page-subpage
+pageController: PortfolioPage
 ---
-{% extends '../_subpage.html' %}
+{% extends '_subpage.html' %}
 
-{% block css %}
-<link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="/styles/portfolio.css" />
-{% endblock %}
-
-{% block js %}
-<script src="/lib/hammerjs/hammer.min.js"></script>
-<script src="/scripts/portfolio.js"></script>
-{% endblock %}
-
-{% block subpage-body %}
-{% parent %}
+{% block subpagebody %}
+{{ super() }}
 
 <header>
   <h1>{{ title }}</h1>
@@ -32,7 +25,7 @@ This is my design portfolio, covering work at Google as well as side projects re
     <div class="info">
       <h2>{{ project.name }}</h2>
       <p class="date">{{ project.date }}</p>
-      {{ project.description | markdown }}
+      {% markdown %}{{ project.description }}{% endmarkdown %}
       {% if project.actions %}
       <div class="actions">
         {% for action in project.actions %}
@@ -66,7 +59,7 @@ This is my design portfolio, covering work at Google as well as side projects re
         </div>
         {% if page.caption %}
         <div class="caption">
-          {{ page.caption | markdown }}
+          {% markdown %}{{ project.caption }}{% endmarkdown %}
         </div>
         {% endif %}
       </div>
@@ -79,7 +72,7 @@ This is my design portfolio, covering work at Google as well as side projects re
 
 <footer>
 {% markdown %}
-Hand-coded using HTML/Swig, JavaScript/jQuery, Sass, Gulp, and more.
+Hand-coded using HTML/Nunjucks, JavaScript/jQuery, Sass, Gulp, and more.
 [See the source](https://github.com/romannurik/roman.nurik.net)
 {% endmarkdown %}
 </footer>

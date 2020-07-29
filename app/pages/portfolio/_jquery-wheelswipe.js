@@ -1,3 +1,5 @@
+import jQuery from 'jquery';
+
 (function($) {
 
   $.fn.wheelswipe = function(callback) {
