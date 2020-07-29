@@ -11,14 +11,14 @@
   pages:
   - image: firebase_overview.png
     color: 'material light-blue 100'
-    device_frame: browser
+    device_frame: browser_light
   - image: firebase_remoteconfig.png
     color: 'material indigo 100'
-    device_frame: browser
+    device_frame: browser_light
     caption: I was previously UX lead for [Firebase Remote Config](https://firebase.google.com/products/remote-config/), helping define the experience for an innovative new developer product.
   - image: firebase_abtesting.png
     color: 'material teal 100'
-    device_frame: browser
+    device_frame: browser_light
     caption: I was also previously UX lead for [Firebase A/B Testing](https://firebase.google.com/docs/remote-config/abtest-config).
   - image: firebase_download.gif
     color: 'material grey 100'
@@ -69,7 +69,7 @@
   - video: muzei_archive
     color: 'material orange 100'
     color2: 'material orange 600'
-    device_frame: browser
+    device_frame: browser_light
     caption: I also built a [web-based archive of featured art](http://muzei.co/archive) used in the app, which actually served as the basis of some of the interactions in this portfolio.
 
 
@@ -102,7 +102,7 @@
   - video: iosched_2014_article
     color: 'material teal 100'
     color2: 'material teal 500'
-    device_frame: browser
+    device_frame: browser_light
     caption: I published a popular [article](https://medium.com/google-design/material-design-in-the-2014-google-i-o-app-e3b22caffae6) and [video](https://www.youtube.com/watch?v=XOcCOBe8PTc) detailing some of our design decisions for the 2014 app.
 
   - image: iosched_2014_vignette.png
@@ -162,19 +162,19 @@
   - image: tools_androidiconanimator.gif
     color: 'material blue-grey 400'
     color2: '#0099CC'
-    device_frame: browser
+    device_frame: browser_light
     caption: The [Android Icon Animator](https://github.com/romannurik/AndroidIconAnimator/) was a foray into motion design tooling, and the genesis for the new and awesome [Shape Shifter](https://shapeshifter.design/) tool by Alex Lockwood. Built with [AngularJS](https://angularjs.org/).
 
   - video: tools_assetstudio
     color: 'material light-blue 100'
     color2: '#0099CC'
-    device_frame: browser
+    device_frame: browser_light
     caption: The [Android Asset Studio](https://romannurik.github.io/AndroidAssetStudio/) was one of the first tools I wrote, aiming to take the guesswork out of Android app icon sizing and effects. Plug in some values and it generates all the necessary assets for each screen density.
 
   - video: tools_layervisualizer
     color: 'material cyan 100'
     color2: 'material cyan 500'
-    device_frame: browser
+    device_frame: browser_light
     caption: The [Layer Visualizer](https://github.com/romannurik/LayerVisualizer) was a quick tool I built for helping [teach material design](https://www.udacity.com/course/material-design-for-android-developers--ud862), specifically the depth relationships of material surfaces. [See on Dribbble](https://dribbble.com/shots/2238573-Google-I-O-App-Layer-Visualization)
 
   - video: tools_designpreview
@@ -186,13 +186,13 @@
   - video: tools_ninepatch
     color: 'material light-blue 100'
     color2: '#0099CC'
-    device_frame: browser
+    device_frame: browser_light
     caption: Nine-patches are notoriously tedious to produce, especially in bulk. I built the [nine-patch generator](http://romannurik.github.io/AndroidAssetStudio/nine-patches.html), to simplify the process of creating optimized nine-patches for all densities.
 
   - video: tools_deviceart
     color: 'material green 100'
     color2: '#6ab344'
-    device_frame: browser
+    device_frame: browser_light
     caption: I recognized several years ago that developers were using device frames inconsistently, with poor lighting/sheen, shadows, etc. I decided to make an easy-to-use [generator](http://developer.android.com/distribute/tools/promote/device-art.html) for Nexus device-framed images.
 
 
@@ -258,7 +258,7 @@
   - color: '#02A8F3'
     color2: 'material light-blue 500'
     video: formtypemaker
-    device_frame: browser
+    device_frame: browser_light
 
   - color: '#4EC2F6'
     color2: 'material light-blue 500'

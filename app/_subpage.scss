@@ -1,6 +1,6 @@
 .page-subpage {
   $codeColor: material-color('purple', '500');
-  $linkColor: material-color('blue', '500');
+  $linkColor: $colorPrimary;
 
   // layout and ui elements
 
@@ -10,7 +10,7 @@
     flex-direction: row;
     align-items: center;
     padding: 16px 0;
-    background-color: $colorPrimary;
+    border-bottom: 1px solid rgba(black, .1);
 
     .home-link {
       display: block;
@@ -20,7 +20,7 @@
       font-weight: 500;
       line-height: 36px;
       padding-left: 48px;
-      color: #fff;
+      color: $textColor;
 
       &::before {
         content: '';
@@ -84,13 +84,13 @@
 
   pre,
   code {
-    font-family: 'fira-mono', monospace;
+    font-family: JetBrainsMono, monospace;
     color: $codeColor;
   }
 
   strong,
   b {
-    font-weight: 700;
+    font-weight: 800;
   }
 
   em,

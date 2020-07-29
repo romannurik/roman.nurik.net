@@ -25,7 +25,7 @@ This is my design portfolio, covering work at Google as well as side projects re
     <div class="info">
       <h2>{{ project.name }}</h2>
       <p class="date">{{ project.date }}</p>
-      {% markdown %}{{ project.description }}{% endmarkdown %}
+      {% markdown %}{{ project.description | safe }}{% endmarkdown %}
       {% if project.actions %}
       <div class="actions">
         {% for action in project.actions %}
@@ -59,7 +59,7 @@ This is my design portfolio, covering work at Google as well as side projects re
         </div>
         {% if page.caption %}
         <div class="caption">
-          {% markdown %}{{ project.caption }}{% endmarkdown %}
+          {% markdown %}{{ page.caption | safe }}{% endmarkdown %}
         </div>
         {% endif %}
       </div>

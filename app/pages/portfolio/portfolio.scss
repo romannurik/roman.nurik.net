@@ -120,7 +120,7 @@
 
     // styling
     h2 {
-      font-weight: 700;
+      font-weight: 800;
       font-size: 20px;
       line-height: 24px;
       margin: 0;
@@ -459,7 +459,7 @@
     border-top: 1px solid rgba(black, .1);
   }
 
-  body.has-fullscreen {
+  @at-root body.has-fullscreen {
     overflow: hidden;
   }
 
@@ -479,7 +479,7 @@
     transform: translate3d(0, 0, 0);
     transition: opacity .2s ease, visibility 0s ease .2s;
 
-    body.has-fullscreen & {
+    @at-root body.has-fullscreen .fullscreen-overlay {
       opacity: 1;
       visibility: visible;
       transition: opacity .2s ease, visibility 0s linear;
@@ -520,12 +520,12 @@
     border-radius: 10000px;
   }
 
+  .loaded video {
+    opacity: 1;
+  }
+
   video {
     opacity: 0;
     outline: 0; // remove border in firefox
-
-    .loaded & {
-      opacity: 1;
-    }
   }
 }

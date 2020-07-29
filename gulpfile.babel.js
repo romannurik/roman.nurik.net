@@ -156,9 +156,10 @@ gulp.task('__serve__', gulp.series('html', 'webpack', () => {
     port: 3000
   });
 
-  gulp.watch(['app/**/*.html'], gulp.series('html', reload));
-  gulp.watch(['app/data/**/*.{json,yaml}'], gulp.series('html', reload));
-  gulp.watch(['app/{images,media}/**/*'], gulp.series('media', 'html', reload)); // html because SVG sometimes inlined
+  let r = cb => { reload(); cb(); };
+  gulp.watch(['app/**/*.html'], gulp.series('html', r));
+  gulp.watch(['app/data/**/*.{json,yaml}'], gulp.series('html', r));
+  gulp.watch(['app/{images,media}/**/*'], gulp.series('media', 'html', r)); // html because SVG sometimes inlined
 
   if (webpackInstance) {
     webpackInstance.watch({}, (err, stats) => {

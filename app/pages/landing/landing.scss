@@ -73,15 +73,17 @@ body.page-landing {
     a {
       display: inline-block;
       position: relative;
-      font-weight: 700;
+      font-weight: 800;
       color: #fff;
       text-decoration: none;
       z-index: 0;
 
+      $animSpeed: .05s;
+
       &::before {
         position: absolute;
         content: '';
-        background-color: darken($colorPrimary, 7%);
+        background-color: $colorPrimaryDark;
         background-position: 50% 0;
         left: -6px;
         right: -6px;
@@ -91,16 +93,29 @@ body.page-landing {
         z-index: -1;
         visibility: hidden;
         opacity: 0;
+        transition:
+            opacity $animSpeed ease,
+            transform $animSpeed ease,
+            visibility 0s linear $animSpeed;
+        transform: scale(.9);
+        display: block;
+      }
+
+      &:hover::before,
+      &:active::before {
+        visibility: visible;
+        transform: scale(1);
+        transition:
+            opacity $animSpeed ease,
+            transform $animSpeed ease;
       }
 
       &:hover::before {
         opacity: .5;
-        visibility: visible;
       }
 
       &:active::before {
         opacity: 1;
-        visibility: visible;
       }
     }
 
