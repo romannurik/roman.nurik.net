@@ -1,18 +1,16 @@
 import FastClick from 'fastclick';
-import $ from 'jquery';
 
 export function LandingPage() {
-  $(document).ready(function() {
-    console.log('f');
+  window.addEventListener('load', () => {
     FastClick.attach(document.body);
 
-    // Show my email address
-    var $emailLinks = $('.email.obfuscated');
-    if ($emailLinks.data('email')) {
-      var obfuscated = $emailLinks.data('email');
-      $emailLinks.attr('href', 'mailto:' + obfuscated
+    for (let link of document.querySelectorAll('.email.obfuscated')) {
+      let email = link.getAttribute('data-email');
+      if (email) {
+        link.setAttribute('href', 'mailto:' + email
             .replace(/ /, '@')
             .replace(/ /, '.'));
+      }
     }
   });
 }

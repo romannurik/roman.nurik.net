@@ -68,8 +68,7 @@ gulp.task('copy', () =>
   gulp.src([
     'app/CNAME',
     'app/*.{txt,ico,png}',
-  ], {dot: true}).pipe(gulp.dest('dist'))
-    .pipe($.size({title: 'copy'})));
+  ], {dot: true}).pipe(gulp.dest('dist')));
 
 // Concatenate and minify JavaScript
 gulp.task('webpack', cb => {
@@ -132,8 +131,6 @@ gulp.task('html', () =>
       removeStyleLinkTypeAttributes: true,
       removeOptionalTags: true
     })))
-    // Output files
-    .pipe($.if('*.html', $.size({title: 'html'})))
     .pipe(gulp.dest('dist'))
 );
 

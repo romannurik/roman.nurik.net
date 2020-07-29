@@ -2,5 +2,9 @@ This is the source code to my personal site, [roman.nurik.net](http://roman.nuri
 
 To build the site (which gets output in the `dist` directory), just run
 
-    npm install
-    gulp
+    $ npm install
+    $ npm run build
+
+You can also run the local web server with:
+
+    $ npm run start

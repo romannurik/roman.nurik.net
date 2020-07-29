@@ -2,8 +2,9 @@ import FastClick from 'fastclick';
 import $ from 'jquery';
 import './_jquery-carousel';
 
+
 export function PortfolioPage() {
-  $(document).ready(function() {
+  $(document).ready(() => {
     buildPagers();
     setupMediaSizing();
     setupVideoMedia();
@@ -20,15 +21,11 @@ function buildPagers() {
   $('.pages').carousel();
 
   // resize media to fit
-  $(window).resize(function() {
-    $('.media').each(function() {
-      sizeMedia($(this));
-    });
+  $(window).resize(() => {
+    $('.media').each((_, el) => sizeMedia($(el)));
   });
 
-  $('.media').each(function() {
-    sizeMedia($(this));
-  });
+  $('.media').each((_, el) => sizeMedia($(el)));
 }
 
 
@@ -58,9 +55,7 @@ function setupFullscreen() {
         .append($loadingSpinner);
 
     if ($content.is('video')) {
-      setTimeout(function() {
-        $fullscreen.addClass('loading');
-      }, 10);
+      setTimeout(() => $fullscreen.addClass('loading'), 10);
       $content
           .on('canplay', function() {
             $content.addClass('loaded');

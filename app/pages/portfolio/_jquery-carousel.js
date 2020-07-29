@@ -85,9 +85,8 @@ import './_jquery-wheelswipe';
   Carousel.prototype.setupSwipe = function() {
     var me = this;
 
-    this.$carousel.wheelswipe(function(direction) {
-      me.snapToPage(me.currentPage + direction, true);
-    });
+    this.$carousel.wheelswipe(dir =>
+        me.snapToPage(me.currentPage + dir, true));
 
     // set up hammer JS
     var lastDeltaX = 0;

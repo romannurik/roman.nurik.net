@@ -12,8 +12,6 @@
     "glob": "^7.1.2",
     "gulp": "^4.0.2",
     "gulp-cache": "^1.0.2",
-    "gulp-concat": "^2.6.1",
-    "gulp-eslint": "^5.0.0",
     "gulp-htmlmin": "^4.0.0",
     "gulp-if": "^2.0.2",
     "gulp-imagemin": "^4.1.0",
@@ -27,7 +25,6 @@
     "mini-css-extract-plugin": "^0.4.1",
     "node-sass": "^4.9.2",
     "postcss-loader": "^2.1.6",
-    "psi": "^3.1.0",
     "sass-loader": "^7.0.3",
     "webpack": "^4.16.2",
     "yaml-loader": "^0.5.0"
