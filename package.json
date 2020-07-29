@@ -36,7 +36,7 @@
     "node": ">=0.10.0"
   },
   "dependencies": {
-    "jquery": "~2.1.4",
+    "jquery": "~3.5.0",
     "hammerjs": "~2.0.4",
     "fastclick": "~1.0.6"
   },
