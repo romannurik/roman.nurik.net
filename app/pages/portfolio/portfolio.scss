@@ -187,6 +187,8 @@
     .pages {
       width: $desktopPagerWidth;
       align-self: flex-start;
+      margin: -24px 0;
+      padding: 24px 0;
 
       @include stacked {
         width: 100%;
@@ -389,15 +391,18 @@
 
       .edge-clicker.prev {
         left: 0;
-        background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNiIgaGVpZ2h0PSIxMiIgdmlld0JveD0iMCAwIDYgMTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTAgMGw2IDYtNiA2IiBmaWxsPSIjRkZGIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiLz48L3N2Zz4=);
+        background-image: url(/images/edge.svg);
         background-position: 0% 0%;
+        background-size: 32px 100%;
       }
 
       .edge-clicker.next {
         right: 0;
-        background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNiIgaGVpZ2h0PSIxMiIgdmlld0JveD0iMCAwIDYgMTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTYgMEwwIDZsNiA2IiBmaWxsPSIjRkZGIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiLz48L3N2Zz4=);
-        background-position: 100% 0%;
-      }
+        background-image: url(/images/edge.svg);
+        transform: rotate(180deg);
+        background-position: 0% 0%;
+        background-size: 32px 100%;
+        }
 
       .page-dots {
         position: absolute;

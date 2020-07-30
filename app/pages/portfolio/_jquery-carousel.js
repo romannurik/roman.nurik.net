@@ -248,6 +248,9 @@ import './_jquery-wheelswipe';
 
       this.$carousel.trigger('carouselpagechanged');
     }
+
+    this.$edgeClickerPrev.toggle(this.scrollX >= this.pagePeek + this.pageSpacing);
+    this.$edgeClickerNext.toggle(this.scrollX <= (this.pageWidth + this.pageSpacing) * (this.numPages - 1) - this.pagePeek - this.pageSpacing);
   };
 
 
