@@ -1,6 +1,8 @@
 {
   "devDependencies": {
     "@babel/core": "^7.10.5",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/plugin-proposal-decorators": "^7.12.12",
     "@babel/preset-env": "^7.10.4",
     "@babel/register": "^7.10.5",
     "autoprefixer": "^9.0.1",
@@ -19,13 +21,14 @@
     "gulp-nucleus": "^0.1.0",
     "gulp-size": "^3.0.0",
     "gulp-tap": "^1.0.1",
-    "import-glob": "^1.5.0",
     "json-loader": "^0.5.7",
     "merge-stream": "^1.0.1",
     "mini-css-extract-plugin": "^0.4.1",
     "node-sass": "^4.9.2",
     "postcss-loader": "^2.1.6",
+    "raw-loader": "^4.0.2",
     "sass-loader": "^7.0.3",
+    "to-string-loader": "^1.1.6",
     "webpack": "^4.16.2",
     "yaml-loader": "^0.5.0"
   },
@@ -33,9 +36,9 @@
     "node": ">=0.10.0"
   },
   "dependencies": {
-    "jquery": "~2.1.4",
     "hammerjs": "~2.0.4",
-    "fastclick": "~1.0.6"
+    "jquery": "~2.1.4",
+    "lit-element": "^2.4.0"
   },
   "private": true,
   "scripts": {

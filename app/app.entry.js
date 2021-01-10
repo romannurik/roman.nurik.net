@@ -1,4 +1,6 @@
 require('./app.entry.scss');
 
-import pages from './pages/**/*.js';
-window.pages = pages.reduce((acc, val) => Object.assign(acc, val), {});
+import { LandingPage } from './pages/landing/landing';
+import { PortfolioPage } from './pages/portfolio/portfolio';
+
+window.pages = { PortfolioPage, LandingPage };

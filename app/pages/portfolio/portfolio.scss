@@ -1,4 +1,7 @@
+@import '@app/shared';
+
 .page-portfolio {
+  overscroll-behavior-x: contain; // prevent usually accidental back button overscroll :-/
   $pageDotSize: 8px;
   $pageDotPadding: 4px;
 
@@ -41,74 +44,6 @@
       :last-child {
         margin-bottom: 0;
       }
-    }
-  }
-
-  // based on http://david.ingledow.co.uk/blog/google-material-designs-animated-loading-spinner-svg-and-css/
-
-  .loading-spinner {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 64px;
-    height: 64px;
-    margin-left: -32px;
-    margin-top: -32px;
-    z-index: 1000;
-
-    background: white;
-    border-radius: 50%;
-    animation: loading-spinner-rotate 4.5s linear infinite;
-
-    circle {
-      stroke-dasharray: 5, 200;
-      stroke-dashoffset: 0;
-      animation: loading-spinner-dash 1.5s ease-in-out infinite, loading-spinner-rotate-inner 1.5s linear infinite;
-      stroke-linecap: butt;
-    }
-
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity .1s ease, visibility 0s linear .1s;
-  }
-
-  .loader-parent.loading .loading-spinner {
-    visibility: visible;
-    opacity: 1;
-    transition: opacity .1s ease .5s, visibility 0s linear;
-  }
-
-  @keyframes loading-spinner-rotate {
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-
-  @keyframes loading-spinner-rotate-inner {
-    0% {
-      transform: translate(32px, 32px) rotate(0deg) translate(-32px, -32px);
-    }
-
-    100% {
-      transform: translate(32px, 32px) rotate(90deg) translate(-32px, -32px);
-    }
-  }
-
-  @keyframes loading-spinner-dash {
-    0% {
-      stroke-dasharray: 5, 200;
-      stroke-dashoffset: 0;
-    }
-
-    50% {
-      stroke-dasharray: 92, 200;
-      // stroke-dashoffset: -35;
-      stroke-dashoffset: 0;
-    }
-
-    100% {
-      stroke-dasharray: 5, 200;
-      stroke-dashoffset: -92;
     }
   }
 
@@ -184,11 +119,14 @@
       margin-bottom: 32px;
     }
 
-    .pages {
-      width: $desktopPagerWidth;
+    rn-carousel {
+      --pager-width: #{$desktopPagerWidth};
+      display: flex;
+      width: var(--pager-width);
       align-self: flex-start;
       margin: -24px 0;
       padding: 24px 0;
+      position: relative;
 
       @include stacked {
         width: 100%;
@@ -202,34 +140,11 @@
         width: calc(100% + 16px);
       }
 
-      overflow: hidden;
-      position: relative;
-
-      &.pannable {
-        cursor: grab;
-        padding-bottom: $pageDotSize + $pageDotPadding * 2 + 4px; // for dots
-      }
-
-      &.panning {
-        cursor: grabbing;
-      }
-
-      &:not(.panning) .page:not(.no-fullscreen) .media {
+      rn-carousel-page:not(.no-fullscreen) .media {
         cursor: pointer;
       }
 
-      .page-scroll {
-        display: flex;
-        flex-direction: row;
-        transform: translate3d(0, 0, 0);
-
-        &.animate-scroll {
-          transition: transform .2s ease;
-        }
-      }
-
-      .page {
-        height: 400px;
+      rn-carousel-page {
         border-radius: 4px;
         display: flex;
         flex-direction: column;
@@ -323,124 +238,54 @@
 
         &.video {
           .media {
-            &::before {
-              content: '';
-              display: block;
-              position: absolute;
-              left: 0;
-              top: 0;
-              right: 0;
-              bottom: 0;
-              background-color: rgba(white, .2);
-              z-index: 1;
+            video {
+              display: none;
             }
 
-            &::after {
-              @include material-icons;
-              content: 'play_circle_filled';
-              font-size: 48px;
-              pointer-events: none;
-              position: absolute;
-              left: 50%;
-              top: 50%;
-              margin-left: -24px;
-              margin-top: -24px;
-              background-color: #fff;
-              border-radius: 50%;
-              z-index: 2;
-            }
-
-            &:before,
-            &:after {
-              opacity: 1;
-              transition: opacity .2s ease;
-            }
-
-            &:hover:before,
-            &:hover:after {
-              opacity: 0;
-            }
-
-            &.loaded {
+            &.is-loaded {
               video {
                 display: block;
               }
-
+  
               .thumb {
                 display: none;
               }
             }
-          }
 
-          video {
-            display: none;
-          }
-        }
-      }
+            &:not(.is-playing) {
+              &::before {
+                content: '';
+                display: block;
+                position: absolute;
+                left: 0;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                background-color: rgba(white, .2);
+                z-index: 1;
+              }
 
-      .edge-clicker {
-        content: '';
-        cursor: pointer;
-        display: block;
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        background: transparent none repeat-y;
-        z-index: 1;
-      }
+              &::after {
+                @include material-icons;
+                content: 'play_circle_filled';
+                font-size: 48px;
+                pointer-events: none;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                margin-left: -24px;
+                margin-top: -24px;
+                background-color: #fff;
+                border-radius: 50%;
+                z-index: 2;
+              }
 
-      .edge-clicker.prev {
-        left: 0;
-        background-image: url(/images/edge.svg);
-        background-position: 0% 0%;
-        background-size: 32px 100%;
-      }
-
-      .edge-clicker.next {
-        right: 0;
-        background-image: url(/images/edge.svg);
-        transform: rotate(180deg);
-        background-position: 0% 0%;
-        background-size: 32px 100%;
-        }
-
-      .page-dots {
-        position: absolute;
-        left: 0;
-        height: $pageDotSize + $pageDotPadding * 2;
-        right: 0;
-        bottom: 0;
-        display: flex;
-        justify-content: center;
-        flex-direction: row;
-        margin: 0 auto;
-
-        $pageDotColor: material-color('grey', '500');
-
-        .page-dot {
-          position: relative;
-          width: $pageDotSize;
-          height: $pageDotSize;
-
-          display: block;
-          padding: $pageDotPadding;
-          cursor: pointer;
-
-          &::after {
-            content: '';
-            display: block;
-            border: 1px solid $pageDotColor;
-            border-radius: 50%;
-            position: absolute;
-            left: $pageDotPadding;
-            top: $pageDotPadding;
-            right: $pageDotPadding;
-            bottom: $pageDotPadding;
-            transition: border .2s ease;
-          }
-
-          &.active::after {
-            background: $pageDotColor;
+              &:before,
+              &:after {
+                opacity: 1;
+                transition: opacity .2s ease;
+              }
+            }
           }
         }
       }
@@ -530,7 +375,6 @@
   }
 
   video {
-    opacity: 0;
     outline: 0; // remove border in firefox
   }
 }

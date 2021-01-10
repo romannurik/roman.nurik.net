@@ -34,9 +34,9 @@ This is my design portfolio, covering work at Google as well as side projects re
       </div>
       {% endif %}
     </div>
-    <div class="pages">
+    <rn-carousel>
       {% for page in project.pages %}
-      <div class="page {{ page.extra_classes }} {% if page.video %}video{% endif %} {% if page.image %}image{% endif %}" style="background-color: {{ page.color | material_color }} {% if project.pager_height %}; height:{{project.pager_height}}px{% endif %}">
+      <rn-carousel-page class="{{ page.extra_classes }} {% if page.video %}video{% endif %} {% if page.image %}image{% endif %}" style="background-color: {{ page.color | material_color }} {% if project.pager_height %}; height:{{project.pager_height}}px{% endif %}">
         <div tabindex="0" class="media loader-parent" {% if page.color2 %} style="color:{{ page.color2 | material_color }}"{% endif %}>
           <div
             {% if page.offset_media %}style="transform: translate({{ page.offset_media }});"{% endif %}
@@ -53,18 +53,15 @@ This is my design portfolio, covering work at Google as well as side projects re
           <img class="thumb" src="/media/{{ page.video }}-thumb.png">
           {% endif %}
           </div>
-          <svg class="loading-spinner" width="64" height="64" viewbox="0 0 64 64">
-            <circle cx="32" cy="32" r="20" fill="none" stroke-width="6" stroke-miterlimit="10" stroke="#ccc" />
-          </svg>
         </div>
         {% if page.caption %}
         <div class="caption">
           {% markdown %}{{ page.caption | safe }}{% endmarkdown %}
         </div>
         {% endif %}
-      </div>
+      </rn-carousel-page>
       {% endfor %}
-    </div>
+    </rn-carousel>
   </section>
   {% endfor %}
 

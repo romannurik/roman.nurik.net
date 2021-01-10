@@ -1,9 +1,7 @@
-import FastClick from 'fastclick';
+import './landing.scss';
 
 export function LandingPage() {
   window.addEventListener('load', () => {
-    FastClick.attach(document.body);
-
     for (let link of document.querySelectorAll('.email.obfuscated')) {
       let email = link.getAttribute('data-email');
       if (email) {

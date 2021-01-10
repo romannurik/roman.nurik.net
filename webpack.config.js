@@ -15,23 +15,11 @@ module.exports = {
   ],
   module: {
     rules: [
-      {
-        enforce: 'pre',
-        test: /\.(jsx?|scss)/,
-        use: 'import-glob',
-      },
       // JS
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              presets: ['@babel/preset-env'],
-            }
-          },
-        ]
+        use: 'babel-loader'
       },
       {
         test: /\.yaml$/,
@@ -40,9 +28,19 @@ module.exports = {
           'yaml-loader',
         ]
       },
+      // Scoped CSS, 
+      {
+        test: /\.lit\.scss?$/,
+        use: [
+          'to-string-loader',
+          'css-loader',
+          'postcss-loader',
+          'sass-loader',
+        ]
+      },
       // CSS
       {
-        test: /\.scss$/,
+        test: /(?<!lit)\.scss?$/,
         use: [
           MiniCssExtractPlugin.loader,
           {
@@ -51,17 +49,16 @@ module.exports = {
               url: false,
             },
           },
-          {
-            loader: 'postcss-loader',
-          },
-          {
-            loader: 'sass-loader',
-          },
+          'postcss-loader',
+          'sass-loader',
         ]
       },
     ]
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.yaml', '.scss']
+    extensions: ['.js', '.jsx', '.yaml', '.scss'],
+    alias: {
+      '@app': path.resolve(__dirname, 'app/'),
+    }
   },
 };

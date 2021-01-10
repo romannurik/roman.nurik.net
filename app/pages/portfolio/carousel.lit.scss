@@ -1,0 +1,114 @@
+@import '@app/shared';
+
+:host {
+  --carousel-width: #{$desktopPagerWidth};
+  --page-peek: 32px;
+  --page-spacing: 16px;
+  display: flex;
+  width: var(--carousel-width);
+  height: 400px;
+  position: relative;
+}
+
+.scroller {
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  display: flex;
+  flex-direction: row;
+  transform: translate3d(0, 0, 0);
+
+  &::before,
+  &::after {
+    content: '';
+    width: calc(var(--page-peek) + var(--page-spacing) / 2);
+    flex: 0 0 auto;
+    display: block;
+  }
+}
+
+::slotted(rn-carousel-page) {
+  scroll-snap-align: center;
+  width: calc(var(--carousel-width) - var(--page-peek) * 2 - var(--page-spacing) * 2);
+  height: 100%;
+  flex: 0 0 auto;
+  margin: 0 calc(var(--page-spacing) / 2);
+}
+
+.edge {
+  appearance: none;
+  border: 0;
+  content: '';
+  cursor: pointer;
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: transparent none repeat-y;
+  width: var(--page-peek);
+  padding: 0;
+  z-index: 1;
+  transition: opacity .1s ease;
+
+  &[disabled] {
+    opacity: 0;
+    cursor: default;
+  }
+}
+
+.edge.prev {
+  left: 0;
+  background-image: url(/images/edge.svg);
+  background-position: 0% 0%;
+  background-size: 32px 100%;
+}
+
+.edge.next {
+  right: 0;
+  background-image: url(/images/edge.svg);
+  transform: rotate(180deg);
+  background-position: 0% 0%;
+  background-size: 32px 100%;
+}
+
+.dots {
+  --page-dot-size: 8px;
+  --page-dot-padding: 4px;
+  position: absolute;
+  left: 0;
+  height: calc(var(--page-dot-size) + var(--page-dot-padding) * 2);
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  margin: 0 auto;
+
+  $pageDotColor: material-color('grey', '500');
+
+  .dot {
+    position: relative;
+    width: var(--page-dot-size);
+    height: var(--page-dot-size);
+
+    display: block;
+    padding: var(--page-dot-padding);
+    cursor: pointer;
+
+    &::after {
+      content: '';
+      display: block;
+      border: 1px solid $pageDotColor;
+      border-radius: 50%;
+      position: absolute;
+      left: var(--page-dot-padding);
+      top: var(--page-dot-padding);
+      right: var(--page-dot-padding);
+      bottom: var(--page-dot-padding);
+      transition: border .2s ease;
+    }
+
+    &.is-active::after {
+      background: $pageDotColor;
+    }
+  }
+}

@@ -1,43 +1,33 @@
-import FastClick from 'fastclick';
 import $ from 'jquery';
-import './_jquery-carousel';
-
+import './carousel';
+import './portfolio.scss';
 
 export function PortfolioPage() {
-  $(document).ready(() => {
+  $(document).on('ready', () => {
     buildPagers();
     setupMediaSizing();
     setupVideoMedia();
     setupFullscreen();
     setupKeyboardNav();
 
-    FastClick.attach(document.body);
     $('.project a').attr('target', '_blank');
   });
 }
 
 
 function buildPagers() {
-  $('.pages').carousel();
-
-  // resize media to fit
-  $(window).resize(() => {
-    $('.media').each((_, el) => sizeMedia($(el)));
-  });
-
+  $(window).on('resize', () => $('.media').each((_, el) => sizeMedia($(el))));
   $('.media').each((_, el) => sizeMedia($(el)));
 }
 
 
 function setupFullscreen() {
-  var $fullscreen = $('<div>')
+  let $fullscreen = $('<div>')
       .addClass('fullscreen-overlay loader-parent')
-      .click(function() {
-        closeFullscreen_();
-      })
+      .on('click', () => closeFullscreen_())
       .appendTo('body');
 
-  var $currentFullscreenMedia = null;
+  let $currentFullscreenMedia = null;
 
   function closeFullscreen_() {
     $('body').removeClass('has-fullscreen');
@@ -46,8 +36,8 @@ function setupFullscreen() {
 
   function loadFullscreenMedia_($media) {
     $currentFullscreenMedia = $media;
-    var $content = $media.find('img, video').first().clone();
-    var $loadingSpinner = $media.find('.loading-spinner').clone();
+    let $content = $media.find('img, video').first().clone();
+    let $loadingSpinner = $media.find('.loading-spinner').clone();
 
     $fullscreen
         .empty()
@@ -56,25 +46,22 @@ function setupFullscreen() {
 
     if ($content.is('video')) {
       setTimeout(() => $fullscreen.addClass('loading'), 10);
-      $content
-          .on('canplay', function() {
-            $content.addClass('loaded');
-            $fullscreen
-                .addClass('loaded')
-                .removeClass('loading');
-            $content.get(0).play();
-          });
+      $content.on('canplay', () => {
+        $content.addClass('loaded');
+        $fullscreen
+            .addClass('loaded')
+            .removeClass('loading');
+        $content.get(0).play();
+      });
 
-      var videoNode = $content.get(0);
+      let videoNode = $content.get(0);
       videoNode.load();
     }
 
-    setTimeout(function() {
-      $('body').addClass('has-fullscreen');
-    }, 10);
+    setTimeout(() =>$('body').addClass('has-fullscreen'), 10);
   }
 
-  $('.page:not(.no-fullscreen) .media').on('click keydown', function(ev) {
+  $('.page:not(.no-fullscreen) .media').on('click keydown', ev => {
     if (ev.type == 'keydown' && ev.keyCode != 13) {
       return;
     }
@@ -84,62 +71,34 @@ function setupFullscreen() {
       return;
     }
 
-    loadFullscreenMedia_($(this));
+    loadFullscreenMedia_($(ev.currentTarget));
   });
 
-  $(document).on('keydown', function(e) {
-    if (e.keyCode == 27) {
+  $(document).on('keydown', ev => {
+    if (ev.keyCode == 27) {
       closeFullscreen_();
     }
   });
 
   window.loadFullscreenMedia = loadFullscreenMedia_;
-  window.getCurrentFullscreenMedia = function() {
-    return $currentFullscreenMedia;
-  };
+  window.getCurrentFullscreenMedia = () => $currentFullscreenMedia;
 }
 
 
 function setupKeyboardNav() {
-  $('.pages').on('carouselpagechanged', function() {
-    var currentPage = $(this).carousel('getPage');
-    // $(this).find('.page').eq(currentPage).find('.media').focus();
-  });
-
-  $(document).on('keydown', function(e) {
-    if (e.keyCode == 37 || e.keyCode == 39) {
+  $(document).on('keydown', ev => {
+    if (ev.keyCode == 37 || ev.keyCode == 39) {
       // left and right keys
-      var direction = (e.keyCode == 37) ? -1 : 1;
+      let direction = (ev.keyCode == 37) ? -1 : 1;
       if ($('body').hasClass('has-fullscreen')) {
         // send to fullscreen
-        var $media = getCurrentFullscreenMedia();
+        let $media = getCurrentFullscreenMedia();
         if ($media) {
-          var $page = $media.parent('.page');
-          var $siblingPage = $page[(direction == -1) ? 'prev' : 'next']('.page:not(.no-fullscreen)');
+          let $page = $media.parent('.page');
+          let $siblingPage = $page[(direction == -1) ? 'prev' : 'next']('.page:not(.no-fullscreen)');
           if ($siblingPage.length) {
             loadFullscreenMedia($siblingPage.find('.media'));
           }
-        }
-      } else {
-        // find most visible pager
-        var wh = $(window).height();
-        var $mostVisiblePager = null;
-        var mostAmountVisible = 0; // 0 to 1
-
-        $('.pages').each(function() {
-          var rect = $(this).get(0).getBoundingClientRect();
-          var height = (rect.bottom - rect.top);
-          var visibleHeight = (Math.min(rect.bottom, wh) - Math.max(rect.top, 0));
-          var amountVisible = visibleHeight / height;
-          if (amountVisible > mostAmountVisible) {
-            $mostVisiblePager = $(this);
-            mostAmountVisible = amountVisible;
-          }
-        });
-
-        if ($mostVisiblePager) {
-          // switch page
-          $mostVisiblePager.carousel('setPage', $mostVisiblePager.carousel('getPage') + direction);
         }
       }
     }
@@ -148,58 +107,9 @@ function setupKeyboardNav() {
 
 
 function setupVideoMedia() {
-  // play/pause/click interactions
-  var playEl = null;
-  var playElTimeout;
-  function playEl_() {
-    playVideoMedia($(playEl), true);
+  for (let el of Array.from(document.querySelectorAll('rn-carousel-page.video .media'))) {
+    el.addEventListener('click', () => toggleVideoMediaPlaying(el));
   }
-
-  $(document)
-      .on('mouseenter', '.page.video .media', function() {
-        if (playElTimeout) {
-          clearTimeout(playElTimeout);
-          playElTimeout = 0;
-        }
-        playEl = this;
-        playElTimeout = setTimeout(playEl_, 100);
-      })
-      .on('mouseleave', '.page.video .media', function() {
-        if (playElTimeout) {
-          clearTimeout(playElTimeout);
-          playElTimeout = 0;
-        }
-        playVideoMedia($(this), false);
-      })
-      .on('click', '.page.video .media', function() {
-        $(this).find('video').get(0).currentTime = 0;
-      });
-
-  // loading spinners
-  var $neverVisibleProjects = $('section.project:not(.was-visible)');
-
-  function visibleProjectsUpdated_() {
-    var ww = $(window).width();
-    var wh = $(window).height();
-
-    $neverVisibleProjects.each(function() {
-      var rect = $(this).get(0).getBoundingClientRect();
-      if (rect.bottom < 0 || rect.right < 0 || rect.left > ww || rect.top > wh) {
-        // not visible
-        return;
-      }
-
-      // remove this from list of never-visible projects
-      $(this).addClass('was-visible');
-      $neverVisibleProjects = $('section.project:not(.was-visible)');
-
-      // load first page
-      //loadPage($(this).find('.page').first());
-    });
-  }
-
-  visibleProjectsUpdated_();
-  $(window).on('scroll resize', visibleProjectsUpdated_);
 }
 
 
@@ -214,7 +124,7 @@ function setupMediaSizing() {
 
 
 function sizeMedia($media) {
-  var $child = $media.children().eq(0);
+  let $child = $media.children().eq(0);
   if (!$child.length) {
     return;
   }
@@ -223,11 +133,11 @@ function sizeMedia($media) {
     return;
   }
 
-  var ww = $media.width();
-  var wh = $media.height();
-  var ow = $child.get(0).offsetWidth;
-  var oh = $child.get(0).offsetHeight;
-  var scale = 1;
+  let ww = $media.width();
+  let wh = $media.height();
+  let ow = $child.get(0).offsetWidth;
+  let oh = $child.get(0).offsetHeight;
+  let scale = 1;
 
   if (ow / oh > ww / wh) {
     scale = ww / ow;
@@ -236,32 +146,36 @@ function sizeMedia($media) {
   }
 
   scale = Math.min(scale, 1);
-  $child.css('transform', 'scale(' + scale + ')');
+  $child.css('transform', `scale(${scale})`);
 }
 
 
-function playVideoMedia($media, play) {
-  $media.data('should-be-playing', play);
-  var $video = $media.find('video');
+function toggleVideoMediaPlaying(media) {
+  let playing = media.classList.contains('is-playing');
+  let video = media.querySelector('video');
 
-  if (play) {
-    if (!$media.hasClass('loaded')) {
-      $media.addClass('loading');
-      $video
-          .off('canplay')
-          .on('canplay', function() {
-            $media
-                .addClass('loaded')
-                .removeClass('loading');
-            if ($media.data('should-be-playing')) {
-              $video.get(0).play();
-            }
-          });
-      $video.get(0).load();
+  if (!video._listeners) {
+    video._listeners = true;
+    let canPlay_ = () => {
+      video.removeEventListener('canplay', canPlay_);
+      media.classList.add('is-loaded');
+      media.classList.remove('is-loading');
+      video.play();
+    };
+    video.addEventListener('canplay', canPlay_);
+    video.addEventListener('pause', () => media.classList.remove('is-playing'));
+    video.addEventListener('play', () => media.classList.add('is-playing'));
+  }
+
+  if (!playing) {
+    if (!media.classList.contains('is-loaded')) {
+      media.classList.add('is-loading');
+      video.load();
     } else {
-      $video.get(0).play();
+      video.currentTime = 0;
+      video.play();
     }
   } else {
-    $video.get(0).pause();
+    video.pause();
   }
 }
