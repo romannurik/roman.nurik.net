@@ -20,7 +20,7 @@ export class Carousel extends LitElement {
     super.connectedCallback();
     this.resizeObserver = new ResizeObserver(() => this.recomputeMetrics());
     this.resizeObserver.observe(this);
-    setTimeout(() => this.recomputeMetrics());
+    setTimeout(() => this.childrenChange());
   }
 
   disconnectedCallback() {
@@ -41,13 +41,14 @@ export class Carousel extends LitElement {
     this.numPages = this.pages.length;
   }
 
-  childrenChange(e) {
+  childrenChange() {
     this.numPages = this.slottedNodes.length;
     this.recomputeMetrics();
     this.recomputeActivePage();
   }
 
   recomputeMetrics() {
+    this.style.setProperty('--width', `${this.offsetWidth}px`);
     this.pageCenters = this.pages.map(el => el.offsetLeft + el.offsetWidth / 2);
     // TODO: support non-px units
     let edgeSize = parseFloat(window.getComputedStyle(this).getPropertyValue('--page-peek')) +
@@ -109,11 +110,13 @@ export class Carousel extends LitElement {
         `)}
       </div>` : ''}
       <button
+          tabindex="-1"
           class="edge prev"
           ?disabled=${!this.prevEdgeVisible}
           aria-label="Previous"
           @click=${() => this.snapToPage(this.activePage - 1)}></button>
       <button
+          tabindex="-1"
           class="edge next"
           ?disabled=${!this.nextEdgeVisible}
           aria-label="prev"

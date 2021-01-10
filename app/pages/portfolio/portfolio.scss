@@ -37,7 +37,7 @@
     .intro {
       margin: 0;
       box-sizing: border-box;
-      max-width: $desktopWidth - $desktopPagerWidth;
+      max-width: 256px;
       padding-right: 24px;
       color: $textColor;
 
@@ -52,6 +52,12 @@
     // layout
     margin-bottom: 56px;
     position: relative;
+    display: flex;
+    flex-direction: row;
+
+    @include medium {
+      flex-direction: column;
+    }
 
     // styling
     h2 {
@@ -100,18 +106,12 @@
       }
     }
 
-    // layout
-    display: flex;
-    flex-direction: row;
-
-    @include stacked {
-      flex-direction: column;
-    }
-
     .info {
-      flex: 1 0 0;
+      width: 256px;
+      flex: 0 0 auto;
 
-      @include stacked {
+      @include medium {
+        width: auto;
         flex: 1 1 auto;
       }
 
@@ -120,18 +120,21 @@
     }
 
     rn-carousel {
-      --pager-width: #{$desktopPagerWidth};
       display: flex;
-      width: var(--pager-width);
+      width: auto;
+      min-width: 0;
+      flex: 1 1 0;
+      height: calc(var(--width) * 3 / 4);
       align-self: flex-start;
       margin: -24px 0;
       padding: 24px 0;
       position: relative;
 
-      @include stacked {
+      @include medium {
         width: 100%;
         left: 0;
         right: 0;
+        flex: 1 1 auto;
       }
 
       @include narrow {
@@ -347,7 +350,7 @@
       top: 32px;
     }
 
-    @include stacked {
+    @include medium {
       padding: 32px;
 
       &::after {
@@ -365,7 +368,7 @@
     }
   }
 
-  .page.circle video,
+  .page.circle video, // circle media
   .page.circle img {
     border-radius: 10000px;
   }

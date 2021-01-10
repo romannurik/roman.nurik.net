@@ -1,17 +1,14 @@
-$desktopSideMargin: 24px;
-$desktopWidth: 960px - $desktopSideMargin * 2;
-$desktopPagerWidth: $desktopWidth * 2 / 3;
-$intermediateWidth: 600px - $desktopSideMargin * 2;
-$narrowSideMargin: 16px;
+$mediumBreakpoint: 960px;
+$narrowBreakpoint: 600px;
 
-@mixin stacked {
-  @media only screen and (max-width: ($desktopWidth + $desktopSideMargin * 2 - 1)) {
+@mixin medium {
+  @media only screen and (max-width: $mediumBreakpoint - 1px) {
     @content;
   }
 }
 
 @mixin narrow {
-  @media only screen and (max-width: ($intermediateWidth + $desktopSideMargin * 2 - 1)) {
+  @media only screen and (max-width: $narrowBreakpoint - 1px) {
     @content;
   }
 }

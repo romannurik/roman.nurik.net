@@ -1,11 +1,10 @@
 @import '@app/shared';
 
 :host {
-  --carousel-width: #{$desktopPagerWidth};
   --page-peek: 32px;
   --page-spacing: 16px;
   display: flex;
-  width: var(--carousel-width);
+  width: 500px; // defaults
   height: 400px;
   position: relative;
 }
@@ -28,7 +27,7 @@
 
 ::slotted(rn-carousel-page) {
   scroll-snap-align: center;
-  width: calc(var(--carousel-width) - var(--page-peek) * 2 - var(--page-spacing) * 2);
+  width: calc(var(--width, 500px) - var(--page-peek) * 2 - var(--page-spacing) * 2);
   height: 100%;
   flex: 0 0 auto;
   margin: 0 calc(var(--page-spacing) / 2);

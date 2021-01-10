@@ -2,6 +2,19 @@
   $codeColor: material-color('purple', '500');
   $linkColor: $colorPrimary;
 
+  --page-width: min(1280px, 100vw);
+  --page-side-margin: 56px;
+
+  @include medium {
+    --page-width: #{$narrowBreakpoint};
+    --page-side-margin: 24px;
+  }
+
+  @include narrow {
+    --page-width: 100vw;
+    --page-side-margin: 16px;
+  }
+
   // layout and ui elements
 
   nav.top-bar {
@@ -50,24 +63,10 @@
 
   .top-bar-content,
   .page-content {
-    width: $desktopWidth;
-
-    @include stacked {
-      width: $intermediateWidth;
-    }
-
-    @include narrow {
-      box-sizing: border-box;
-      width: 100%;
-    }
-
-    padding: 0 $desktopSideMargin;
-
-    @include narrow {
-      padding: 0 $narrowSideMargin;
-    }
-
+    width: var(--page-width);
+    padding: 0 var(--page-side-margin);
     margin: 0 auto;
+    box-sizing: border-box;
   }
 
   // typography and styling
