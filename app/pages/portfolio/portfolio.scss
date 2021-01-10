@@ -2,8 +2,6 @@
 
 .page-portfolio {
   overscroll-behavior-x: contain; // prevent usually accidental back button overscroll :-/
-  $pageDotSize: 8px;
-  $pageDotPadding: 4px;
 
   header {
     margin: 56px auto;
@@ -331,8 +329,9 @@
     }
   }
 
-  section.project.tall .page {
-    height: 500px;
+  // still want this?
+  section.project.tall rn-carousel {
+    height: calc(var(--width));
   }
 
   footer {
@@ -404,12 +403,12 @@
     }
   }
 
-  .page.circle video, // circle media
-  .page.circle img {
+  rn-carousel-page.circle video, // circle media
+  rn-carousel-page.circle img {
     border-radius: 10000px;
   }
 
-  .loaded video {
+  .is-loaded video {
     opacity: 1;
   }
 
