@@ -141,7 +141,7 @@ gulp.task('clean', cb => {
   cb();
 });
 
-gulp.task('__serve__', gulp.series('html', 'webpack', () => {
+gulp.task('serve', gulp.series(setDevMode, 'html', 'webpack', () => {
   browserSync({
     notify: false,
     server: {
@@ -165,8 +165,6 @@ gulp.task('__serve__', gulp.series('html', 'webpack', () => {
     });
   }
 }));
-
-gulp.task('serve', gulp.series(setDevMode, '__serve__'));
 
 
 gulp.task('default', gulp.series('clean', 'html', 'webpack', 'media', 'copy'));
