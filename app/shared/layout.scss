@@ -1,5 +1,12 @@
+$largeBreakpoint: 1280px;
 $mediumBreakpoint: 960px;
 $narrowBreakpoint: 600px;
+
+@mixin large {
+  @media only screen and (max-width: $largeBreakpoint - 1px) {
+    @content;
+  }
+}
 
 @mixin medium {
   @media only screen and (max-width: $mediumBreakpoint - 1px) {

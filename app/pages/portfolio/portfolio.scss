@@ -37,9 +37,18 @@
     .intro {
       margin: 0;
       box-sizing: border-box;
-      max-width: 256px;
+      max-width: 352px;
       padding-right: 24px;
       color: $textColor;
+
+      font-size: 16px;
+      line-height: 24px;
+
+      @include large {
+        font-size: 14px;
+        line-height: 20px;
+        max-width: 256px;
+      }
 
       :last-child {
         margin-bottom: 0;
@@ -50,7 +59,12 @@
   // here comes a doozy...
   section.project {
     // layout
-    margin-bottom: 56px;
+    margin-bottom: 128px;
+
+    @include large {
+      margin-bottom: 80px;
+    }
+
     position: relative;
     display: flex;
     flex-direction: row;
@@ -62,8 +76,15 @@
     // styling
     h2 {
       font-weight: 800;
-      font-size: 20px;
-      line-height: 24px;
+
+      font-size: 26px;
+      line-height: 32px;
+
+      @include large {
+        font-size: 20px;
+        line-height: 28px;
+      }
+
       margin: 0;
 
       .material-icons {
@@ -107,8 +128,17 @@
     }
 
     .info {
-      width: 256px;
+      width: 304px;
       flex: 0 0 auto;
+
+      font-size: 16px;
+      line-height: 24px;
+
+      @include large {
+        font-size: 14px;
+        line-height: 20px;
+        width: 256px;
+      }
 
       @include medium {
         width: auto;
@@ -148,7 +178,7 @@
       }
 
       rn-carousel-page {
-        border-radius: 4px;
+        border-radius: 8px;
         display: flex;
         flex-direction: column;
         overflow: hidden;
@@ -219,8 +249,14 @@
         }
 
         .caption {
-          font-size: 14px;
-          line-height: 20px;
+          font-size: 16px;
+          line-height: 24px;
+
+          @include large {
+            font-size: 14px;
+            line-height: 20px;
+          }
+
           background-color: rgba(white, .9);
           color: $textColor;
           padding: 16px 20px;
@@ -302,7 +338,7 @@
   footer {
     color: $textColorSub;
     margin: 56px 0;
-    padding-top: 56px;
+    padding: 56px 0;
 
     @include narrow {
       padding-top: 32px;

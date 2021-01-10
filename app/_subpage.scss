@@ -2,7 +2,7 @@
   $codeColor: material-color('purple', '500');
   $linkColor: $colorPrimary;
 
-  --page-width: min(1280px, 100vw);
+  --page-width: min(#{$largeBreakpoint}, 100vw);
   --page-side-margin: 56px;
 
   @include medium {
@@ -70,16 +70,9 @@
   }
 
   // typography and styling
-
-  body {
-    color: $textColor;
-  }
-
-  body,
-  p {
-    font-size: 14px;
-    line-height: 20px;
-  }
+  color: $textColor;
+  font-size: 14px;
+  line-height: 20px;
 
   pre,
   code {
