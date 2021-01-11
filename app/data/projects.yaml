@@ -34,7 +34,6 @@
 
 - name: Muzei Live Wallpaper
   date: September 2013 – February 2014
-  extra_classes: tall
   description: |
     My philosophy for design and developer advocacy is to [create big, real-world demos](https://medium.com/google-developers/walk-then-talk-3b935bfe5484) and use them as fodder for content creation; walking the walk gives you more credibility.
 
@@ -78,7 +77,6 @@
 
 - name: Google I/O Android App
   date: 2010 – 2014
-  extra_classes: tall
   description: |
     The Google I/O Android app is a Developer Relations-run project that serves two purposes:
 
@@ -123,7 +121,6 @@
 
 - name: DashClock Widget
   date: September 2012 – February 2013
-  extra_classes: tall
   description: |
     DashClock was my first published Android app and is exemplary of my philosophy for [design and developer advocacy](https://medium.com/google-developers/walk-then-talk-3b935bfe5484). It also promotes Android by exemplifying functionality that's only available on the Android platform.
 
@@ -238,7 +235,6 @@
 
 - name: FORM Type Maker & Watch Face
   date: October 2014
-  extra_classes: tall
   description: |
     In addition to my strategy work for our [FORM conference](https://design.google.com/form-2014/) (which I co-created), I built a web-based playground for the brand's display typeface (created by the material team). The desktop and mobile web app let users type a message, choose a color, and created an [animated GIF to share on social media](https://twitter.com/tanyawuethrich/status/534276313537052672).
 

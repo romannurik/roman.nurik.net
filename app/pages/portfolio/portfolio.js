@@ -106,9 +106,30 @@ function setupKeyboardNav() {
 }
 
 
-function setupVideoMedia() {
-  for (let el of Array.from(document.querySelectorAll('rn-carousel-page.video .media'))) {
-    el.addEventListener('click', () => toggleVideoMediaPlaying(el));
+function setupVideoMedia() {  
+  let playPause = page => {
+    playPauseVideoMedia(
+        page.querySelector('.media'),
+        page.active && page.visible);
+  };
+
+  let observer = new IntersectionObserver(entries => {
+    for (let entry of entries) {
+      entry.target.visible = entry.isIntersecting;
+      playPause(entry.target);
+    }
+  }, {threshold: 0.25});
+
+  for (let el of Array.from(document.querySelectorAll('rn-carousel-page.video'))) {
+    let timeout_;
+    el.addEventListener('activechange', () => {
+      if (timeout_) {
+        clearTimeout(timeout_);
+      }
+      timeout_ = setTimeout(() => playPause(el), 500);
+    });
+    observer.observe(el);
+    playPause(el);
   }
 }
 
@@ -150,8 +171,7 @@ function sizeMedia($media) {
 }
 
 
-function toggleVideoMediaPlaying(media) {
-  let playing = media.classList.contains('is-playing');
+function playPauseVideoMedia(media, play) {
   let video = media.querySelector('video');
 
   if (!video._listeners) {
@@ -163,11 +183,12 @@ function toggleVideoMediaPlaying(media) {
       video.play();
     };
     video.addEventListener('canplay', canPlay_);
+    video.addEventListener('load', canPlay_);
     video.addEventListener('pause', () => media.classList.remove('is-playing'));
     video.addEventListener('play', () => media.classList.add('is-playing'));
   }
 
-  if (!playing) {
+  if (play) {
     if (!media.classList.contains('is-loaded')) {
       media.classList.add('is-loading');
       video.load();

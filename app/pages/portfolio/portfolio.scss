@@ -148,11 +148,13 @@
     }
 
     rn-carousel {
+      --width: 500px; // set in JS
+      --aspect-ratio: calc(4 / 3);
       display: flex;
       width: auto;
       min-width: 0;
       flex: 1 1 0;
-      height: calc(var(--width) * 3 / 4);
+      height: calc(var(--width) / var(--aspect-ratio));
       align-self: flex-start;
       margin: -24px 0;
       padding: 24px 0;
@@ -214,6 +216,7 @@
 
             .device-frame.device-#{$name},
             .device-frame.device-#{$name}_light {
+              display: flex;
               padding: #{$padding};
 
               video,
@@ -289,7 +292,7 @@
               }
             }
 
-            &:not(.is-playing) {
+            &.is-loading {
               &::before {
                 content: '';
                 display: block;
@@ -304,7 +307,7 @@
 
               &::after {
                 @include material-icons;
-                content: 'play_circle_filled';
+                content: '';
                 font-size: 48px;
                 pointer-events: none;
                 position: absolute;
@@ -327,11 +330,6 @@
         }
       }
     }
-  }
-
-  // still want this?
-  section.project.tall rn-carousel {
-    height: calc(var(--width));
   }
 
   footer {

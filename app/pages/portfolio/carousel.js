@@ -1,6 +1,7 @@
 import { css, customElement, html, LitElement, property, queryAssignedNodes } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 import styleSheet from './carousel.lit.scss';
+import './carousel-page';
 
 @customElement('rn-carousel')
 export class Carousel extends LitElement {
@@ -9,7 +10,7 @@ export class Carousel extends LitElement {
   nextEdgeThreshold = 0;
 
   @property() numPages = 0; // TODO: is @property right for this? is there something like state for lit-element?
-  @property() activePage = 0;
+  @property() activePage = -1;
   @property() prevEdgeVisible = false;
   @property() nextEdgeVisible = false;
 
@@ -93,6 +94,10 @@ export class Carousel extends LitElement {
     let page = this.pageForScrollLeft(scrollLeft);
     if (this.activePage !== page) {
       this.activePage = page;
+      this.pages.forEach((page, idx) => {
+        page.active = this.activePage === idx;
+        page.peeking = this.activePage - 1 <= idx && idx <= this.activePage + 1;
+      });
     }
     this.prevEdgeVisible = scrollLeft > this.prevEdgeThreshold;
     this.nextEdgeVisible = scrollLeft + this.scrollWidth < this.nextEdgeThreshold;
