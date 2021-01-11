@@ -106,28 +106,27 @@ function setupKeyboardNav() {
 }
 
 
-function setupVideoMedia() {  
+function setupVideoMedia() {
+  let timeouts = new Map();
+
   let playPause = page => {
-    playPauseVideoMedia(
-        page.querySelector('.media'),
-        page.active && page.visible);
+    if (timeouts.has(page)) {
+      clearTimeout(timeouts.get(page));
+    }
+    timeouts.set(page, setTimeout(
+        () => playPauseVideoMedia(page.querySelector('.media'), page.active && page.visible),
+        500));
   };
 
   let observer = new IntersectionObserver(entries => {
     for (let entry of entries) {
-      entry.target.visible = entry.isIntersecting;
+      entry.target.visible = entry.intersectionRatio >= 0.5;
       playPause(entry.target);
     }
-  }, {threshold: 0.25});
+  }, {threshold: 0.5});
 
   for (let el of Array.from(document.querySelectorAll('rn-carousel-page.video'))) {
-    let timeout_;
-    el.addEventListener('activechange', () => {
-      if (timeout_) {
-        clearTimeout(timeout_);
-      }
-      timeout_ = setTimeout(() => playPause(el), 500);
-    });
+    el.addEventListener('activechange', () => playPause(el));
     observer.observe(el);
     playPause(el);
   }
@@ -177,10 +176,15 @@ function playPauseVideoMedia(media, play) {
   if (!video._listeners) {
     video._listeners = true;
     let canPlay_ = () => {
-      video.removeEventListener('canplay', canPlay_);
-      media.classList.add('is-loaded');
-      media.classList.remove('is-loading');
-      video.play();
+      setTimeout(() => {
+        if (media.classList.contains('is-loading')) {
+          // play only if we're still supposed to play
+          video.play();
+        }
+        video.removeEventListener('canplay', canPlay_);
+        media.classList.add('is-loaded');
+        media.classList.remove('is-loading');
+      }, 1000);
     };
     video.addEventListener('canplay', canPlay_);
     video.addEventListener('load', canPlay_);
@@ -197,6 +201,8 @@ function playPauseVideoMedia(media, play) {
       video.play();
     }
   } else {
+    media.classList.remove('is-loading');
+    video.currentTime = 0;
     video.pause();
   }
 }

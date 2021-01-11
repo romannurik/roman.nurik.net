@@ -279,6 +279,7 @@
         &.video {
           .media {
             video {
+              transform: translate3d(0, 0, 0); // removes scroll snap jank
               display: none;
             }
 
@@ -299,31 +300,22 @@
                 position: absolute;
                 left: 0;
                 top: 0;
-                right: 0;
-                bottom: 0;
-                background-color: rgba(white, .2);
+                right: -32px;
+                height: 4px;
+                background-color: #fff;
+                background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMzJweCIgaGVpZ2h0PSI4cHgiIHZpZXdCb3g9IjAgMCAzMiA4IiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPgogICAgPHRpdGxlPkFydGJvYXJkPC90aXRsZT4KICAgIDxnIGlkPSJQYWdlLTEiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGZpbGwtb3BhY2l0eT0iMC4yIj4KICAgICAgICA8ZyBpZD0iQXJ0Ym9hcmQiIGZpbGw9IiMwMDAwMDAiPgogICAgICAgICAgICA8cG9seWdvbiBpZD0iUGF0aCIgcG9pbnRzPSIwIDggOCAwIDI0IDAgMTYgOCI+PC9wb2x5Z29uPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+);
+                background-repeat: repeat-x;
+                animation: .2s linear 0s infinite normal loader;
                 z-index: 1;
               }
 
-              &::after {
-                @include material-icons;
-                content: '';
-                font-size: 48px;
-                pointer-events: none;
-                position: absolute;
-                left: 50%;
-                top: 50%;
-                margin-left: -24px;
-                margin-top: -24px;
-                background-color: #fff;
-                border-radius: 50%;
-                z-index: 2;
-              }
-
-              &:before,
-              &:after {
-                opacity: 1;
-                transition: opacity .2s ease;
+              @keyframes loader {
+                from {
+                  transform: translate(0, 0);
+                }
+                to {
+                  transform: translate(-32px, 0);
+                }
               }
             }
           }
