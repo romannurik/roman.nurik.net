@@ -23,7 +23,6 @@
     flex-direction: row;
     align-items: center;
     padding: 16px 0;
-    border-bottom: 1px solid rgba(black, .1);
 
     .home-link {
       display: block;
@@ -86,7 +85,7 @@
   }
 
   em,
-  i {
+  i:not(.material-icons) {
     font-style: italic;
   }
 

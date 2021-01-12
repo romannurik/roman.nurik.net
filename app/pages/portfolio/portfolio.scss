@@ -3,16 +3,15 @@
 .page-portfolio {
   overscroll-behavior-x: contain; // prevent usually accidental back button overscroll :-/
 
-  header {
-    margin: 56px auto;
-    padding-bottom: 56px;
+  header.top-header {
+    box-sizing: border-box;
+    margin-top: 56px;
+    padding-bottom: 40px;
 
     @include narrow {
-      margin: 32px auto;
-      padding-bottom: 32px;
+      margin-top: 32px;
+      padding-bottom: 24px;
     }
-
-    border-bottom: 1px solid rgba(black, .1);
 
     h1 {
       display: block;
@@ -54,6 +53,58 @@
     }
   }
 
+  header.filter {
+    position: sticky;
+    box-sizing: border-box;
+    top: 0;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 80px;
+    padding: 16px 0;
+    background-color: rgba(#fff, .95);
+    border-bottom: 1px solid rgba(black, .1);
+    z-index: 999;
+
+    @include narrow {
+      margin-bottom: 64px;
+      padding: 0 0;
+    }
+
+    label {
+      position: relative;
+
+      &:first-child {
+        margin-left: -12px;
+      }
+
+      input {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        appearance: none;
+        opacity: 0;
+        padding: 0;
+        margin: 0;
+        cursor: pointer;
+      }
+
+      span {
+        display: flex;
+        color: $textColor;
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: 500;
+        padding: 8px 12px;
+      }
+
+      input:checked + span {
+        color: $colorPrimary;
+      }
+    }
+  }
+
   // here comes a doozy...
   section.project {
     // layout
@@ -69,6 +120,10 @@
 
     @include medium {
       flex-direction: column;
+    }
+
+    &.is-hidden {
+      display: none;
     }
 
     // styling
@@ -97,6 +152,8 @@
     }
 
     .actions {
+      display: flex;
+      flex-flow: row wrap;
       margin-top: 20px;
 
       a {
@@ -109,12 +166,17 @@
         margin-right: 8px;
         margin-bottom: 8px;
         padding: 6px 8px;
-        border: 2px solid $colorPrimary;
         border-radius: 4px;
+        border: 2px solid transparent;
+
+        &:first-child {
+          border: 2px solid $colorPrimary;
+        }
 
         &:hover {
           color: white;
           background-color: $colorPrimary;
+          border: 2px solid $colorPrimary;
         }
 
         &:active {
@@ -167,12 +229,6 @@
         flex: 1 1 auto;
       }
 
-      @include narrow {
-        left: -8px;
-        right: -8px;
-        width: calc(100% + 16px);
-      }
-
       &.cloak {
         visibility: hidden;
       }
@@ -182,6 +238,7 @@
       }
 
       rn-carousel-page {
+        background-color: var(--background-color);
         border-radius: 8px;
         display: flex;
         flex-direction: column;
@@ -196,6 +253,7 @@
         }
 
         .media {
+          border-radius: 8px;
           position: relative;
           flex: 1 1 0;
           display: flex;
@@ -347,6 +405,46 @@
     }
   }
 
+  section.show-all {
+    border-top: 1px solid rgba(black, .1);
+    margin-bottom: -56px; // bring up footer
+
+    @include narrow {
+      margin-bottom: -32px;
+    }
+
+    &.is-hidden {
+      display: none;
+    }
+
+    button.show-all-projects-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 0;
+      background: transparent;
+      font-family: Tenso, sans-serif;
+      font-size: 20px;
+      line-height: 32px;
+      font-weight: 500;
+      padding: 40px 0;
+      color: $textColor;
+      appearance: none;
+      width: 100%;
+      cursor: pointer;
+
+      &:hover,
+      &:focus,
+      &:active {
+        color: $colorPrimary;
+      }
+  
+      .material-icons {
+        margin-left: 8px;
+      }
+    }
+  }
+
   footer {
     color: $textColorSub;
     margin: 56px 0;
@@ -358,62 +456,6 @@
     }
 
     border-top: 1px solid rgba(black, .1);
-  }
-
-  @at-root body.has-fullscreen {
-    overflow: hidden;
-  }
-
-  .fullscreen-overlay {
-    position: fixed;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    background: white;
-    visibility: hidden;
-    opacity: 0;
-    cursor: pointer;
-    z-index: 1000;
-    display: flex;
-    justify-content: center;
-    transform: translate3d(0, 0, 0);
-    transition: opacity .2s ease, visibility 0s ease .2s;
-
-    @at-root body.has-fullscreen .fullscreen-overlay {
-      opacity: 1;
-      visibility: visible;
-      transition: opacity .2s ease, visibility 0s linear;
-    }
-
-    padding: 64px;
-
-    &::after {
-      @include material-icons;
-      content: 'close';
-      color: $textColorSub;
-      pointer-events: none;
-      position: absolute;
-      right: 32px;
-      top: 32px;
-    }
-
-    @include medium {
-      padding: 32px;
-
-      &::after {
-        right: 8px;
-        top: 8px;
-      }
-    }
-
-    img,
-    video {
-      flex: 1 0 0;
-      object-fit: scale-down;
-      object-position: 50% 50%;
-      display: block;
-    }
   }
 
   rn-carousel-page.circle video, // circle media

@@ -36,8 +36,6 @@
     "node": ">=0.10.0"
   },
   "dependencies": {
-    "hammerjs": "~2.0.4",
-    "jquery": "~2.1.4",
     "lit-element": "^2.4.0"
   },
   "private": true,

@@ -1,113 +1,94 @@
-import $ from 'jquery';
 import './carousel';
 import './portfolio.scss';
 
 export function PortfolioPage() {
-  $(document).on('ready', () => {
-    buildPagers();
+  window.addEventListener('load', () => {
     setupMediaSizing();
     setupVideoMedia();
-    setupFullscreen();
-    setupKeyboardNav();
+    setupFiltering();
 
-    $('.project a').attr('target', '_blank');
+    for (let link of document.querySelectorAll('section.project a')) {
+      link.setAttribute('target', '_blank');
+    }
   });
 }
 
 
-function buildPagers() {
-  $(window).on('resize', () => $('.media').each((_, el) => sizeMedia($(el))));
-  $('.media').each((_, el) => sizeMedia($(el)));
-}
+function setupFiltering() {
+  let applyFilter = (filter, scrollTop = true) => {
+    for (let project of document.querySelectorAll('section.project')) {
+      let tags = new Set((project.getAttribute('data-tags') || '').split(/\s+/));
+      project.classList.toggle('is-hidden', !(tags.has(filter) || filter === 'all'));
+    }
+    document.querySelector('section.show-all').classList.toggle('is-hidden', filter !== 'featured');
+    if (scrollTop) {
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+  };
 
+  let applyFilterFromHash = () => {
+    let filter = (window.location.hash || '').substring(1) || 'featured';
+    applyFilter(filter, false);
+    let tab = Array.from(document.querySelectorAll('.filter input')).find(t => t.value === filter);
+    if (tab) {
+      tab.checked = true;
+    }
+  };
 
-function setupFullscreen() {
-  let $fullscreen = $('<div>')
-      .addClass('fullscreen-overlay loader-parent')
-      .on('click', () => closeFullscreen_())
-      .appendTo('body');
-
-  let $currentFullscreenMedia = null;
-
-  function closeFullscreen_() {
-    $('body').removeClass('has-fullscreen');
-    $currentFullscreenMedia = null;
+  for (let tab of document.querySelectorAll('.filter input')) {
+    tab.addEventListener('click', ev => {
+      let filter = ev.currentTarget.value;
+      applyFilter(filter);
+      window.history.pushState(null, null, `#${filter}`);
+    });
   }
 
-  function loadFullscreenMedia_($media) {
-    $currentFullscreenMedia = $media;
-    let $content = $media.find('img, video').first().clone();
-    let $loadingSpinner = $media.find('.loading-spinner').clone();
+  document.querySelector('.show-all-projects-button').addEventListener('click',
+      () => applyFilter('', false));
 
-    $fullscreen
-        .empty()
-        .append($content)
-        .append($loadingSpinner);
-
-    if ($content.is('video')) {
-      setTimeout(() => $fullscreen.addClass('loading'), 10);
-      $content.on('canplay', () => {
-        $content.addClass('loaded');
-        $fullscreen
-            .addClass('loaded')
-            .removeClass('loading');
-        $content.get(0).play();
-      });
-
-      let videoNode = $content.get(0);
-      videoNode.load();
-    }
-
-    setTimeout(() =>$('body').addClass('has-fullscreen'), 10);
-  }
-
-  $('.page:not(.no-fullscreen) .media').on('click keydown', ev => {
-    if (ev.type == 'keydown' && ev.keyCode != 13) {
-      return;
-    }
-
-    $fullscreen.removeClass('loaded loading');
-    if ($(this).parents('.panning').length > 0) {
-      return;
-    }
-
-    loadFullscreenMedia_($(ev.currentTarget));
-  });
-
-  $(document).on('keydown', ev => {
-    if (ev.keyCode == 27) {
-      closeFullscreen_();
-    }
-  });
-
-  window.loadFullscreenMedia = loadFullscreenMedia_;
-  window.getCurrentFullscreenMedia = () => $currentFullscreenMedia;
+  window.addEventListener('hashchange', () => applyFilterFromHash());
+  applyFilterFromHash();
 }
 
-
-function setupKeyboardNav() {
-  $(document).on('keydown', ev => {
-    if (ev.keyCode == 37 || ev.keyCode == 39) {
-      // left and right keys
-      let direction = (ev.keyCode == 37) ? -1 : 1;
-      if ($('body').hasClass('has-fullscreen')) {
-        // send to fullscreen
-        let $media = getCurrentFullscreenMedia();
-        if ($media) {
-          let $page = $media.parent('.page');
-          let $siblingPage = $page[(direction == -1) ? 'prev' : 'next']('.page:not(.no-fullscreen)');
-          if ($siblingPage.length) {
-            loadFullscreenMedia($siblingPage.find('.media'));
-          }
-        }
-      }
-    }
-  });
-}
 
 
 function setupVideoMedia() {
   let timeouts = new Map();
+
+  let playPauseVideoMedia = (media, play) => {
+    let video = media.querySelector('video');
+
+    if (!video._listeners) {
+      video._listeners = true;
+      let canPlay_ = () => {
+        if (media.classList.contains('is-loading')) {
+          // play only if we're still supposed to play
+          video.play();
+        }
+        video.removeEventListener('canplay', canPlay_);
+        media.classList.add('is-loaded');
+        media.classList.remove('is-loading');
+      };
+      video.addEventListener('canplay', canPlay_);
+      video.addEventListener('load', canPlay_);
+      video.addEventListener('pause', () => media.classList.remove('is-playing'));
+      video.addEventListener('play', () => media.classList.add('is-playing'));
+    }
+
+    if (play) {
+      if (!media.classList.contains('is-loaded')) {
+        media.classList.add('is-loading');
+        video.load();
+      } else {
+        video.currentTime = 0;
+        video.play();
+      }
+    } else {
+      media.classList.remove('is-loading');
+      video.currentTime = 0;
+      video.pause();
+    }
+  };
 
   let playPause = page => {
     if (timeouts.has(page)) {
@@ -134,73 +115,53 @@ function setupVideoMedia() {
 
 
 function setupMediaSizing() {
-  $('.media video').on('resize', function() {
-    sizeMedia($(this).parents('.media'));
-  });
-  $('.media img').on('load', function() {
-    sizeMedia($(this).parents('.media'));
-  });
-}
-
-
-function sizeMedia($media) {
-  let $child = $media.children().eq(0);
-  if (!$child.length) {
-    return;
-  }
-
-  if ($media.parent('.page').hasClass('no-scale')) {
-    return;
-  }
-
-  let ww = $media.width();
-  let wh = $media.height();
-  let ow = $child.get(0).offsetWidth;
-  let oh = $child.get(0).offsetHeight;
-  let scale = 1;
-
-  if (ow / oh > ww / wh) {
-    scale = ww / ow;
-  } else {
-    scale = wh / oh;
-  }
-
-  scale = Math.min(scale, 1);
-  $child.css('transform', `scale(${scale})`);
-}
-
-
-function playPauseVideoMedia(media, play) {
-  let video = media.querySelector('video');
-
-  if (!video._listeners) {
-    video._listeners = true;
-    let canPlay_ = () => {
-      if (media.classList.contains('is-loading')) {
-        // play only if we're still supposed to play
-        video.play();
-      }
-      video.removeEventListener('canplay', canPlay_);
-      media.classList.add('is-loaded');
-      media.classList.remove('is-loading');
-    };
-    video.addEventListener('canplay', canPlay_);
-    video.addEventListener('load', canPlay_);
-    video.addEventListener('pause', () => media.classList.remove('is-playing'));
-    video.addEventListener('play', () => media.classList.add('is-playing'));
-  }
-
-  if (play) {
-    if (!media.classList.contains('is-loaded')) {
-      media.classList.add('is-loading');
-      video.load();
-    } else {
-      video.currentTime = 0;
-      video.play();
+  // TODO: componentize this in carousel somehow
+  let sizeMedia = media => {
+    let child = media.children[0];
+    if (!child) {
+      return;
     }
-  } else {
-    media.classList.remove('is-loading');
-    video.currentTime = 0;
-    video.pause();
+
+    if (media.closest('rn-carousel-page').classList.contains('no-scale')) {
+      return;
+    }
+
+    let computedStyle = window.getComputedStyle(media);
+    let ww = media.offsetWidth - parseFloat(computedStyle.paddingLeft) - parseFloat(computedStyle.paddingRight);
+    let wh = media.offsetHeight - parseFloat(computedStyle.paddingTop) - parseFloat(computedStyle.paddingBottom);
+    let ow = child.offsetWidth;
+    let oh = child.offsetHeight;
+    let scale = 1;
+
+    if (ow / oh > ww / wh) {
+      scale = ww / ow;
+    } else {
+      scale = wh / oh;
+    }
+
+    scale = Math.min(scale, 1);
+    child.style.setProperty('transform', `scale(${scale})`);
+  };
+
+  let sizeAllMedia = () => {
+    for (let media of document.querySelectorAll('.media')) {
+      sizeMedia(media);
+    }
+  };
+
+  window.addEventListener('resize', () => sizeAllMedia());
+
+  for (let video of document.querySelectorAll('.media video')) {
+    video.addEventListener('resize', ev => {
+      sizeMedia(ev.currentTarget.closest('.media'));
+    });
   }
+
+  for (let img of document.querySelectorAll('.media img')) {
+    img.addEventListener('load', ev => {
+      sizeMedia(ev.currentTarget.closest('.media'));
+    });
+  }
+
+  sizeAllMedia();
 }
