@@ -40,33 +40,68 @@
   cursor: pointer;
   display: block;
   position: absolute;
+  overflow: hidden;
   top: 0;
   bottom: 0;
   background: transparent none repeat-y;
-  width: var(--page-peek);
+  width: calc(var(--page-peek) + var(--page-spacing));
   padding: 0;
   z-index: 1;
   transition: opacity .1s ease;
+  outline: 0;
 
   &[disabled] {
     opacity: 0;
     cursor: default;
   }
+
+  svg {
+    filter: drop-shadow(0 0 8px rgba(#000, .2));
+  }
+
+  .shade {
+    position: absolute;
+    left: -16px;
+    top: 0;
+    height: 100%;
+    width: 16px;
+  }
+
+  .button-indent {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .material-icons {
+    position: absolute;
+    left: -4px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $textColorSub;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    svg {
+      filter: drop-shadow(0 0 8px rgba(#000, .3));
+    }
+
+    .material-icons {
+      color: $colorPrimary;
+    }
+  }
 }
 
 .edge.prev {
   left: 0;
-  background-image: url(/images/edge.svg);
-  background-position: 0% 0%;
-  background-size: 32px 100%;
 }
 
 .edge.next {
   right: 0;
-  background-image: url(/images/edge.svg);
   transform: rotate(180deg);
-  background-position: 0% 0%;
-  background-size: 32px 100%;
 }
 
 .dots {

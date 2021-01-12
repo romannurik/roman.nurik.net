@@ -233,10 +233,6 @@
         visibility: hidden;
       }
 
-      rn-carousel-page:not(.no-fullscreen) .media {
-        cursor: pointer;
-      }
-
       rn-carousel-page {
         background-color: var(--background-color);
         border-radius: 8px;
