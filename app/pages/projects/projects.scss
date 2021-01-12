@@ -1,6 +1,6 @@
 @import '@app/shared';
 
-.page-portfolio {
+.page-projects {
   overscroll-behavior-x: contain; // prevent usually accidental back button overscroll :-/
 
   header.top-header {
@@ -34,17 +34,17 @@
     .intro {
       margin: 0;
       box-sizing: border-box;
-      max-width: 352px;
+      max-width: 480px;
       padding-right: 24px;
       color: $textColor;
 
-      font-size: 16px;
-      line-height: 24px;
+      font-size: 20px;
+      line-height: 28px;
 
-      @include large {
-        font-size: 14px;
-        line-height: 20px;
-        max-width: 256px;
+      @include medium {
+        font-size: 16px;
+        line-height: 24px;
+        max-width: 380px;
       }
 
       :last-child {

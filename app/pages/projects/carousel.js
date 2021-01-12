@@ -77,12 +77,12 @@ export class Carousel extends LitElement {
     return closestPage;
   }
 
-  snapToPage(index) {
+  snapToPage(index, {immediate = false} = {}) {
     index = Math.max(0, Math.min(this.numPages - 1, index));
     let scroller = this.shadowRoot.querySelector('.scroller');
     scroller.scrollTo({
       left: this.scrollLeftForPage(index),
-      behavior: 'smooth'
+      behavior: immediate ? 'auto' : 'smooth'
     });
   }
 

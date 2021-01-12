@@ -1,7 +1,7 @@
 import './carousel';
-import './portfolio.scss';
+import './projects.scss';
 
-export function PortfolioPage() {
+export function ProjectsPage() {
   window.addEventListener('load', () => {
     setupMediaSizing();
     setupVideoMedia();
@@ -16,9 +16,16 @@ export function PortfolioPage() {
 
 function setupFiltering() {
   let applyFilter = (filter, scrollTop = true) => {
+    filter = filter || 'all';
     for (let project of document.querySelectorAll('section.project')) {
       let tags = new Set((project.getAttribute('data-tags') || '').split(/\s+/));
+      let wasHidden = project.classList.contains('is-hidden');
       project.classList.toggle('is-hidden', !(tags.has(filter) || filter === 'all'));
+      if (wasHidden) {
+        // TODO: this is needed because scroll-snap creates weird default starting scroll positions
+        // for previously-invisible carousels. figure out a better way.
+        setTimeout(() => project.querySelector('rn-carousel').snapToPage(0, {immediate: true}));
+      }
     }
     document.querySelector('section.show-all').classList.toggle('is-hidden', filter !== 'featured');
     if (scrollTop) {
@@ -43,8 +50,10 @@ function setupFiltering() {
     });
   }
 
-  document.querySelector('.show-all-projects-button').addEventListener('click',
-      () => applyFilter('', false));
+  document.querySelector('.show-all-projects-button').addEventListener('click', () => {
+    window.history.pushState(null, null, `#all`);
+    applyFilterFromHash();
+  });
 
   window.addEventListener('hashchange', () => applyFilterFromHash());
   applyFilterFromHash();

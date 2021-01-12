@@ -1,4 +1,4 @@
-# List of my portfolio projects.
+# List of my projects.
 
 
 - name: Firebase Console
@@ -71,7 +71,7 @@
     color: 'material orange 100'
     color2: 'material orange 600'
     device_frame: browser_light
-    caption: I also built a [web-based archive of featured art](http://muzei.co/archive) used in the app, which actually served as the basis of some of the interactions in this portfolio.
+    caption: I also built a [web-based archive of featured art](http://muzei.co/archive) used in the app, which actually served as the original basis of some of the interactions in this projects directory.
 
 
 ###################################################################################################
