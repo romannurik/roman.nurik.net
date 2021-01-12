@@ -34,7 +34,7 @@ This is my design portfolio, covering work at Google as well as side projects re
       </div>
       {% endif %}
     </div>
-    <rn-carousel>
+    <rn-carousel class="cloak">
       {% for page in project.pages %}
       <rn-carousel-page class="{{ page.extra_classes }} {% if page.video %}video{% endif %} {% if page.image %}image{% endif %}" style="background-color: {{ page.color | material_color }} {% if project.pager_height %}; height:{{project.pager_height}}px{% endif %}">
         <div tabindex="0" class="media loader-parent" {% if page.color2 %} style="color:{{ page.color2 | material_color }}"{% endif %}>
@@ -53,6 +53,7 @@ This is my design portfolio, covering work at Google as well as side projects re
           <img class="thumb" src="/media/{{ page.video }}-thumb.png">
           {% endif %}
           </div>
+          <div class="loader"></div>
         </div>
         {% if page.caption %}
         <div class="caption">

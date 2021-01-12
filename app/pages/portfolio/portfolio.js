@@ -176,15 +176,13 @@ function playPauseVideoMedia(media, play) {
   if (!video._listeners) {
     video._listeners = true;
     let canPlay_ = () => {
-      setTimeout(() => {
-        if (media.classList.contains('is-loading')) {
-          // play only if we're still supposed to play
-          video.play();
-        }
-        video.removeEventListener('canplay', canPlay_);
-        media.classList.add('is-loaded');
-        media.classList.remove('is-loading');
-      }, 1000);
+      if (media.classList.contains('is-loading')) {
+        // play only if we're still supposed to play
+        video.play();
+      }
+      video.removeEventListener('canplay', canPlay_);
+      media.classList.add('is-loaded');
+      media.classList.remove('is-loading');
     };
     video.addEventListener('canplay', canPlay_);
     video.addEventListener('load', canPlay_);

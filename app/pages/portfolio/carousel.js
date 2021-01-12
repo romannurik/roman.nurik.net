@@ -21,6 +21,7 @@ export class Carousel extends LitElement {
     super.connectedCallback();
     this.resizeObserver = new ResizeObserver(() => this.recomputeMetrics());
     this.resizeObserver.observe(this);
+    this.classList.remove('cloak');
     setTimeout(() => this.childrenChange());
   }
 
