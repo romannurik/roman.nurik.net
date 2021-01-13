@@ -3,7 +3,7 @@
 
 - name: Firebase Console
   date: August 2015 – Present
-  tags: featured
+  tags: featured ux eng
   description: |
     I'm currently a design lead and manager on the Firebase UX team, focusing on the [Firebase console](https://console.firebase.google.com) design system (components, spec documentation, Sketch UI kit) and other platform-level design and UX engineering projects.
 
@@ -28,6 +28,28 @@
   - image: firebase_loading.gif
     color: 'material blue-grey 50'
     caption: I had a chance to design a loading state, animating the [Firebase logomark designed by Ali Johnson](https://dribbble.com/shots/3140440-Firebase-Logo).
+
+###################################################################################################
+
+- name: DataURL.app
+  date: December 2020
+  tags: featured eng
+  description: |
+    I wrote a little app that helps you make data URLs quickly.
+
+    It was an opportunity to try out Firebase Hosting Preview URLs, but also solved a painpoint I
+    frequently experienced as a developer.
+
+  actions:
+  - caption: Try the app
+    url: https://dataurl.app
+  - caption: See the code
+    url: https://github.com/romannurik/dataurl.app
+
+  pages:
+  - image: dataurlapp.png
+    color: 'material indigo a100'
+    device_frame: browser_light
 
 
 ###################################################################################################
@@ -62,7 +84,6 @@
   - image: muzei_detail1.png
     color: '#c2d6f2'
     color2: '#3c6caf'
-    extra_classes: no-scale
     offset_media: 0, 22%
     device_frame: nexus5_light
     caption: I obsess over details. Here's a screen in Muzei I'm really proud of, where the seekbars visually represent their corresponding effect. [See on Dribbble](https://dribbble.com/shots/1445180-Muzei-Live-Wallpaper-Advanced-Settings)
