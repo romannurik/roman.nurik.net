@@ -1,0 +1,12 @@
+// color helper
+// Take in a sass color and return an RGB tuple e.g. '255, 255, 0'.
+// This allows CSS vars to be used with a dynamic alpha, e.g.:
+//
+//    $color: #f00;
+//    --color-rgb: #{color-to-rgb-tuple($color)};
+//    ...
+//    background-color: rgba(var(--color-rgb), .2);
+//
+@function color-to-rgb-tuple($color) {
+  @return red($color), green($color), blue($color);
+}

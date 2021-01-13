@@ -107,10 +107,10 @@ export class Carousel extends LitElement {
   render() {
     let edge = html`
       <svg class="shade" preserveAspectRatio="none" width="16" height="400" viewBox="0 0 16 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M4 0H0V400H4C4 400 16 400 16 200C16 0 4 0 4 0Z" fill="#C4C4C4"/>
+        <path d="M4 0H0V400H4C4 400 16 400 16 200C16 0 4 0 4 0Z" fill="#ccc"/>
       </svg>
       <svg class="button-indent" width="24" height="130" viewBox="0 0 24 130" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0 0V130C0 94 24 90 24 65C24 40 0 36 0 0Z" fill="white"/>
+        <path d="M0 0V130C0 94 24 90 24 65C24 40 0 36 0 0Z" fill="var(--background-color)"/>
       </svg>
       <i class="material-icons">chevron_left</i>
     `;

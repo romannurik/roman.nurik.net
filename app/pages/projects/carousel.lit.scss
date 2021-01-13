@@ -14,7 +14,6 @@
   scroll-snap-type: x mandatory;
   display: flex;
   flex-direction: row;
-  transform: translate3d(0, 0, 0);
 
   &::before,
   &::after {
@@ -79,7 +78,7 @@
     left: -4px;
     top: 50%;
     transform: translateY(-50%);
-    color: $textColorSub;
+    color: var(--on-color-secondary);
   }
 
   &:hover,
@@ -90,7 +89,7 @@
     }
 
     .material-icons {
-      color: $colorPrimary;
+      color: var(--accent-color);
     }
   }
 }
@@ -117,7 +116,7 @@
   flex-direction: row;
   margin: 0 auto;
 
-  $pageDotColor: material-color('grey', '500');
+  $pageDotColor: var(--on-color-tertiary);
 
   .dot {
     position: relative;
@@ -131,18 +130,18 @@
     &::after {
       content: '';
       display: block;
-      border: 1px solid $pageDotColor;
+      box-shadow: 0 0 0 1px $pageDotColor inset;
       border-radius: 50%;
       position: absolute;
       left: var(--page-dot-padding);
       top: var(--page-dot-padding);
       right: var(--page-dot-padding);
       bottom: var(--page-dot-padding);
-      transition: border .2s ease;
+      transition: box-shadow .2s ease;
     }
 
     &.is-active::after {
-      background: $pageDotColor;
+      box-shadow: 0 0 0 calc(var(--page-dot-size) / 2) $pageDotColor inset;
     }
   }
 }

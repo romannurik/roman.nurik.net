@@ -1,7 +1,4 @@
 .page-subpage {
-  $codeColor: material-color('purple', '500');
-  $linkColor: $colorPrimary;
-
   --page-width: min(#{$largeBreakpoint}, 100vw);
   --page-side-margin: 56px;
 
@@ -29,10 +26,10 @@
       position: relative;
       text-decoration: none;
       font-size: 20px;
-      font-weight: 500;
+      font-weight: var(--font-weight-body-medium);
       line-height: 36px;
       padding-left: 48px;
-      color: $textColor;
+      color: var(--on-color-primary);
 
       &::before {
         content: '';
@@ -40,23 +37,13 @@
         left: 0;
         top: 0;
         box-sizing: border-box;
-        border: 2px solid #fff;
         width: 36px;
         height: 36px;
         background-color: #525252;
-        background-image: url('/images/avatar.png');
+        background-image: url(/images/avatar.png);
         background-size: cover;
         border-radius: 50%;
       }
-
-      // &:after {
-      //   @include material-icons;
-      //   content: 'arrow_back';
-      //   position: absolute;
-      //   left: -32px;
-      //   top: (36px - 24px) / 2;
-      //   font-size: 24px;
-      // }
     }
   }
 
@@ -69,19 +56,18 @@
   }
 
   // typography and styling
-  color: $textColor;
-  font-size: 14px;
-  line-height: 20px;
+  color: var(--on-color-primary);
+  @include type-body-3;
 
   pre,
   code {
-    font-family: 'JetBrains Mono', monospace;
-    color: $codeColor;
+    font-family: var(--font-stack-code);
+    color: var(--code-color);
   }
 
   strong,
   b {
-    font-weight: 800;
+    font-weight: var(--font-weight-body-bold);
   }
 
   em,
@@ -90,7 +76,7 @@
   }
 
   a {
-    color: $linkColor;
+    color: var(--link-color);
   }
 
   ul,
@@ -99,8 +85,6 @@
   }
 
   li {
-    font-size: 14px;
-    line-height: 20px;
     margin-bottom: 8px;
   }
 }
