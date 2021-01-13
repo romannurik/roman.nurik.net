@@ -149,26 +149,21 @@
         @include type-body-3(medium);
         text-decoration: none;
         display: inline-block;
-        margin-right: 8px;
-        margin-bottom: 8px;
-        padding: 6px 8px;
+        margin-right: 4px;
+        margin-bottom: 4px;
+        padding: 6px 12px;
         border-radius: 4px;
-        border: 2px solid transparent;
 
         &:first-child {
-          border: 2px solid var(--accent-color);
+          box-shadow: 0 0 0 2px var(--accent-color) inset;
         }
 
         &:hover {
-          color: var(--background-color);
-          background-color: var(--accent-color);
-          border: 2px solid var(--accent-color);
+          background-color: rgba(var(--accent-rgb), .1);
         }
 
         &:active {
-          color: var(--background-color);
-          background-color: var(--accent-color-dark);
-          border: 2px solid var(--accent-color-dark);
+          background-color: rgba(var(--accent-rgb), .2);
         }
       }
     }
@@ -217,10 +212,14 @@
       }
 
       @include medium {
-        width: 100vw;
+        width: 100%;
         left: 0;
         right: 0;
         flex: 1 1 auto;
+      }
+
+      @include narrow {
+        width: 100vw;
       }
 
       &.cloak {

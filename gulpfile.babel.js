@@ -25,7 +25,6 @@ import webpack from 'webpack';
 import materialColor from './local_node_modules/material-color';
 
 const $ = gulpLoadPlugins();
-const reload = browserSync.reload;
 
 
 let DEV_MODE = false;
@@ -141,7 +140,7 @@ gulp.task('clean', cb => {
   cb();
 });
 
-gulp.task('__serve__', gulp.series('html', 'webpack', () => {
+gulp.task('serve', gulp.series(setDevMode, 'html', 'webpack', () => {
   browserSync({
     notify: false,
     server: {
@@ -153,20 +152,17 @@ gulp.task('__serve__', gulp.series('html', 'webpack', () => {
     port: 3000
   });
 
-  let r = cb => { reload(); cb(); };
-  gulp.watch(['app/**/*.html'], gulp.series('html', r));
-  gulp.watch(['app/data/**/*.{json,yaml}'], gulp.series('html', r));
-  gulp.watch(['app/{images,media}/**/*'], gulp.series('media', 'html', r)); // html because SVG sometimes inlined
+  let reload = cb => { browserSync.reload(); cb(); };
+  gulp.watch(['app/**/*.html'], gulp.series('html', reload));
+  gulp.watch(['app/data/**/*.{json,yaml}'], gulp.series('html', reload));
+  gulp.watch(['app/{images,media}/**/*'], gulp.series('media', 'html', reload)); // html because SVG sometimes inlined
 
   if (webpackInstance) {
     webpackInstance.watch({}, (err, stats) => {
       printWebpackStats(stats);
-      reload();
+      browserSync.reload();
     });
   }
 }));
-
-gulp.task('serve', gulp.series(setDevMode, '__serve__'));
-
 
 gulp.task('default', gulp.series('clean', 'html', 'webpack', 'media', 'copy'));

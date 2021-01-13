@@ -6,12 +6,13 @@ body.page-landing {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  background-color: var(--background-color);
 }
 
 .page-landing {
   $avatarSize: 128px;
   $avatarSizeSmall: 96px;
-  $avatarBorder: 4px;
+  $avatarBorder: 20px;
   $avatarBorderSmall: $avatarBorder;
 
   $mainPadding: 24px;
@@ -22,15 +23,6 @@ body.page-landing {
 
   // Teh stylez
 
-  .top {
-    background-color: var(--background-color);
-  }
-
-  .bottom {
-    width: 100%;
-    background-color: var(--accent-color);
-  }
-
   .top,
   .bottom {
     flex: 1 0 auto;
@@ -39,19 +31,19 @@ body.page-landing {
   .content-container {
     position: relative;
     width: 100%;
-    background-color: var(--accent-color);
     display: flex;
     justify-content: center;
     flex: 0 0 auto;
 
     &::before {
+      $thickness: 2px;
       content: '';
       position: absolute;
       left: 0;
       top: 0;
-      background-color: var(--background-color);
+      box-shadow: 0 $thickness 0 var(--accent-color);
       width: 100%;
-      height: $avatarSize / 2 + $avatarBorder + $mainPadding;
+      height: $avatarSize / 2 + $mainPadding - $thickness / 2;
 
       @include mobile {
         height: $avatarSizeSmall / 2 + $avatarBorderSmall + $mainPadding;
@@ -63,7 +55,7 @@ body.page-landing {
     position: relative;
     padding: $mainPadding;
     width: 300px;
-    color: rgba(var(--background-rgb), .8);
+    color: var(--on-color-secondary);
     display: flex;
     flex-direction: column;
 
@@ -71,51 +63,51 @@ body.page-landing {
     line-height: 32px;
 
     a {
-      display: inline-block;
       position: relative;
       font-weight: var(--font-weight-body-bold);
-      color: var(--background-color);
+      color: var(--on-color-primary);
       text-decoration: none;
       z-index: 0;
 
-      $animSpeed: .05s;
+      $animSpeed: .1s;
 
       &::before {
         position: absolute;
         content: '';
-        background-color: var(--accent-color-dark);
-        background-position: 50% 0;
-        left: -6px;
-        right: -6px;
-        border-radius: 5px;
-        top: 0;
+        background-color: var(--accent-color);
+        left: -4px;
+        right: -4px;
         bottom: 0;
+        height: 50%;
         z-index: -1;
         visibility: hidden;
         opacity: 0;
+        will-change: transform;
         transition:
-            opacity $animSpeed ease,
             transform $animSpeed ease,
+            opacity $animSpeed,
             visibility 0s linear $animSpeed;
-        transform: scale(.9);
+        transform: scale(1, 0);
+        transform-origin: 50% 100%;
         display: block;
+        pointer-events: none;
       }
 
       &:hover::before,
       &:active::before {
         visibility: visible;
-        transform: scale(1);
+        transform: scale(1, 1);
         transition:
             opacity $animSpeed ease,
             transform $animSpeed ease;
       }
 
       &:hover::before {
-        opacity: .5;
+        opacity: .3;
       }
 
       &:active::before {
-        opacity: 1;
+        opacity: .7;
       }
     }
 
@@ -151,8 +143,8 @@ body.page-landing {
     border-radius: 50%;
     background-color: #525252;
     align-self: center;
-
-    border: $avatarBorder solid var(--background-color);
+    border-left: $avatarBorder solid var(--background-color);
+    border-right: $avatarBorder solid var(--background-color);
 
     @include mobile {
       border: $avatarBorderSmall solid var(--background-color);
@@ -160,16 +152,41 @@ body.page-landing {
   }
 
   .icons {
+    width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
 
     margin: 0 -8px; // account for extra icon padding
     @include mobile { margin: 0; }
 
     a {
+      --size: 32px;
+
+      @include mobile {
+        --size: 24px;
+      }
+
       display: flex;
+      justify-content: center;
+      flex: 1;
       padding: 8px; // make the touch target bigger
+
+      &::before {
+        left: 50%;
+        right: auto;
+        bottom: auto;
+        top: 50%;
+        width: calc(var(--size) * 1.75);
+        height: calc(var(--size) * 1.75);
+        border-radius: 50%;
+        transform: translate(-50%, -50%) scale(.8, .8);
+        transform-origin: 50% 50%;
+      }
+
+      &:hover::before,
+      &:active::before {
+        transform: translate(-50%, -50%) scale(1, 1);
+      }
     }
 
     span {
@@ -177,14 +194,9 @@ body.page-landing {
     }
 
     svg {
-      width: 32px;
-      height: 32px;
-      fill: var(--background-color);
-
-      @include mobile {
-        width: 24px;
-        height: 24px;
-      }
+      width: var(--size);
+      height: var(--size);
+      fill: var(--on-color-primary);
     }
   }
 }
