@@ -37,7 +37,7 @@
   "private": true,
   "scripts": {
     "clean": "rm -rf dist",
-    "serve:html": "ELEVENTY_ENV=development eleventy --serve",
+    "serve:html": "ELEVENTY_ENV=development eleventy --watch",
     "serve:assets": "NODE_ENV=development webpack serve",
     "start": "npm-run-all clean --parallel serve:*",
     "build:html": "ELEVENTY_ENV=production eleventy",

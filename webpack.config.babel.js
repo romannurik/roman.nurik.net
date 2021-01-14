@@ -34,8 +34,8 @@ module.exports = {
     new CopyPlugin([
       {from: 'app/media', to: 'media'},
       {from: 'app/images', to: 'images'},
-      {from: 'app/CNAME', to: '.'},
-      {from: 'app/*.{txt,ico,png}', to: '.'},
+      {from: 'app/CNAME', to: ''},
+      {from: '*.{txt,ico,png}', context: 'app', to: ''},
     ]),
   ],
   performance: {
