@@ -1,14 +1,10 @@
 ---
+layout: subpage
 title: Projects
-destination: /projects/index.html
+permalink: /projects/
 pageClasses: page-projects page-subpage
 pageController: ProjectsPage
 ---
-{% extends '_subpage.html' %}
-
-{% block subpagebody %}
-{{ super() }}
-
 <header class="top-header">
   <h1>{{ title }}</h1>
   <div class="intro">
@@ -86,5 +82,3 @@ More on [Dribbble](https://dribbble.com/romannurik).
 Code by me. [See it on GitHub](https://github.com/romannurik/roman.nurik.net)
 {% endmarkdown %}
 </footer>
-
-{% endblock %}

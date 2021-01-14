@@ -1,7 +1,6 @@
-{% extends '_base.html' %}
-
-{% block pagebody %}
-
+---
+layout: base
+---
 <nav class="top-bar">
   <div class="top-bar-content">
     <a class="home-link" href="/"><span>Roman Nurik</span></a>
@@ -9,9 +8,6 @@
 </nav>
 <div class="page-content">
 
-{% block subpagebody %}
-{% endblock %}
+{{ content | safe }}
 
 </div>
-
-{% endblock %}

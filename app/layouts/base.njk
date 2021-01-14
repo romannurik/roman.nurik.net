@@ -32,9 +32,9 @@
   </head>
   <body class="{{ pageClasses }}">
 
-    {% block pagebody %}
-    {% endblock %}
+    {{ content | safe }}
 
+    <script src="/vendor.js"></script>
     <script src="/app.js"></script>
 
     {% block js %}{% endblock %}
