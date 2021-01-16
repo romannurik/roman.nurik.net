@@ -40,20 +40,32 @@ More on [Dribbble](https://dribbble.com/romannurik).
     </div>
     <rn-carousel class="cloak">
       {% for page in project.pages %}
-      <rn-carousel-page class="{{ page.extra_classes }} {% if page.video %}video{% endif %} {% if page.image %}image{% endif %}" style="--background-color: {{ page.color | material_color }} {% if project.pager_height %}; height:{{project.pager_height}}px{% endif %}">
-        <div tabindex="0" class="media loader-parent" {% if page.color2 %} style="color:{{ page.color2 | material_color }}"{% endif %}>
+      <rn-carousel-page
+          class="{{ page.extra_classes }}
+                 {% if page.bg_image %}has-bg-image{% endif %}
+                 {% if page.lottie %}lottie{% endif %}
+                 {% if page.video %}video{% endif %}
+                 {% if page.image %}image{% endif %}"
+          style="--background-color: {{ page.color | material_color }};
+                 {% if project.pager_height %}height:{{project.pager_height}}px;{% endif %}">
+        <div tabindex="0"
+            class="media loader-parent"
+            style="{% if page.bg_image %}background-image: url(/media/{{page.bg_image}});{% endif %}
+                   {% if page.color2 %}color:{{ page.color2 | material_color }}{% endif %}">
           <div
             {% if page.offset_media %}style="transform: translate({{ page.offset_media }});"{% endif %}
             {% if page.device_frame %}class="device-frame device-{{ page.device_frame }}"{% endif %}>
           {% if page.image %}
-          <!-- <div class="media image" style="background-image: url(/media/{{ page.image }});"></div> -->
-          <img src="/media/{{ page.image }}">
+            <img src="/media/{{ page.image }}">
+          {% endif %}
+          {% if page.lottie %}
+            <rn-lottie-player src="/media/{{ page.lottie }}"></rn-lottie-player>
           {% endif %}
           {% if page.video %}
-          <video loop muted preload="none">
-            <source src="/media/{{ page.video }}.mp4" type="video/mp4">
-          </video>
-          <img class="thumb" src="/media/{{ page.video }}-thumb.png">
+            <video loop muted preload="none">
+              <source src="/media/{{ page.video }}.mp4" type="video/mp4">
+            </video>
+            <img class="thumb" src="/media/{{ page.video }}-thumb.png">
           {% endif %}
           </div>
           <div class="loader"></div>

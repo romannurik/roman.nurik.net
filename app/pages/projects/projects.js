@@ -1,4 +1,5 @@
 import './carousel';
+import './lottie-player';
 import './projects.scss';
 
 export function ProjectsPage() {
@@ -66,36 +67,44 @@ function setupVideoMedia() {
 
   let playPauseVideoMedia = (media, play) => {
     let video = media.querySelector('video');
+    let lottie = media.querySelector('rn-lottie-player');
+    if (video) {
+      if (!video._listeners) {
+        video._listeners = true;
+        let canPlay_ = () => {
+          if (media.classList.contains('is-loading')) {
+            // play only if we're still supposed to play
+            video.play();
+          }
+          video.removeEventListener('canplay', canPlay_);
+          media.classList.add('is-loaded');
+          media.classList.remove('is-loading');
+        };
+        video.addEventListener('canplay', canPlay_);
+        video.addEventListener('load', canPlay_);
+        video.addEventListener('pause', () => media.classList.remove('is-playing'));
+        video.addEventListener('play', () => media.classList.add('is-playing'));
+      }
 
-    if (!video._listeners) {
-      video._listeners = true;
-      let canPlay_ = () => {
-        if (media.classList.contains('is-loading')) {
-          // play only if we're still supposed to play
+      if (play) {
+        if (!media.classList.contains('is-loaded')) {
+          media.classList.add('is-loading');
+          video.load();
+        } else {
+          video.currentTime = 0;
           video.play();
         }
-        video.removeEventListener('canplay', canPlay_);
-        media.classList.add('is-loaded');
-        media.classList.remove('is-loading');
-      };
-      video.addEventListener('canplay', canPlay_);
-      video.addEventListener('load', canPlay_);
-      video.addEventListener('pause', () => media.classList.remove('is-playing'));
-      video.addEventListener('play', () => media.classList.add('is-playing'));
-    }
-
-    if (play) {
-      if (!media.classList.contains('is-loaded')) {
-        media.classList.add('is-loading');
-        video.load();
       } else {
+        media.classList.remove('is-loading');
         video.currentTime = 0;
-        video.play();
+        video.pause();
       }
-    } else {
-      media.classList.remove('is-loading');
-      video.currentTime = 0;
-      video.pause();
+    } else if (lottie) {
+      if (play) {
+        lottie.play();
+      } else {
+        lottie.reset();
+      }
     }
   };
 
@@ -115,7 +124,7 @@ function setupVideoMedia() {
     }
   }, {threshold: 0.5});
 
-  for (let el of Array.from(document.querySelectorAll('rn-carousel-page.video'))) {
+  for (let el of document.querySelectorAll('rn-carousel-page.video, rn-carousel-page.lottie')) {
     el.addEventListener('activechange', () => playPause(el));
     observer.observe(el);
     playPause(el);

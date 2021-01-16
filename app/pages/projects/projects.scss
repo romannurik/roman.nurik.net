@@ -149,10 +149,13 @@
         @include type-body-3(medium);
         text-decoration: none;
         display: inline-block;
-        margin-right: 4px;
         margin-bottom: 4px;
         padding: 6px 12px;
         border-radius: 4px;
+
+        & + a {
+          margin-left: 4px;
+        }
 
         &:first-child {
           box-shadow: 0 0 0 2px var(--accent-color) inset;
@@ -205,7 +208,7 @@
       --page-spacing: 16px;
     
       @include narrow {
-        --aspect-ratio: 1;
+        --aspect-ratio: calc(4 / 5);
         --page-peek: 28px;
         --page-spacing: 8px;      
         margin: -24px calc(0px - var(--page-side-margin));
@@ -251,6 +254,8 @@
           overflow: hidden;
           padding: 24px;
           outline: 0; // no outline on focus; definitely not ideal
+          background-size: cover;
+          background-position: 50% 50%;
 
           @include narrow {
             padding: 12px;

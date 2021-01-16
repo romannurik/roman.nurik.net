@@ -7,6 +7,7 @@ const stats = {
   modules: false,
   children: false,
   colors: true,
+  excludeAssets : [/media\/.*/],
 };
 
 module.exports = {
