@@ -181,5 +181,12 @@ function setupMediaSizing() {
     });
   }
 
+  // requires custom event
+  // for (let lottie of document.querySelectorAll('.media rn-lottie-player')) {
+  //   lottie.addEventListener('load', ev => {
+  //     sizeMedia(ev.currentTarget.closest('.media'));
+  //   });
+  // }
+
   sizeAllMedia();
 }

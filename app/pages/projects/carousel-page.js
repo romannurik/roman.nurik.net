@@ -7,12 +7,10 @@ export class CarouselPage extends LitElement {
 
   updated(changedProperties) {
     if (changedProperties.has('active')) {
-      let event = new CustomEvent('activechange');
-      this.dispatchEvent(event);
+      this.dispatchEvent(new CustomEvent('activechange'));
     }
     if (changedProperties.has('peeking')) {
-      let event = new CustomEvent('peekingchange');
-      this.dispatchEvent(event);
+      this.dispatchEvent(new CustomEvent('peekingchange'));
     }
   }
 

@@ -1,4 +1,4 @@
-import { customElement, html, LitElement, property } from 'lit-element';
+import { css, customElement, LitElement, property } from 'lit-element';
 import lottie from 'lottie-web';
 
 
@@ -9,6 +9,20 @@ export class LottiePlayer extends LitElement {
   connectedCallback() {
     super.connectedCallback();
     this.updateAnimation();
+  }
+
+  static get styles() {
+    return css`
+      :host {
+        display: inline-block;
+        width: var(--intrinsic-width);
+        height: var(--intrinsic-height);
+        min-width: 100%;
+        max-width: 100%;
+        min-height: 100%;
+        max-height: 100%;      
+      }
+    `;
   }
 
   updated(changedProperties) {
@@ -24,12 +38,28 @@ export class LottiePlayer extends LitElement {
       return;
     }
 
-    this.animation = lottie.loadAnimation({
-      container: this.shadowRoot.querySelector('div'),
-      path: this.src,
-      renderer: 'svg',
-      loop: true,
-      autoplay: true,
+    let container = this.shadowRoot;
+    if (!container) {
+      return;
+    }
+
+    if (this._fetching) {
+      return;
+    }
+
+    this._fetching = true;
+    fetch(this.src).then(r => r.json()).then(animationData => {
+      this._fetching = false;
+      let {w, h} = animationData;
+      this.style.setProperty('--intrinsic-width', `${w}px`);
+      this.style.setProperty('--intrinsic-height', `${h}px`);
+      this.animation = lottie.loadAnimation({
+        container,
+        animationData,
+        renderer: 'svg',
+        loop: true,
+        autoplay: false,
+      });
     });
   }
 
@@ -57,6 +87,6 @@ export class LottiePlayer extends LitElement {
   }
 
   render() {
-    return html`<div></div>`;
+    return null;
   }
 }

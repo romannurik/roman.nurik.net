@@ -46,8 +46,7 @@ More on [Dribbble](https://dribbble.com/romannurik).
                  {% if page.lottie %}lottie{% endif %}
                  {% if page.video %}video{% endif %}
                  {% if page.image %}image{% endif %}"
-          style="--background-color: {{ page.color | material_color }};
-                 {% if project.pager_height %}height:{{project.pager_height}}px;{% endif %}">
+          style="--background-color: {{ page.color | material_color }};">
         <div tabindex="0"
             class="media loader-parent"
             style="{% if page.bg_image %}background-image: url(/media/{{page.bg_image}});{% endif %}
