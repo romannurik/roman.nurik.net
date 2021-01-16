@@ -5,15 +5,13 @@
   date: 2015 – Present
   tags: featured ux eng
   description: |
-    I'm currently a design lead and manager on the Firebase UX team, focusing on the "Build"
-    products (databases, web hosting, authentication, etc.), core platform primitives such as
-    onboarding and billing, overall brand system, and the [Firebase
-    console](https://console.firebase.google.com) design system.
+    I'm currently a design lead and manager on the Firebase UX team, overseeing:
+    
+    - The "[Build](https://firebase.google.com/products-build)" products (databases, web hosting, authentication, etc.)
+    - Core platform primitives (onboarding, billing, navigation, etc.)
+    - The [Firebase console](https://console.firebase.google.com) design system and brand visual language
 
-    Previously, I was an IC UX lead for [Firebase Remote
-    Config](https://firebase.google.com/products/remote-config/), [A/B
-    Testing](https://firebase.google.com/docs/remote-config/abtest-config), and designed much of the
-    current console onboarding experience.
+    Previously, I was an IC UX lead for [Remote Config](https://firebase.google.com/products/remote-config/), [A/B Testing](https://firebase.google.com/docs/remote-config/abtest-config), and designed much of the current console onboarding experience.
 
   pages:
   - lottie: firebase_intro_lottie.json
