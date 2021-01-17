@@ -7,4 +7,4 @@ To build the site (which gets output in the `dist` directory), just run
 
 You can also run the local web server with:
 
-    $ npm run start
+    $ npm start

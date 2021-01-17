@@ -36,22 +36,50 @@
     color: 'material teal 100'
     device_frame: browser_light
     caption: |
-        In 2015 – 2017, I was UX lead for [Remote
-        Config](https://firebase.google.com/products/remote-config/) and A/B testing, pioneering the
-        UX for a product with little market precedent.
+        In 2015 – 2017, I was UX lead for [Remote Config](https://firebase.google.com/products/remote-config/) and A/B  testing, pioneering the UX for a product with little market precedent.
 
   - image: firebase_icon_anim.webp
     color: '#E5EAF0'
     extra_classes: no-padding
     caption: |
-        I had the opportunity to design and implement a few small-scale icon animations throughout
-        the console.
+        I had the opportunity to design and implement a few small-scale icon animations throughout the console.
+
+###################################################################################################
+
+- name: MaterialColorsApp
+  date: 2016 – Present
+  tags: featured eng
+  description: |
+    I built a tiny [Electron](https://www.electronjs.org/) app that lets you quickly reference the original Material Design color palettes. This was useful in the early days while our team used Sketch (which didn't have color styles), and remains useful for apps like Google Slides and Keynote.
+
+    Over time more functionality was added, including dark mode support, fuzzy hex-code search (contributed by a colleague), and the [hidden] ability to bring in custom colors.
+
+  actions:
+  - caption: Install for macOS
+    url: https://github.com/romannurik/MaterialColorsApp/releases/latest
+  - caption: See the code
+    url: https://github.com/romannurik/MaterialColorsApp
+
+  pages:
+  - image: materialcolors_light.png
+    extra_classes: crop-y crop-scale-half
+    crop_position: 0%
+    color: '#3D5AFE'
+    bg_image: macos_desktop_bg.png
+
+  - image: materialcolors_search_dark.png
+    extra_classes: crop-y
+    crop_position: 0%
+    color: '#3D5AFE'
+    bg_image: macos_desktop_bg_dark.png
+
+
 
 ###################################################################################################
 
 - name: DataURL.app
   date: December 2020
-  tags: featured eng
+  tags: eng
   description: |
     I wrote a little app that helps you make data URLs quickly.
 
@@ -106,7 +134,6 @@
   - image: muzei_detail1.png
     color: '#c2d6f2'
     color2: '#3c6caf'
-    offset_media: 0, 22%
     device_frame: nexus5_light
     caption: I obsess over details. Here's a screen in Muzei I'm really proud of, where the seekbars visually represent their corresponding effect. [See on Dribbble](https://dribbble.com/shots/1445180-Muzei-Live-Wallpaper-Advanced-Settings)
 

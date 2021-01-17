@@ -140,25 +140,64 @@ function setupMediaSizing() {
       return;
     }
 
-    if (media.closest('rn-carousel-page').classList.contains('no-scale')) {
-      return;
-    }
+    let page = media.closest('rn-carousel-page');
+
+    // crop options
+    let cropX = page.classList.contains('crop-x');
+    let cropY = page.classList.contains('crop-y');
+    let shouldScaleHalf = page.classList.contains('crop-scale-half');
 
     let computedStyle = window.getComputedStyle(media);
-    let ww = media.offsetWidth - parseFloat(computedStyle.paddingLeft) - parseFloat(computedStyle.paddingRight);
-    let wh = media.offsetHeight - parseFloat(computedStyle.paddingTop) - parseFloat(computedStyle.paddingBottom);
-    let ow = child.offsetWidth;
-    let oh = child.offsetHeight;
-    let scale = 1;
+    let cropPosition = computedStyle.getPropertyValue('--crop-position') || null;
+    if (cropPosition) {
+      // assume percentage
+      cropPosition = parseFloat(cropPosition);
+    }
 
-    if (ow / oh > ww / wh) {
-      scale = ww / ow;
-    } else {
-      scale = wh / oh;
+    // container dimensions
+    let mw = media.offsetWidth
+        - parseFloat(computedStyle.paddingLeft)
+        - parseFloat(computedStyle.paddingRight);
+    let mh = media.offsetHeight
+        - parseFloat(computedStyle.paddingTop)
+        - parseFloat(computedStyle.paddingBottom);
+
+    // image/video/etc dimensions
+    let cw = child.offsetWidth;
+    let ch = child.offsetHeight;
+
+    let scale = (shouldScaleHalf ? 0.5 : 1);
+    let translate = null;
+
+    if (cw / ch > mw / mh) {
+      // image wider than container, letterbox above/below
+      if (cropX) {
+        // allow horizontal cropping
+        scale = Math.min(scale, mh / ch);
+        if (cropPosition !== null) {
+          translate = {x: Math.round((mw - cw * scale) * (cropPosition - 50) / 100), y: 0};
+        }
+      } else {
+        scale = mw / cw;
+      }
+    } else if (cw / ch < mw / mh) {
+      // image taller than container, letterbox left/right
+      if (cropY) {
+        // allow vertical cropping
+        scale = Math.min(scale, mw / cw);
+        if (cropPosition !== null) {
+          translate = {x: 0, y: Math.round((mh - ch * scale) * (cropPosition - 50) / 100)};
+        }
+      } else {
+        scale = mh / ch;
+      }
     }
 
     scale = Math.min(scale, 1);
-    child.style.setProperty('transform', `scale(${scale})`);
+    child.style.setProperty('transform', [
+      translate ? `translate(${translate.x}px, ${translate.y}px)` : '',
+      `scale(${scale})`,
+    ].filter(s => !!s).join(' '));
   };
 
   let sizeAllMedia = () => {

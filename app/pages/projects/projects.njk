@@ -50,10 +50,9 @@ More on [Dribbble](https://dribbble.com/romannurik).
         <div tabindex="0"
             class="media loader-parent"
             style="{% if page.bg_image %}background-image: url(/media/{{page.bg_image}});{% endif %}
+                   {% if page.crop_position %}--crop-position: {{ page.crop_position }};{% endif %}
                    {% if page.color2 %}color:{{ page.color2 | material_color }}{% endif %}">
-          <div
-            {% if page.offset_media %}style="transform: translate({{ page.offset_media }});"{% endif %}
-            {% if page.device_frame %}class="device-frame device-{{ page.device_frame }}"{% endif %}>
+          <div {% if page.device_frame %}class="device-frame device-{{ page.device_frame }}"{% endif %}>
           {% if page.image %}
             <img src="/media/{{ page.image }}">
           {% endif %}
