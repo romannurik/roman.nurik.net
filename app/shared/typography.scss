@@ -1,15 +1,16 @@
 // typographic scale
 
 @mixin typography-vars() {
-  --font-stack-body: Tenso, sans-serif;
+  // alternatives: lemonde-courrier, leo, tenso
+  --font-stack-body: skolar-latin, sans-serif;
   --font-weight-body-regular: 400;
   --font-weight-body-medium: 500;
-  --font-weight-body-bold: 800;
+  --font-weight-body-bold: 900;
 
-  --font-stack-display: Tenso, sans-serif;
+  --font-stack-display: tenso, sans-serif;
   --font-weight-display-regular: 400;
   --font-weight-display-medium: 500;
-  --font-weight-display-bold: 800;
+  --font-weight-display-bold: 900;
 
   --font-stack-code: 'JetBrains Mono', monospace;
   --font-weight-code-regular: 400;

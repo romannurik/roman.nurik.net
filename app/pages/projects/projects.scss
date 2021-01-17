@@ -88,7 +88,9 @@
       span {
         display: flex;
         color: var(--on-color-primary);
+        // TODO: add to type scale
         @include type-body-2(medium);
+        font-family: var(--font-stack-display);
         padding: 8px 12px;
       }
 
@@ -146,7 +148,9 @@
 
       a {
         color: var(--accent-color);
+        // TODO: add to type scale
         @include type-body-3(medium);
+        font-family: var(--font-stack-display);
         text-decoration: none;
         display: inline-block;
         margin-bottom: 4px;
