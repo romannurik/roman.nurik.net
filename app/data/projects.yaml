@@ -30,13 +30,13 @@
     color: '#E5EAF0'
     extra_classes: no-padding
     caption: |
-        I've played a big role in the design system's success, including expansion and refinement.
+        I've played a big role in design system adoption, expansion and refinement.
 
   - image: firebase_abtesting.png
     color: 'material teal 100'
     device_frame: browser_light
     caption: |
-        In 2015 – 2017, I was UX lead for [Remote Config](https://firebase.google.com/products/remote-config/) and A/B  testing, pioneering the UX for a product with little market precedent.
+        From 2015 – 2017, I was UX lead for [Remote Config](https://firebase.google.com/products/remote-config/) and A/B  Testing, designing a novel product with little market precedent.
 
   - image: firebase_icon_anim.webp
     color: '#E5EAF0'
@@ -105,7 +105,7 @@
 ###################################################################################################
 
 
-- name: Muzei Live Wallpaper
+- name: Muzei Live Wallpaper for Android
   date: 2013
   tags: featured
   description: |
@@ -156,7 +156,7 @@
     * Help Google I/O attendees and remote viewers personalize their conference agenda and explore conference content before, during, and after the event.
     * Be an excellent open-source example of Android design and development best practices
 
-    My role has primarily been lead designer and frontend engineer, most notably for the 2014 app, which was one of the very **first Android apps to adopt material design**. For two years, I was also the overall technical lead for the app. In 2015, I acted primarily as UX mentor/advisor.
+    My role has primarily been lead designer and frontend engineer, most notably for the 2014 app, which was **one of the very first Android apps to adopt material design**. For two years, I was also the overall technical lead for the app. In 2015, I acted primarily as UX mentor/advisor.
 
   actions:
   - caption: Install app
@@ -192,7 +192,7 @@
 ###################################################################################################
 
 
-- name: DashClock Widget
+- name: DashClock Widget for Android
   date: 2012
   description: |
     DashClock was my first published Android app and is exemplary of my philosophy for [design and developer advocacy](https://medium.com/google-developers/walk-then-talk-3b935bfe5484). It also promotes Android by exemplifying functionality that's only available on the Android platform.
