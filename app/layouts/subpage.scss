@@ -16,29 +16,29 @@
 
   nav.top-bar {
     box-sizing: border-box;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
     padding: 16px 0;
 
+    .top-bar-content {
+      display: flex;
+    }
+
     .home-link {
-      display: block;
+      display: inline-flex;
+      flex-direction: row;
+      align-items: center;  
       position: relative;
       text-decoration: none;
-      font-size: 20px;
-      font-weight: var(--font-weight-body-medium);
-      line-height: 36px;
-      padding-left: 48px;
+      @include type-headline-3(medium);
       color: var(--on-color-primary);
 
       &::before {
         content: '';
-        position: absolute;
-        left: 0;
-        top: 0;
+        display: block;
+        flex: 0 0 auto;
         box-sizing: border-box;
         width: 36px;
         height: 36px;
+        margin-right: 12px;
         background-color: #525252;
         background-image: url(/images/avatar.png);
         background-size: cover;

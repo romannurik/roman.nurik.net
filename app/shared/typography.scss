@@ -1,7 +1,7 @@
 // typographic scale
 
 @mixin typography-vars() {
-  // alternatives: lemonde-courrier, leo, tenso
+  // alternatives: skolar-latin, leo, tenso
   --font-stack-body: skolar-latin, sans-serif;
   --font-weight-body-regular: 400;
   --font-weight-body-medium: 500;

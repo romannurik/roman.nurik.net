@@ -118,11 +118,11 @@
     Muzei has been installed over a million times on Google Play.
 
   actions:
-  - caption: Install app
+  - caption: Install
     url: https://play.google.com/store/apps/details?id=net.nurik.roman.muzei
-  - caption: View code
+  - caption: See code
     url: https://github.com/romannurik/muzei
-  - caption: Read the story
+  - caption: Read story
     url: https://medium.com/google-developers/serendipitous-ideas-3a1721a6f716
 
   pages:
@@ -204,7 +204,7 @@
   actions:
   - caption: Install app
     url: https://play.google.com/store/apps/details?id=net.nurik.roman.dashclock
-  - caption: View code
+  - caption: See code
     url: https://github.com/romannurik/dashclock
 
   pages:

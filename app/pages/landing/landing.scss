@@ -1,6 +1,8 @@
 @import '@app/shared';
 
 body.page-landing {
+  min-height: 100%;
+  height: calc(var(--vh) * 100);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -59,12 +61,14 @@ body.page-landing {
     display: flex;
     flex-direction: column;
 
+    // tweak
+    font-family: var(--font-stack-display);
     font-size: 24px;
     line-height: 32px;
 
     a {
       position: relative;
-      font-weight: var(--font-weight-body-bold);
+      font-weight: var(--font-weight-display-bold);
       color: var(--on-color-primary);
       text-decoration: none;
       z-index: 0;

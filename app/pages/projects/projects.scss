@@ -187,6 +187,7 @@
       }
 
       @include medium {
+        @include type-body-2;
         width: auto;
         flex: 1 1 auto;
       }
@@ -431,8 +432,7 @@
       justify-content: center;
       border: 0;
       background: transparent;
-      font-family: var(--font-stack-body);
-      @include type-body-1(medium);
+      @include type-headline-3(medium);
       padding: 40px 0;
       color: var(--on-color-primary);
       appearance: none;
