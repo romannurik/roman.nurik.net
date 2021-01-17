@@ -257,6 +257,13 @@
           background-size: cover;
           background-position: 50% 50%;
 
+          opacity: 0;
+          transition: opacity .5s;
+
+          &.was-sized {
+            opacity: 1;
+          }
+
           @include narrow {
             padding: 12px;
           }

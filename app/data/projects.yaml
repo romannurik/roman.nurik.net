@@ -64,13 +64,13 @@
   - image: materialcolors_light.png
     extra_classes: crop-y crop-scale-half
     crop_position: 0%
-    color: '#3D5AFE'
+    color: '#E66B59'
     bg_image: macos_desktop_bg.png
 
   - image: materialcolors_search_dark.png
     extra_classes: crop-y
     crop_position: 0%
-    color: '#3D5AFE'
+    color: '#222352'
     bg_image: macos_desktop_bg_dark.png
 
 

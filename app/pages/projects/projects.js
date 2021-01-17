@@ -32,6 +32,8 @@ function setupFiltering() {
     if (scrollTop) {
       window.scrollTo({top: 0, behavior: 'smooth'});
     }
+    // kinda hacky
+    setTimeout(() => sizeAllMedia());
   };
 
   let applyFilterFromHash = () => {
@@ -132,6 +134,9 @@ function setupVideoMedia() {
 }
 
 
+let sizeAllMedia;
+
+
 function setupMediaSizing() {
   // TODO: componentize this in carousel somehow
   let sizeMedia = media => {
@@ -161,6 +166,9 @@ function setupMediaSizing() {
     let mh = media.offsetHeight
         - parseFloat(computedStyle.paddingTop)
         - parseFloat(computedStyle.paddingBottom);
+    if (mw <= 0 || mh <= 0) {
+      return;
+    }
 
     // image/video/etc dimensions
     let cw = child.offsetWidth;
@@ -198,9 +206,11 @@ function setupMediaSizing() {
       translate ? `translate(${translate.x}px, ${translate.y}px)` : '',
       `scale(${scale})`,
     ].filter(s => !!s).join(' '));
+
+    media.classList.add('was-sized');
   };
 
-  let sizeAllMedia = () => {
+  sizeAllMedia = () => {
     for (let media of document.querySelectorAll('.media')) {
       sizeMedia(media);
     }
