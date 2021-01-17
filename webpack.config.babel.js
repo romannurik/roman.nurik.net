@@ -18,6 +18,7 @@ module.exports = {
   devServer: {
     contentBase: path.resolve(process.cwd(), 'dist'),
     compress: true,
+    host: '0.0.0.0',
     port: 3000,
     open: true,
     writeToDisk: true,
