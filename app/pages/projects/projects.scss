@@ -211,11 +211,11 @@
       position: relative;
       --page-peek: 32px;
       --page-spacing: 16px;
-    
+
       @include narrow {
         --aspect-ratio: calc(4 / 5);
         --page-peek: 28px;
-        --page-spacing: 8px;      
+        --page-spacing: 8px;
         margin: -24px calc(0px - var(--page-side-margin));
       }
 
@@ -235,7 +235,6 @@
       }
 
       rn-carousel-page {
-        background-color: var(--background-color);
         border-radius: 8px;
         display: flex;
         flex-direction: column;
@@ -250,7 +249,7 @@
         }
 
         .media {
-          border-radius: 8px;
+          background-color: var(--background-color);
           position: relative;
           flex: 1 1 0;
           display: flex;
@@ -328,22 +327,14 @@
             @include type-body-3;
           }
 
-          background-color: rgba(white, .9);
-          color: var(--on-color-primary);
+          background-color: material-color('blue-grey', '800');
+          color: rgba(#fff, .7);
+          --link-color: #fff;
           padding: 16px 20px;
 
           :last-child {
             margin-bottom: 0;
           }
-        }
-
-        &:not(.dark) .caption {
-          background-color: rgba(material-color('blue-grey', '900'), .9);
-          color: rgba(white, .7);
-        }
-
-        &:not(.dark) a {
-          color: white;
         }
 
         &.video {
@@ -363,7 +354,7 @@
               video {
                 display: block;
               }
-  
+
               .thumb {
                 display: none;
               }
@@ -444,7 +435,7 @@
       &:active {
         color: var(--accent-color);
       }
-  
+
       .material-icons {
         margin-left: 8px;
       }

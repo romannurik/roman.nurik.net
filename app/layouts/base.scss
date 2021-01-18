@@ -11,6 +11,14 @@
   background-color: var(--background-color);
 }
 
+.theme-light {
+  @include theme-light;
+}
+
+.theme-dark {
+  @include theme-dark;
+}
+
 body {
   margin: 0;
 }

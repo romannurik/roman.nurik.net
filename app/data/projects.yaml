@@ -1,6 +1,5 @@
 # List of my projects.
 
-
 - name: Firebase
   date: 2015 – Present
   tags: featured ux eng
@@ -18,13 +17,17 @@
     bg_image: firebase_intro_lottie_bg.svg
     color: '#F6F7F9'
 
-    # visual refreshes
-
   - image: firebase_overview.png
     color: '#D2E3FC'
     device_frame: browser_light
     caption: |
         I've designed or overseen most of today's core Firebase console experience.
+
+  - video: firebase_redesigns
+    color: 'material deep-orange 100'
+    device_frame: browser_light
+    caption: |
+        I've overseen most of our visual refreshes over the years. The latest (in 2019) was focused on accessibility.
 
   - image: firebase_design_system.png
     color: '#E5EAF0'
@@ -44,7 +47,57 @@
     caption: |
         I had the opportunity to design and implement a few small-scale icon animations throughout the console.
 
-###################################################################################################
+
+################################################################################
+
+- name: Styleguide
+  date: 2019 – Present
+  tags: featured eng
+  description: |
+    The Firebase team was using an old, clunky publishing system for documenting the "best practices" side of our design system. After considering alternatives available at the time (from [Storybook](https://storybook.js.org/), to Google Docs, to a one-off site), I decided to build something new.
+
+    Styleguide is a spec publishing system built with React focuses on rapid publishing and easy maintenance, including features like:
+
+    - Markdown-based authoring + layout language, extensible through plugins
+    - Drag+drop or paste an image from the clipoard to upload.
+    - Simple collaboration + author management
+    - Robust redirect and shortlink support
+
+    I'm hoping to open source it someday.
+
+  pages:
+  - video: styleguide_firebase_welcome
+    color: 'material deep-orange 100'
+    device_frame: browser_light
+    caption: |
+        The internal Firebase spec is maintained with this tool.
+
+  - video: styleguide_firebase_page
+    color: 'material orange 100'
+    device_frame: browser_light
+    caption: |
+        The tool extends Markdown heavily with side-by-side layouts and other block types.
+
+  - video: styleguide_organizing
+    color: 'material green 100'
+    device_frame: browser_light
+    caption: |
+        Organizing content is incredibly fast thanks to drag'n'drop.
+
+  - video: styleguide_editing_page
+    color: 'material teal 100'
+    device_frame: browser_light
+    caption: |
+        The page editor is built on the fantastic [Monaco](https://github.com/Microsoft/monaco-editor) editor from VS Code, and includes change tracking and live preview.
+
+  - video: styleguide_review_diff
+    color: 'material light-blue 100'
+    device_frame: browser_light
+    caption: |
+        Thanks to server-side drafts, authors can ask design system owners to review their changes before publishing.
+
+
+################################################################################
 
 - name: MaterialColorsApp
   date: 2016 – Present
@@ -74,8 +127,29 @@
     bg_image: macos_desktop_bg_dark.png
 
 
+################################################################################
 
-###################################################################################################
+- name: SlidesCodeHighlighter
+  date: 2017
+  tags: featured eng
+  description: |
+    I used to do a lot of public speaking about tech (partiucularly Android), and a persistent issue was quickly highlighting code for use in decks. I wrote a tool to help with that, complete with custom themes, support for lots of languages, etc.
+
+    A more recent innovation was “highlight mode,” which was great for walking through different parts of the code across several slides.
+
+  actions:
+  - caption: Try the app
+    url: https://romannurik.github.io/SlidesCodeHighlighter
+  - caption: See the code
+    url: https://github.com/romannurik/SlidesCodeHighlighter
+
+  pages:
+  - video: slidescodehighlighter
+    color: 'material amber 200'
+    device_frame: browser_light
+
+
+################################################################################
 
 - name: DataURL.app
   date: December 2020
@@ -102,7 +176,7 @@
     device_frame: browser_light
 
 
-###################################################################################################
+################################################################################
 
 
 - name: Muzei Live Wallpaper for Android
@@ -144,7 +218,7 @@
     caption: I also built a [web-based archive of featured art](http://muzei.co/archive) used in the app, which actually served as the original basis of some of the interactions in this projects directory.
 
 
-###################################################################################################
+################################################################################
 
 
 - name: Google I/O Android App
@@ -189,7 +263,7 @@
     caption: The 2011 app was one of the first to support the new tablet form factor with multi-pane UIs.
 
 
-###################################################################################################
+################################################################################
 
 
 - name: DashClock Widget for Android
@@ -214,7 +288,7 @@
     device_frame: nexus5_light
 
 
-###################################################################################################
+################################################################################
 
 
 - name: Design Tools
@@ -227,46 +301,39 @@
   - video: tools_sketch_artboard_tricks
     color: '#F1F1F1'
     color2: 'material teal 500'
-    caption: "Like many other designers, I've switched to using Sketch for most of my UI work. In my unrelenting quest to improve my own productivity, I started writing Sketch plugins. [Sketch Artboard Tricks](https://github.com/romannurik/sketch-artboardtricks) is one that I wrote that many designers on my current team now use."
+    caption: |
+        Like many other designers, I've switched to using Sketch for most of my UI work. In my unrelenting quest to improve my own productivity, I started writing Sketch plugins. [Sketch Artboard Tricks](https://github.com/romannurik/sketch-artboardtricks) is one that I wrote that many designers on my current team now use.
 
-  - image: tools_androidiconanimator.gif
+  - video: tools_androidiconanimator
     color: 'material blue-grey 400'
     color2: '#0099CC'
     device_frame: browser_light
-    caption: The [Android Icon Animator](https://github.com/romannurik/AndroidIconAnimator/) was a foray into motion design tooling, and the genesis for the new and awesome [Shape Shifter](https://shapeshifter.design/) tool by Alex Lockwood. Built with [AngularJS](https://angularjs.org/).
+    caption: |
+        The [Android Icon Animator](https://github.com/romannurik/AndroidIconAnimator/) was a foray into motion design tooling, and the genesis for the new and awesome [Shape Shifter](https://shapeshifter.design/) tool by Alex Lockwood. Built with [AngularJS](https://angularjs.org/).
 
   - video: tools_assetstudio
     color: 'material light-blue 100'
     color2: '#0099CC'
     device_frame: browser_light
-    caption: The [Android Asset Studio](https://romannurik.github.io/AndroidAssetStudio/) was one of the first tools I wrote, aiming to take the guesswork out of Android app icon sizing and effects. Plug in some values and it generates all the necessary assets for each screen density.
+    caption: |
+        The [Android Asset Studio](https://romannurik.github.io/AndroidAssetStudio/) was one of the first tools I wrote, aiming to take the guesswork out of Android app icon sizing and effects. Plug in some values and it generates all the necessary assets for each screen density.
 
   - video: tools_layervisualizer
     color: 'material cyan 100'
     color2: 'material cyan 500'
     device_frame: browser_light
-    caption: The [Layer Visualizer](https://github.com/romannurik/LayerVisualizer) was a quick tool I built for helping [teach material design](https://www.udacity.com/course/material-design-for-android-developers--ud862), specifically the depth relationships of material surfaces. [See on Dribbble](https://dribbble.com/shots/2238573-Google-I-O-App-Layer-Visualization)
+    caption: |
+        2016 – The [Layer Visualizer](https://github.com/romannurik/LayerVisualizer) was a quick tool I built for helping [teach material design](https://www.udacity.com/course/material-design-for-android-developers--ud862), specifically the depth relationships of material surfaces. [See on Dribbble](https://dribbble.com/shots/2238573-Google-I-O-App-Layer-Visualization)
 
   - video: tools_designpreview
     extra_classes: no-padding
-    color: '#2D2D2D'
+    color: '#385574'
     color2: 'material deep-orange 500'
-    caption: "[Android Design Preview](https://github.com/romannurik/AndroidDesignPreview) is a tool I co-wrote that allows designers to get a more realistic view of their UIs by mirroring a portion of their computer screen to an Android device."
-
-  - video: tools_ninepatch
-    color: 'material light-blue 100'
-    color2: '#0099CC'
-    device_frame: browser_light
-    caption: Nine-patches are notoriously tedious to produce, especially in bulk. I built the [nine-patch generator](http://romannurik.github.io/AndroidAssetStudio/nine-patches.html), to simplify the process of creating optimized nine-patches for all densities.
-
-  - video: tools_deviceart
-    color: 'material green 100'
-    color2: '#6ab344'
-    device_frame: browser_light
-    caption: I recognized several years ago that developers were using device frames inconsistently, with poor lighting/sheen, shadows, etc. I decided to make an easy-to-use [generator](http://developer.android.com/distribute/tools/promote/device-art.html) for Nexus device-framed images.
+    caption: |
+        2013 – [Android Design Preview](https://github.com/romannurik/AndroidDesignPreview) was a tool I co-wrote that allows designers to get a more realistic view of their UIs by mirroring a portion of their computer screen to an Android device.
 
 
-###################################################################################################
+################################################################################
 
 
 - name: Material Product Icons
@@ -303,7 +370,7 @@
     extra_classes: no-fullscreen
 
 
-###################################################################################################
+################################################################################
 
 
 - name: FORM Type Maker & Watch Face

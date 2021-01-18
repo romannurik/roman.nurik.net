@@ -177,7 +177,7 @@ function setupMediaSizing() {
     let scale = (shouldScaleHalf ? 0.5 : 1);
     let translate = null;
 
-    if (cw / ch > mw / mh) {
+    if (cw / ch >= mw / mh) {
       // image wider than container, letterbox above/below
       if (cropX) {
         // allow horizontal cropping

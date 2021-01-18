@@ -1,19 +1,31 @@
-#!/bin/sh
+#!/bin/bash
 # dependencies:
 # - ffmpeg
 # - optipng
 # - pngquant
-for f in app/**/*.mp4; do
-  base=${f%.mp4}
+function process() {
+  base=${1%.mp4}
   thumb="${base}-thumb.png"
   tempfile="${base}-thumb.tmp.png"
   ffmpeg \
       -y \
-      -i "$f" \
+      -i "$1" \
       -ss 00:00:00.01 \
       -vframes 1 \
+      -vf colorspace=all=bt709:iall=bt601-6-625:fast=1 \
       "$tempfile"
   optipng "$tempfile"
   pngquant --force "$tempfile" --output "$thumb"
   rm "$tempfile"
-done
+}
+
+if [[ "$1" != "" ]]; then
+  while [[ "$1" != "" ]]; do
+    process "$1"
+    shift
+  done
+else
+  for f in app/**/*.mp4; do
+    process "$f"
+  done
+fi
