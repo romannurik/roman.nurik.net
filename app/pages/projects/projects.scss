@@ -281,12 +281,7 @@
               background: transparent url(../images/frame_#{$name}.svg) no-repeat 0 0;
             }
 
-            .device-frame.device-#{$name}_light {
-              background: transparent url(../images/frame_#{$name}_light.svg) no-repeat 0 0;
-            }
-
-            .device-frame.device-#{$name},
-            .device-frame.device-#{$name}_light {
+            .device-frame.device-#{$name} {
               display: flex;
               padding: #{$padding};
 
@@ -314,7 +309,7 @@
             object-fit: cover;
           }
 
-          @include device-frame('wear_round', 180px 38px 180px 38px) {
+          @include device-frame('wear', 180px 38px 180px 38px) {
             width: 320px;
             height: 320px;
           }

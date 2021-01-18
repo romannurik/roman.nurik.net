@@ -19,13 +19,13 @@
 
   - image: firebase_overview.png
     color: '#D2E3FC'
-    device_frame: browser_light
+    device_frame: browser
     caption: |
         I've designed or overseen most of today's core Firebase console experience.
 
   - video: firebase_redesigns
     color: 'material deep-orange 100'
-    device_frame: browser_light
+    device_frame: browser
     caption: |
         I've overseen most of our visual refreshes over the years. The latest (in 2019) was focused on accessibility.
 
@@ -37,7 +37,7 @@
 
   - image: firebase_abtesting.png
     color: 'material teal 100'
-    device_frame: browser_light
+    device_frame: browser
     caption: |
         From 2015 – 2017, I was UX lead for [Remote Config](https://firebase.google.com/products/remote-config/) and A/B  Testing, designing a novel product with little market precedent.
 
@@ -68,31 +68,31 @@
   pages:
   - video: styleguide_firebase_welcome
     color: 'material deep-orange 100'
-    device_frame: browser_light
+    device_frame: browser
     caption: |
         The internal Firebase spec is maintained with this tool.
 
   - video: styleguide_firebase_page
     color: 'material orange 100'
-    device_frame: browser_light
+    device_frame: browser
     caption: |
         The tool extends Markdown heavily with side-by-side layouts and other block types.
 
   - video: styleguide_organizing
     color: 'material green 100'
-    device_frame: browser_light
+    device_frame: browser
     caption: |
         Organizing content is incredibly fast thanks to drag'n'drop.
 
   - video: styleguide_editing_page
     color: 'material teal 100'
-    device_frame: browser_light
+    device_frame: browser
     caption: |
         The page editor is built on the fantastic [Monaco](https://github.com/Microsoft/monaco-editor) editor from VS Code, and includes change tracking and live preview.
 
   - video: styleguide_review_diff
     color: 'material light-blue 100'
-    device_frame: browser_light
+    device_frame: browser
     caption: |
         Thanks to server-side drafts, authors can ask design system owners to review their changes before publishing.
 
@@ -146,7 +146,7 @@
   pages:
   - video: slidescodehighlighter
     color: 'material amber 200'
-    device_frame: browser_light
+    device_frame: browser
 
 
 ################################################################################
@@ -162,13 +162,13 @@
   pages:
   - video: protokit-playground
     color: '#385574'
-    device_frame: browser_light
+    device_frame: browser
     caption: |
         The playground was an interactive editor for playing with and quickly visualizing ProtoKit's web components.
 
   - video: protokit-tokens
     color: '#6B829D'
-    device_frame: browser_light
+    device_frame: browser
     caption: |
         I was particularly excited by this exploration into documenting color tokens. Particularly since semantic colors varied across 2 dimensions (theme, container type).
 ################################################################################
@@ -195,7 +195,7 @@
 
   - image: dataurlapp.png
     color: 'material indigo a100'
-    device_frame: browser_light
+    device_frame: browser
 
 
 ################################################################################
@@ -207,7 +207,7 @@
   description: |
     My philosophy for design and developer advocacy is to [create big, real-world demos](https://medium.com/google-developers/walk-then-talk-3b935bfe5484) and use them as fodder for content creation; walking the walk gives you more credibility.
 
-    Muzei is one of the larger apps I've written that epitomizes this philosophy. I [came up with the idea for the app](https://medium.com/google-developers/serendipitous-ideas-3a1721a6f716), designed, developed, launched, and open-sourced it over the course of 4 months.
+    [Muzei](https://muzei.co) is one of the larger apps I've written that epitomizes this philosophy. I [came up with the idea for the app](https://medium.com/google-developers/serendipitous-ideas-3a1721a6f716), designed, developed, launched, and open-sourced it over the course of 4 months.
 
     Since the original launch, I updated some of the custom visual language in the app to include material design elements.
 
@@ -225,18 +225,18 @@
   - video: muzei
     color: '#c2d6f2'
     color2: '#3c6caf'
-    device_frame: nexus5_light
+    device_frame: nexus5
 
   - image: muzei_detail1.png
     color: '#c2d6f2'
     color2: '#3c6caf'
-    device_frame: nexus5_light
+    device_frame: nexus5
     caption: I obsess over details. Here's a screen in Muzei I'm really proud of, where the seekbars visually represent their corresponding effect. [See on Dribbble](https://dribbble.com/shots/1445180-Muzei-Live-Wallpaper-Advanced-Settings)
 
   - video: muzei_archive
     color: 'material orange 100'
     color2: 'material orange 600'
-    device_frame: browser_light
+    device_frame: browser
     caption: I also built a [web-based archive of featured art](http://muzei.co/archive) used in the app, which actually served as the original basis of some of the interactions in this projects directory.
 
 
@@ -264,12 +264,12 @@
   - video: iosched_2014
     color: 'material indigo 100'
     color2: 'material indigo 500'
-    device_frame: nexus5_light
+    device_frame: nexus5
 
   - video: iosched_2014_article
     color: 'material teal 100'
     color2: 'material teal 500'
-    device_frame: browser_light
+    device_frame: browser
     caption: I published a popular [article](https://medium.com/google-design/material-design-in-the-2014-google-i-o-app-e3b22caffae6) and [video](https://www.youtube.com/watch?v=XOcCOBe8PTc) detailing some of our design decisions for the 2014 app.
 
   - image: iosched_2014_vignette.png
@@ -308,7 +308,7 @@
   - video: dashclock
     color: 'material teal 100'
     color2: 'material teal 500'
-    device_frame: nexus5_light
+    device_frame: nexus5
 
 
 ################################################################################
@@ -331,21 +331,21 @@
   - video: tools_androidiconanimator
     color: 'material blue-grey 400'
     color2: '#0099CC'
-    device_frame: browser_light
+    device_frame: browser
     caption: |
         The [Android Icon Animator](https://github.com/romannurik/AndroidIconAnimator/) was a foray into motion design tooling, and the genesis for the new and awesome [Shape Shifter](https://shapeshifter.design/) tool by Alex Lockwood. Built with [AngularJS](https://angularjs.org/).
 
   - video: tools_assetstudio
     color: 'material light-blue 100'
     color2: '#0099CC'
-    device_frame: browser_light
+    device_frame: browser
     caption: |
         The [Android Asset Studio](https://romannurik.github.io/AndroidAssetStudio/) was one of the first tools I wrote, aiming to take the guesswork out of Android app icon sizing and effects. Plug in some values and it generates all the necessary assets for each screen density.
 
   - video: tools_layervisualizer
     color: 'material cyan 100'
     color2: 'material cyan 500'
-    device_frame: browser_light
+    device_frame: browser
     caption: |
         2016 – The [Layer Visualizer](https://github.com/romannurik/LayerVisualizer) was a quick tool I built for helping [teach material design](https://www.udacity.com/course/material-design-for-android-developers--ud862), specifically the depth relationships of material surfaces. [See on Dribbble](https://dribbble.com/shots/2238573-Google-I-O-App-Layer-Visualization)
 
@@ -380,11 +380,11 @@
   - color: '#02A8F3'
     color2: 'material light-blue 500'
     video: formtypemaker
-    device_frame: browser_light
+    device_frame: browser
 
   - color: '#4EC2F6'
     color2: 'material light-blue 500'
     video: formtypemaker_watchface
-    device_frame: wear_round_light
+    device_frame: wear
     extra_classes: circle no-fullscreen
     caption: I also built a corresponding [watch face for Wear OS](https://play.google.com/store/apps/details?id=net.nurik.roman.formwatchface) and [integrated it with Muzei](https://medium.com/google-developers/only-on-android-45ff04d5722e).
