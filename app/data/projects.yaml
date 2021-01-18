@@ -2,7 +2,7 @@
 
 - name: Firebase
   date: 2015 – Present
-  tags: featured ux eng
+  tags: featured web
   description: |
     I'm currently a design lead and manager on the Firebase UX team, overseeing:
     
@@ -52,7 +52,7 @@
 
 - name: Styleguide
   date: 2019 – Present
-  tags: featured eng
+  tags: featured web
   description: |
     The Firebase team was using an old, clunky publishing system for documenting the "best practices" side of our design system. After considering alternatives available at the time (from [Storybook](https://storybook.js.org/), to Google Docs, to a one-off site), I decided to build something new.
 
@@ -101,7 +101,7 @@
 
 - name: MaterialColorsApp
   date: 2016 – Present
-  tags: featured eng
+  tags: featured desktop
   description: |
     I built a tiny [Electron](https://www.electronjs.org/) app that lets you quickly reference the original Material Design color palettes. This was useful in the early days while our team used Sketch (which didn't have color styles), and remains useful for apps like Google Slides and Keynote.
 
@@ -131,7 +131,7 @@
 
 - name: SlidesCodeHighlighter
   date: 2017
-  tags: featured eng
+  tags: featured web
   description: |
     I used to do a lot of public speaking about tech (partiucularly Android), and a persistent issue was quickly highlighting code for use in decks. I wrote a tool to help with that, complete with custom themes, support for lots of languages, etc.
 
@@ -151,9 +151,31 @@
 
 ################################################################################
 
+- name: ProtoKit
+  date: 2019
+  tags: web
+  description: |
+      As part of exploring a couple design system ideas my Firebase UX team was throwing around, I built a set of web components with [StencilJS](https://stenciljs.com/) that made simple HTML-based prototyping really approachable (just drop a script tag and start prototyping!)
+
+      Hoping to open source these, or at least write more about the process, someday.
+
+  pages:
+  - video: protokit-playground
+    color: '#385574'
+    device_frame: browser_light
+    caption: |
+        The playground was an interactive editor for playing with and quickly visualizing ProtoKit's web components.
+
+  - video: protokit-tokens
+    color: '#6B829D'
+    device_frame: browser_light
+    caption: |
+        I was particularly excited by this exploration into documenting color tokens. Particularly since semantic colors varied across 2 dimensions (theme, container type).
+################################################################################
+
 - name: DataURL.app
   date: December 2020
-  tags: eng
+  tags: web
   description: |
     I wrote a little app that helps you make data URLs quickly.
 
@@ -181,7 +203,7 @@
 
 - name: Muzei Live Wallpaper for Android
   date: 2013
-  tags: featured
+  tags: android web
   description: |
     My philosophy for design and developer advocacy is to [create big, real-world demos](https://medium.com/google-developers/walk-then-talk-3b935bfe5484) and use them as fodder for content creation; walking the walk gives you more credibility.
 
@@ -223,7 +245,7 @@
 
 - name: Google I/O Android App
   date: 2010 – 2014
-  tags: featured
+  tags: android
   description: |
     The Google I/O Android app is a Developer Relations-run project that serves two purposes:
 
@@ -268,6 +290,7 @@
 
 - name: DashClock Widget for Android
   date: 2012
+  tags: android
   description: |
     DashClock was my first published Android app and is exemplary of my philosophy for [design and developer advocacy](https://medium.com/google-developers/walk-then-talk-3b935bfe5484). It also promotes Android by exemplifying functionality that's only available on the Android platform.
 
@@ -292,6 +315,7 @@
 
 
 - name: Design Tools
+  tags: tools plugins
   description: |
     One of my biggest passions is creating designer and developer tools. Since 2010, I've worked on a number of small and large, mostly web-based tools that help designers and developers be more productive.
 
@@ -336,59 +360,21 @@
 ################################################################################
 
 
-- name: Material Product Icons
-
-  description: |
-    I’ve created a number of product icons following the [material design guidelines](https://www.google.com/design/spec/style/icons.html), for a number of purposes, including official Google products such as [Google Cloud Messaging](https://developers.google.com/cloud-messaging/), as well as unofficial apps such as [Nick Butcher](http://twitter.com/crafty)’s [Plaid](https://dribbble.com/shots/2344334-Plaid-Product-Icon).
-
-    The gallery showcases a sampling of the icons I’ve worked on.
-
-  pages:
-  - color: 'material blue-grey 50'
-    image: material_icon_plaid.png
-    caption: Product icon for Nick Butcher's [Plaid](https://dribbble.com/shots/2344334-Plaid-Product-Icon) design inspiration app. [See on Dribbble](https://dribbble.com/shots/2344334-Plaid-Product-Icon)
-    extra_classes: no-fullscreen
-
-  - color: '#C6DAFC'
-    image: material_icon_gcm.png
-    caption: Official product icon for [Google Cloud Messaging](https://developers.google.com/cloud-messaging/).
-    extra_classes: no-fullscreen
-
-  - color: 'material purple 50'
-    image: material_icon_gutenberg.png
-    caption: Product icon for an internal team working on an attendee check-in system for Google Developer events.
-    extra_classes: no-fullscreen
-
-  - color: 'material amber 50'
-    image: material_icon_muzei.png
-    caption: Product icon for my app, [Muzei Live Wallpaper](https://play.google.com/store/apps/details?id=net.nurik.roman.muzei).
-    extra_classes: no-fullscreen
-
-  - color: 'material light-blue 50'
-    image: material_icon_dashclock.png
-    caption: Product icon for my app, [DashClock Widget](https://play.google.com/store/apps/details?id=net.nurik.roman.dashclock).
-    extra_classes: no-fullscreen
-
-
-################################################################################
-
-
-- name: FORM Type Maker & Watch Face
+- name: FORM Type Maker and Wear OS app
   date: 2014
+  tags: web
   description: |
-    In addition to my strategy work for our [FORM conference](https://design.google.com/form-2014/) (which I co-created), I built a web-based playground for the brand's display typeface (created by the material team). The desktop and mobile web app let users type a message, choose a color, and created an [animated GIF to share on social media](https://twitter.com/tanyawuethrich/status/534276313537052672).
+    I cofounded [FORM](https://design.google.com/form-2014/), Google's first external design conference. I also built a web-based playground for FORM's custom typeface (created by the Material team). The app lets users type a message, choose a color, and create an [animated GIF to share on social media](https://twitter.com/tanyawuethrich/status/534276313537052672).
 
-    Because the conference was invite-only and very small, the playground was a **key part of the social media strategy for the event**, ensuring that those who couldn't attend could still participate in the conversation.
+    Due to the conference's small size, the app was a key part of the social media strategy, ensuring those who couldn't attend could still participate.
 
-    I designed and developed the app, building a `<canvas>`-based glyph animation framework in the process. This project was a great exercise in creative technology for me, and I learned a ton about modern web animation, performance, and more along the way.
-
-    Finally, I built an Android Wear watch face based on the font, and helped [integrate it with Muzei](https://medium.com/google-developers/only-on-android-45ff04d5722e).
+    I built a `<canvas>`-based glyph animation framework for the app. It was a great exercise in creative technology, and I learned a ton about modern web animation, performance, and more.
 
   actions:
   - caption: Open app
     url: http://formtypemaker.appspot.com
-  - caption: Install watch face
-    url: https://play.google.com/store/apps/details?id=net.nurik.roman.formwatchface
+  - caption: See the code
+    url: https://github.com/romannurik/FORMTypeMaker
 
   pages:
   - color: '#02A8F3'
@@ -401,4 +387,4 @@
     video: formtypemaker_watchface
     device_frame: wear_round_light
     extra_classes: circle no-fullscreen
-    caption: I also designed, developed, launched and open-sourced a [watch face for Android Wear](https://play.google.com/store/apps/details?id=net.nurik.roman.formwatchface) using the FORM typeface.
+    caption: I also built a corresponding [watch face for Wear OS](https://play.google.com/store/apps/details?id=net.nurik.roman.formwatchface) and [integrated it with Muzei](https://medium.com/google-developers/only-on-android-45ff04d5722e).
