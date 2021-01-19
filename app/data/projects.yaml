@@ -160,17 +160,67 @@
       Hoping to open source these, or at least write more about the process, someday.
 
   pages:
-  - video: protokit-playground
+  - video: protokit_playground
     color: '#385574'
     device_frame: browser
     caption: |
         The playground was an interactive editor for playing with and quickly visualizing ProtoKit's web components.
 
-  - video: protokit-tokens
+  - video: protokit_tokens
     color: '#6B829D'
     device_frame: browser
     caption: |
         I was particularly excited by this exploration into documenting color tokens. Particularly since semantic colors varied across 2 dimensions (theme, container type).
+
+################################################################################
+
+- name: Stickers Plugin for Sketch
+  date: 2018
+  tags: desktop
+  description: |
+      I'm constantly on the lookout for ways to speed up my team's workflow. A constant struggle with Sketch (and Figma) stickersheets—particularly very large ones—is finding the example you need and dropping it into your design quickly.
+
+      To solve this, I built a plugin that indexes your Sketch libraries and provides a fast, searchable interface to find what you need and drag it into your design.
+
+      Before we switched over to Figma, the plugin became an essential part of the workflow, saving countless hours of time for the design team.
+
+  actions:
+  - caption: Install Sketch plugin
+    url: https://github.com/romannurik/Sketch-Stickers/releases/latest
+  - caption: See the code
+    url: https://github.com/romannurik/Sketch-Stickers
+
+  pages:
+  - video: sketch_stickers
+    color: '#E66B59'
+    device_frame: mac_window
+    bg_image: macos_desktop_bg.png
+
+################################################################################
+
+- name: Other Plugins for Figma and Sketch
+  date: 2017 – Present
+  tags: desktop
+  description: |
+      I've written several plugins over the years—first for Sketch and now focusing primarily on Figma. I'm a big believer in building tools that help people work faster, and plugins are a great way to do that for designers.
+
+      A huge thank you to the Sketch and Figma teams for welcoming plugin development, as well as the wonderful developer communities that have formed and made writing plugins easy.
+
+  pages:
+  - video: figma_contrast
+    color: '#222352'
+    bg_image: macos_desktop_bg_dark.png
+    device_frame: mac_window
+    caption: |
+        Contrast — A plugin for [Figma](https://www.figma.com/community/plugin/911262488575486588/Contrast) and [Sketch](https://github.com/romannurik/Sketch-Contrast) that offers a different take on checking color contrast, rendering a visual pass/fail report for text layers across artboards.
+
+  - video: figma_artboard_tricks
+    color: '#E66B59'
+    bg_image: macos_desktop_bg.png
+    device_frame: mac_window
+    caption: |
+        Artboard Tricks — A plugin for [Figma](https://www.figma.com/community/plugin/911261236876701307/Artboard-Tricks) and [Sketch](https://github.com/romannurik/Sketch-ArtboardTricks) that primarily rearrange artboards in an uneven grid (rows of columns), with a few extra features.
+
 ################################################################################
 
 - name: DataURL.app
@@ -179,8 +229,7 @@
   description: |
     I wrote a little app that helps you make data URLs quickly.
 
-    It was an opportunity to try out Firebase Hosting Preview URLs, but also solved a painpoint I
-    frequently experienced as a developer.
+    It was an opportunity to try out Firebase Hosting Preview URLs, but also solved a painpoint I frequently experienced as a developer.
 
   actions:
   - caption: Try the app
@@ -314,34 +363,40 @@
 ################################################################################
 
 
-- name: Design Tools
-  tags: tools plugins
+- name: Android Asset Studio and Icon Animator
+  date: 2010 – 2016
+  tags: web android
   description: |
-    One of my biggest passions is creating designer and developer tools. Since 2010, I've worked on a number of small and large, mostly web-based tools that help designers and developers be more productive.
+    One of my biggest passions is creating designer and developer tools. Since 2010, I've particularly been interested in tools that foster design creation for engineers and novice users.
 
-    This gallery showcases some of my proudest design tooling side projects.
+    In 2010, I launched the first version of the [Android Asset Studio](https://romannurik.github.io/AndroidAssetStudio/), which is still used by thousands of people today.
+
+    In 2016, I built the [Android Icon Animator](https://github.com/romannurik/AndroidIconAnimator/), an attempt to make simple icon animation accessible to any developer or designer.
 
   pages:
-  - video: tools_sketch_artboard_tricks
-    color: '#F1F1F1'
-    color2: 'material teal 500'
-    caption: |
-        Like many other designers, I've switched to using Sketch for most of my UI work. In my unrelenting quest to improve my own productivity, I started writing Sketch plugins. [Sketch Artboard Tricks](https://github.com/romannurik/sketch-artboardtricks) is one that I wrote that many designers on my current team now use.
-
   - video: tools_androidiconanimator
     color: 'material blue-grey 400'
     color2: '#0099CC'
     device_frame: browser
     caption: |
-        The [Android Icon Animator](https://github.com/romannurik/AndroidIconAnimator/) was a foray into motion design tooling, and the genesis for the new and awesome [Shape Shifter](https://shapeshifter.design/) tool by Alex Lockwood. Built with [AngularJS](https://angularjs.org/).
+        2016 – The [Android Icon Animator](https://github.com/romannurik/AndroidIconAnimator/) was a foray into motion design tooling, and the genesis for the new and awesome [Shape Shifter](https://shapeshifter.design/) tool by Alex Lockwood.
 
   - video: tools_assetstudio
     color: 'material light-blue 100'
     color2: '#0099CC'
     device_frame: browser
     caption: |
-        The [Android Asset Studio](https://romannurik.github.io/AndroidAssetStudio/) was one of the first tools I wrote, aiming to take the guesswork out of Android app icon sizing and effects. Plug in some values and it generates all the necessary assets for each screen density.
+        2010 – The [Android Asset Studio](https://romannurik.github.io/AndroidAssetStudio/) took the guesswork out of designing Android app icons. Plug some values and it generates all the assets you need. This was later ported into [Android Studio](https://developer.android.com/studio/write/image-asset-studio)
 
+################################################################################
+
+- name: Other Design Tools
+  date: 2012 – Present
+  tags: web android
+  description: |
+    Here are a few additional designer and developer tools I've built over the years.
+
+  pages:
   - video: tools_layervisualizer
     color: 'material cyan 100'
     color2: 'material cyan 500'

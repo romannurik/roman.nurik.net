@@ -286,7 +286,8 @@
               padding: #{$padding};
 
               video,
-              img {
+              img,
+              rn-lottie-player {
                 @content;
               }
             }
@@ -312,6 +313,20 @@
           @include device-frame('wear', 180px 38px 180px 38px) {
             width: 320px;
             height: 320px;
+          }
+
+          .device-frame.device-mac_window {
+            overflow: hidden;
+            display: flex;
+            border-radius: 8px;
+            box-shadow:
+                0 0 20px rgba(#000, .15),
+                0 25px 30px rgba(#000, .35);
+
+            video,
+            img,
+            rn-lottie-player {
+            }
           }
         }
 
