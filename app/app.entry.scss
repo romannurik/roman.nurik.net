@@ -1,7 +1,3 @@
-@import 'lib/**/*.scss';
-@import 'variables';
-@import 'layout';
-@import 'base';
-@import 'subpage';
-@import 'components/**/*.scss';
-@import 'pages/**/*.scss';
+@import '@app/shared';
+@import 'layouts/base';
+@import 'layouts/subpage';

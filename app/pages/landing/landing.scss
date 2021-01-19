@@ -1,15 +1,20 @@
+@import '@app/shared';
+
 body.page-landing {
+  min-height: 100%;
+  height: calc(var(--vh) * 100);
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  background-color: var(--background-color);
 }
 
 .page-landing {
   $avatarSize: 128px;
   $avatarSizeSmall: 96px;
-  $avatarBorder: 4px;
+  $avatarBorder: 20px;
   $avatarBorderSmall: $avatarBorder;
 
   $mainPadding: 24px;
@@ -20,15 +25,6 @@ body.page-landing {
 
   // Teh stylez
 
-  .top {
-    background-color: #fff;
-  }
-
-  .bottom {
-    width: 100%;
-    background-color: $colorPrimary;
-  }
-
   .top,
   .bottom {
     flex: 1 0 auto;
@@ -37,20 +33,19 @@ body.page-landing {
   .content-container {
     position: relative;
     width: 100%;
-    background-color: $colorPrimary;
     display: flex;
     justify-content: center;
     flex: 0 0 auto;
 
     &::before {
+      $thickness: 2px;
       content: '';
       position: absolute;
       left: 0;
       top: 0;
-      background-color: #fff;
+      box-shadow: 0 $thickness 0 var(--accent-color);
       width: 100%;
-
-      height: $avatarSize / 2 + $avatarBorder + $mainPadding;
+      height: $avatarSize / 2 + $mainPadding - $thickness / 2;
 
       @include mobile {
         height: $avatarSizeSmall / 2 + $avatarBorderSmall + $mainPadding;
@@ -62,60 +57,61 @@ body.page-landing {
     position: relative;
     padding: $mainPadding;
     width: 300px;
-    color: rgba(#fff, 0.8);
+    color: var(--on-color-secondary);
     display: flex;
     flex-direction: column;
 
+    // tweak
+    font-family: var(--font-stack-display);
     font-size: 24px;
-
     line-height: 32px;
 
     a {
-      display: inline-block;
       position: relative;
-      font-weight: 800;
-      color: #fff;
+      font-weight: var(--font-weight-display-bold);
+      color: var(--on-color-primary);
       text-decoration: none;
       z-index: 0;
 
-      $animSpeed: .05s;
+      $animSpeed: .1s;
 
       &::before {
         position: absolute;
         content: '';
-        background-color: $colorPrimaryDark;
-        background-position: 50% 0;
-        left: -6px;
-        right: -6px;
-        border-radius: 5px;
-        top: 0;
+        background-color: var(--accent-color);
+        left: -4px;
+        right: -4px;
         bottom: 0;
+        height: 50%;
         z-index: -1;
         visibility: hidden;
         opacity: 0;
+        will-change: transform;
         transition:
-            opacity $animSpeed ease,
             transform $animSpeed ease,
+            opacity $animSpeed,
             visibility 0s linear $animSpeed;
-        transform: scale(.9);
+        transform: scale(1, 0);
+        transform-origin: 50% 100%;
         display: block;
+        pointer-events: none;
       }
 
       &:hover::before,
       &:active::before {
         visibility: visible;
-        transform: scale(1);
+        transform: scale(1, 1);
         transition:
             opacity $animSpeed ease,
             transform $animSpeed ease;
       }
 
       &:hover::before {
-        opacity: .5;
+        opacity: .3;
       }
 
       &:active::before {
-        opacity: 1;
+        opacity: .7;
       }
     }
 
@@ -151,51 +147,60 @@ body.page-landing {
     border-radius: 50%;
     background-color: #525252;
     align-self: center;
-
-    border: $avatarBorder solid white;
+    border-left: $avatarBorder solid var(--background-color);
+    border-right: $avatarBorder solid var(--background-color);
 
     @include mobile {
-      border: $avatarBorderSmall solid white;
+      border: $avatarBorderSmall solid var(--background-color);
     }
   }
 
   .icons {
+    width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
 
     margin: 0 -8px; // account for extra icon padding
     @include mobile { margin: 0; }
 
     a {
-      display: block;
-      width: 32px;
-      height: 32px;
+      --size: 32px;
+
+      @include mobile {
+        --size: 24px;
+      }
+
+      display: flex;
+      justify-content: center;
+      flex: 1;
       padding: 8px; // make the touch target bigger
 
       &::before {
-        left: 0;
-        right: 0;
+        left: 50%;
+        right: auto;
+        bottom: auto;
+        top: 50%;
+        width: calc(var(--size) * 1.75);
+        height: calc(var(--size) * 1.75);
+        border-radius: 50%;
+        transform: translate(-50%, -50%) scale(.8, .8);
+        transform-origin: 50% 50%;
       }
 
-      &::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        background-repeat: no-repeat;
-        background-position: 50% 50%;
-
-        background-size: 32px 32px;
-        @include mobile { background-size: 24px 24px; }
+      &:hover::before,
+      &:active::before {
+        transform: translate(-50%, -50%) scale(1, 1);
       }
     }
 
-    $links: twitter dribbble github medium googleplus email;
-    @each $link in $links {
-      .#{$link}::after { background-image: url(../images/icon_#{$link}.svg); }
+    span {
+      display: none;
+    }
+
+    svg {
+      width: var(--size);
+      height: var(--size);
+      fill: var(--on-color-primary);
     }
   }
 }

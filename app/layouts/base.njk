@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{% block description %}Hi, I'm Roman. I'm a designer and design advocate at Google in New York.{% endblock %}">
+    <title>{% if title %}{{ title }} &mdash; {% endif %}Roman Nurik</title>
+
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="/chrome-touch-icon-192x192.png">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Roman Nurik">
+    <link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-precomposed.png">
+
+    <link rel="openid.server" href="http://www.myopenid.com/server">
+    <link rel="openid.delegate" href="http://roman.nurik.myopenid.com/">
+    <link rel="author" href="https://plus.google.com/+RomanNurik">
+    <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://use.typekit.net/kpt3ulr.css">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=JetBrains+Mono:400,500,400italic,500italic">
+    <link rel="stylesheet" href="/app.css">
+
+    {% block css %}
+    {% endblock %}
+
+  </head>
+  <body class="{{ pageClasses }}">
+
+    {{ content | safe }}
+
+    <script src="/vendor.js"></script>
+    <script src="/app.js"></script>
+
+    {% block js %}{% endblock %}
+
+    {% if pageController %}
+    <script>new pages.{{ pageController }}();</script>
+    {% endif %}
+
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-2196791-2', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </body>
+</html>

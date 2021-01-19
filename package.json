@@ -1,45 +1,48 @@
 {
   "devDependencies": {
+    "@11ty/eleventy": "^0.11.1",
     "@babel/core": "^7.10.5",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/plugin-proposal-decorators": "^7.12.12",
     "@babel/preset-env": "^7.10.4",
     "@babel/register": "^7.10.5",
     "autoprefixer": "^9.0.1",
     "babel-loader": "^8.1.0",
     "browser-sync": "^2.24.6",
+    "copy-webpack-plugin": "^5.1.2",
     "css-loader": "^1.0.0",
     "cssnano": "^4.0.5",
     "del": "^3.0.0",
-    "glob": "^7.1.2",
-    "gulp": "^4.0.2",
-    "gulp-cache": "^1.0.2",
-    "gulp-htmlmin": "^4.0.0",
-    "gulp-if": "^2.0.2",
-    "gulp-imagemin": "^4.1.0",
-    "gulp-load-plugins": "^1.5.0",
-    "gulp-nucleus": "^0.1.0",
-    "gulp-size": "^3.0.0",
-    "gulp-tap": "^1.0.1",
-    "import-glob": "^1.5.0",
+    "js-yaml": "^4.0.0",
     "json-loader": "^0.5.7",
-    "merge-stream": "^1.0.1",
+    "markdown-it": "^12.0.4",
     "mini-css-extract-plugin": "^0.4.1",
     "node-sass": "^4.9.2",
+    "npm-run-all": "^4.1.5",
+    "nunjucks": "^3.2.2",
     "postcss-loader": "^2.1.6",
     "sass-loader": "^7.0.3",
+    "to-string-loader": "^1.1.6",
     "webpack": "^4.16.2",
+    "webpack-cli": "^4.3.1",
+    "webpack-dev-server": "^3.11.2",
     "yaml-loader": "^0.5.0"
   },
   "engines": {
     "node": ">=0.10.0"
   },
   "dependencies": {
-    "jquery": "~2.1.4",
-    "hammerjs": "~2.0.4",
-    "fastclick": "~1.0.6"
+    "lit-element": "^2.4.0",
+    "lottie-web": "^5.7.5"
   },
   "private": true,
   "scripts": {
-    "build": "gulp",
-    "start": "gulp serve"
+    "clean": "rm -rf dist",
+    "serve:html": "ELEVENTY_ENV=development eleventy --watch",
+    "serve:assets": "NODE_ENV=development webpack serve",
+    "start": "npm-run-all clean --parallel serve:*",
+    "build:html": "ELEVENTY_ENV=production eleventy",
+    "build:assets": "NODE_ENV=production webpack",
+    "build": "NODE_ENV=production npm-run-all clean build:*"
   }
 }

@@ -1,91 +1,307 @@
-# List of my portfolio projects.
+# List of my projects.
 
-
-- name: Firebase Console
-  date: August 2015 – Present
+- name: Firebase
+  date: 2015 – Present
+  tags: featured web
   description: |
-    I'm currently a design lead and manager on the Firebase UX team, focusing on the [Firebase console](https://console.firebase.google.com) design system (components, spec documentation, Sketch UI kit) and other platform-level design and UX engineering projects.
+    I'm currently a design lead and manager on the Firebase UX team, overseeing:
+    
+    - The "[Build](https://firebase.google.com/products-build)" products (databases, web hosting, authentication, etc.)
+    - Core platform primitives (onboarding, billing, navigation, etc.)
+    - The [Firebase console](https://console.firebase.google.com) design system and brand visual language
 
-    Previously, I was UX lead for [Firebase Remote Config](https://firebase.google.com/products/remote-config/), [A/B Testing](https://firebase.google.com/docs/remote-config/abtest-config), the console onboarding experience, our UI prototyping system, the [Firebase plugin for Android Studio](https://developer.android.com/studio/write/firebase.html), and other smaller projects.
+    Previously, I was an IC UX lead for [Remote Config](https://firebase.google.com/products/remote-config/), [A/B Testing](https://firebase.google.com/docs/remote-config/abtest-config), and designed much of the current console onboarding experience.
 
   pages:
+  - lottie: firebase_intro_lottie.json
+    bg_image: firebase_intro_lottie_bg.svg
+    color: '#F6F7F9'
+
   - image: firebase_overview.png
-    color: 'material light-blue 100'
-    device_frame: browser_light
-  - image: firebase_remoteconfig.png
-    color: 'material indigo 100'
-    device_frame: browser_light
-    caption: I was previously UX lead for [Firebase Remote Config](https://firebase.google.com/products/remote-config/), helping define the experience for an innovative new developer product.
+    color: '#D2E3FC'
+    device_frame: browser
+    caption: |
+        I've designed or overseen most of today's core Firebase console experience.
+
+  - video: firebase_redesigns
+    color: 'material deep-orange 100'
+    device_frame: browser
+    caption: |
+        I've overseen most of our visual refreshes over the years. The latest (in 2019) was focused on accessibility.
+
+  - image: firebase_design_system.png
+    color: '#E5EAF0'
+    extra_classes: no-padding
+    caption: |
+        I've played a big role in design system adoption, expansion and refinement.
+
   - image: firebase_abtesting.png
     color: 'material teal 100'
-    device_frame: browser_light
-    caption: I was also previously UX lead for [Firebase A/B Testing](https://firebase.google.com/docs/remote-config/abtest-config).
-  - image: firebase_download.gif
-    color: 'material grey 100'
+    device_frame: browser
+    caption: |
+        From 2015 – 2017, I was UX lead for [Remote Config](https://firebase.google.com/products/remote-config/) and A/B  Testing, designing a novel product with little market precedent.
+
+  - image: firebase_icon_anim.webp
+    color: '#E5EAF0'
     extra_classes: no-padding
-    caption: I had the opportunity to design and implement a few small-scale icon animations throughout the console.
-  - image: firebase_loading.gif
-    color: 'material blue-grey 50'
-    caption: I had a chance to design a loading state, animating the [Firebase logomark designed by Ali Johnson](https://dribbble.com/shots/3140440-Firebase-Logo).
+    caption: |
+        I had the opportunity to design and implement a few small-scale icon animations throughout the console.
 
 
-###################################################################################################
+################################################################################
+
+- name: Styleguide
+  date: 2019 – Present
+  tags: featured web
+  description: |
+    The Firebase team was using an old, clunky publishing system for documenting the "best practices" side of our design system. After considering alternatives available at the time (from [Storybook](https://storybook.js.org/), to Google Docs, to a one-off site), I decided to build something new.
+
+    Styleguide is a spec publishing system built with React focuses on rapid publishing and easy maintenance, including features like:
+
+    - Markdown-based authoring + layout language, extensible through plugins
+    - Drag+drop or paste an image from the clipoard to upload.
+    - Simple collaboration + author management
+    - Robust redirect and shortlink support
+
+    I'm hoping to open source it someday.
+
+  pages:
+  - video: styleguide_firebase_welcome
+    color: 'material deep-orange 100'
+    device_frame: browser
+    caption: |
+        The internal Firebase spec is maintained with this tool.
+
+  - video: styleguide_firebase_page
+    color: 'material orange 100'
+    device_frame: browser
+    caption: |
+        The tool extends Markdown heavily with side-by-side layouts and other block types.
+
+  - video: styleguide_organizing
+    color: 'material green 100'
+    device_frame: browser
+    caption: |
+        Organizing content is incredibly fast thanks to drag'n'drop.
+
+  - video: styleguide_editing_page
+    color: 'material teal 100'
+    device_frame: browser
+    caption: |
+        The page editor is built on the fantastic [Monaco](https://github.com/Microsoft/monaco-editor) editor from VS Code, and includes change tracking and live preview.
+
+  - video: styleguide_review_diff
+    color: 'material light-blue 100'
+    device_frame: browser
+    caption: |
+        Thanks to server-side drafts, authors can ask design system owners to review their changes before publishing.
 
 
-- name: Muzei Live Wallpaper
-  date: September 2013 – February 2014
-  extra_classes: tall
+################################################################################
+
+- name: MaterialColorsApp
+  date: 2016 – Present
+  tags: featured desktop
+  description: |
+    I built a tiny [Electron](https://www.electronjs.org/) app that lets you quickly reference the original Material Design color palettes. This was useful in the early days while our team used Sketch (which didn't have color styles), and remains useful for apps like Google Slides and Keynote.
+
+    Over time more functionality was added, including dark mode support, fuzzy hex-code search (contributed by a colleague), and the [hidden] ability to bring in custom colors.
+
+  actions:
+  - caption: Install for macOS
+    url: https://github.com/romannurik/MaterialColorsApp/releases/latest
+  - caption: See the code
+    url: https://github.com/romannurik/MaterialColorsApp
+
+  pages:
+  - image: materialcolors_light.png
+    extra_classes: crop-y crop-scale-half
+    crop_position: 0%
+    color: '#E66B59'
+    bg_image: macos_desktop_bg.png
+
+  - image: materialcolors_search_dark.png
+    extra_classes: crop-y
+    crop_position: 0%
+    color: '#222352'
+    bg_image: macos_desktop_bg_dark.png
+
+
+################################################################################
+
+- name: SlidesCodeHighlighter
+  date: 2017
+  tags: featured web
+  description: |
+    I used to do a lot of public speaking about tech (partiucularly Android), and a persistent issue was quickly highlighting code for use in decks. I wrote a tool to help with that, complete with custom themes, support for lots of languages, etc.
+
+    A more recent innovation was “highlight mode,” which was great for walking through different parts of the code across several slides.
+
+  actions:
+  - caption: Try the app
+    url: https://romannurik.github.io/SlidesCodeHighlighter
+  - caption: See the code
+    url: https://github.com/romannurik/SlidesCodeHighlighter
+
+  pages:
+  - video: slidescodehighlighter
+    color: 'material amber 200'
+    device_frame: browser
+
+
+################################################################################
+
+- name: ProtoKit
+  date: 2019
+  tags: web
+  description: |
+      As part of exploring a couple design system ideas my Firebase UX team was throwing around, I built a set of web components with [StencilJS](https://stenciljs.com/) that made simple HTML-based prototyping really approachable (just drop a script tag and start prototyping!)
+
+      Hoping to open source these, or at least write more about the process, someday.
+
+  pages:
+  - video: protokit_playground
+    color: '#385574'
+    device_frame: browser
+    caption: |
+        The playground was an interactive editor for playing with and quickly visualizing ProtoKit's web components.
+
+  - video: protokit_tokens
+    color: '#6B829D'
+    device_frame: browser
+    caption: |
+        I was particularly excited by this exploration into documenting color tokens. Particularly since semantic colors varied across 2 dimensions (theme, container type).
+
+################################################################################
+
+- name: Stickers Plugin for Sketch
+  date: 2018
+  tags: desktop
+  description: |
+      I'm constantly on the lookout for ways to speed up my team's workflow. A constant struggle with Sketch (and Figma) stickersheets—particularly very large ones—is finding the example you need and dropping it into your design quickly.
+
+      To solve this, I built a plugin that indexes your Sketch libraries and provides a fast, searchable interface to find what you need and drag it into your design.
+
+      Before we switched over to Figma, the plugin became an essential part of the workflow, saving countless hours of time for the design team.
+
+  actions:
+  - caption: Install Sketch plugin
+    url: https://github.com/romannurik/Sketch-Stickers/releases/latest
+  - caption: See the code
+    url: https://github.com/romannurik/Sketch-Stickers
+
+  pages:
+  - video: sketch_stickers
+    color: '#E66B59'
+    device_frame: mac_window
+    bg_image: macos_desktop_bg.png
+
+################################################################################
+
+- name: Other Plugins for Figma and Sketch
+  date: 2017 – Present
+  tags: desktop
+  description: |
+      I've written several plugins over the years—first for Sketch and now focusing primarily on Figma. I'm a big believer in building tools that help people work faster, and plugins are a great way to do that for designers.
+
+      A huge thank you to the Sketch and Figma teams for welcoming plugin development, as well as the wonderful developer communities that have formed and made writing plugins easy.
+
+  pages:
+  - video: figma_contrast
+    color: '#222352'
+    bg_image: macos_desktop_bg_dark.png
+    device_frame: mac_window
+    caption: |
+        Contrast — A plugin for [Figma](https://www.figma.com/community/plugin/911262488575486588/Contrast) and [Sketch](https://github.com/romannurik/Sketch-Contrast) that offers a different take on checking color contrast, rendering a visual pass/fail report for text layers across artboards.
+
+  - video: figma_artboard_tricks
+    color: '#E66B59'
+    bg_image: macos_desktop_bg.png
+    device_frame: mac_window
+    caption: |
+        Artboard Tricks — A plugin for [Figma](https://www.figma.com/community/plugin/911261236876701307/Artboard-Tricks) and [Sketch](https://github.com/romannurik/Sketch-ArtboardTricks) that primarily rearrange artboards in an uneven grid (rows of columns), with a few extra features.
+
+################################################################################
+
+- name: DataURL.app
+  date: December 2020
+  tags: web
+  description: |
+    I wrote a little app that helps you make data URLs quickly.
+
+    It was an opportunity to try out Firebase Hosting Preview URLs, but also solved a painpoint I frequently experienced as a developer.
+
+  actions:
+  - caption: Try the app
+    url: https://dataurl.app
+  - caption: See the code
+    url: https://github.com/romannurik/dataurl.app
+
+  pages:
+  - image: dataurl_social.png
+    color: '#3D5AFE'
+    bg_image: dataurl_social_bg.png
+
+  - image: dataurlapp.png
+    color: 'material indigo a100'
+    device_frame: browser
+
+
+################################################################################
+
+
+- name: Muzei Live Wallpaper for Android
+  date: 2013
+  tags: android web
   description: |
     My philosophy for design and developer advocacy is to [create big, real-world demos](https://medium.com/google-developers/walk-then-talk-3b935bfe5484) and use them as fodder for content creation; walking the walk gives you more credibility.
 
-    Muzei is one of the larger apps I've written that epitomizes this philosophy. I [came up with the idea for the app](https://medium.com/google-developers/serendipitous-ideas-3a1721a6f716), designed, developed, launched, and open-sourced it over the course of 4 months.
+    [Muzei](https://muzei.co) is one of the larger apps I've written that epitomizes this philosophy. I [came up with the idea for the app](https://medium.com/google-developers/serendipitous-ideas-3a1721a6f716), designed, developed, launched, and open-sourced it over the course of 4 months.
 
     Since the original launch, I updated some of the custom visual language in the app to include material design elements.
 
     Muzei has been installed over a million times on Google Play.
 
   actions:
-  - caption: Install app
+  - caption: Install
     url: https://play.google.com/store/apps/details?id=net.nurik.roman.muzei
-  - caption: View code
+  - caption: See code
     url: https://github.com/romannurik/muzei
-  - caption: Read backstory
+  - caption: Read story
     url: https://medium.com/google-developers/serendipitous-ideas-3a1721a6f716
 
   pages:
   - video: muzei
     color: '#c2d6f2'
     color2: '#3c6caf'
-    device_frame: nexus5_light
+    device_frame: nexus5
 
   - image: muzei_detail1.png
     color: '#c2d6f2'
     color2: '#3c6caf'
-    extra_classes: no-scale
-    offset_media: 0, 22%
-    device_frame: nexus5_light
+    device_frame: nexus5
     caption: I obsess over details. Here's a screen in Muzei I'm really proud of, where the seekbars visually represent their corresponding effect. [See on Dribbble](https://dribbble.com/shots/1445180-Muzei-Live-Wallpaper-Advanced-Settings)
 
   - video: muzei_archive
     color: 'material orange 100'
     color2: 'material orange 600'
-    device_frame: browser_light
-    caption: I also built a [web-based archive of featured art](http://muzei.co/archive) used in the app, which actually served as the basis of some of the interactions in this portfolio.
+    device_frame: browser
+    caption: I also built a [web-based archive of featured art](http://muzei.co/archive) used in the app, which actually served as the original basis of some of the interactions in this projects directory.
 
 
-###################################################################################################
+################################################################################
 
 
 - name: Google I/O Android App
   date: 2010 – 2014
-  extra_classes: tall
+  tags: android
   description: |
     The Google I/O Android app is a Developer Relations-run project that serves two purposes:
 
     * Help Google I/O attendees and remote viewers personalize their conference agenda and explore conference content before, during, and after the event.
     * Be an excellent open-source example of Android design and development best practices
 
-    My role has primarily been lead designer and frontend engineer, most notably for the 2014 app, which was one of the very **first Android apps to adopt material design**. For two years, I was also the overall technical lead for the app. In 2015, I acted primarily as UX mentor/advisor.
+    My role has primarily been lead designer and frontend engineer, most notably for the 2014 app, which was **one of the very first Android apps to adopt material design**. For two years, I was also the overall technical lead for the app. In 2015, I acted primarily as UX mentor/advisor.
 
   actions:
   - caption: Install app
@@ -97,12 +313,12 @@
   - video: iosched_2014
     color: 'material indigo 100'
     color2: 'material indigo 500'
-    device_frame: nexus5_light
+    device_frame: nexus5
 
   - video: iosched_2014_article
     color: 'material teal 100'
     color2: 'material teal 500'
-    device_frame: browser_light
+    device_frame: browser
     caption: I published a popular [article](https://medium.com/google-design/material-design-in-the-2014-google-i-o-app-e3b22caffae6) and [video](https://www.youtube.com/watch?v=XOcCOBe8PTc) detailing some of our design decisions for the 2014 app.
 
   - image: iosched_2014_vignette.png
@@ -118,12 +334,12 @@
     caption: The 2011 app was one of the first to support the new tablet form factor with multi-pane UIs.
 
 
-###################################################################################################
+################################################################################
 
 
-- name: DashClock Widget
-  date: September 2012 – February 2013
-  extra_classes: tall
+- name: DashClock Widget for Android
+  date: 2012
+  tags: android
   description: |
     DashClock was my first published Android app and is exemplary of my philosophy for [design and developer advocacy](https://medium.com/google-developers/walk-then-talk-3b935bfe5484). It also promotes Android by exemplifying functionality that's only available on the Android platform.
 
@@ -134,135 +350,96 @@
   actions:
   - caption: Install app
     url: https://play.google.com/store/apps/details?id=net.nurik.roman.dashclock
-  - caption: View code
+  - caption: See code
     url: https://github.com/romannurik/dashclock
 
   pages:
   - video: dashclock
     color: 'material teal 100'
     color2: 'material teal 500'
-    device_frame: nexus5_light
+    device_frame: nexus5
 
 
-###################################################################################################
+################################################################################
 
 
-- name: Design Tools
+- name: Android Asset Studio and Icon Animator
+  date: 2010 – 2016
+  tags: web android
   description: |
-    One of my biggest passions is creating designer and developer tools. Since 2010, I've worked on a number of small and large, mostly web-based tools that help designers and developers be more productive.
+    One of my biggest passions is creating designer and developer tools. Since 2010, I've particularly been interested in tools that foster design creation for engineers and novice users.
 
-    This gallery showcases some of my proudest design tooling side projects.
+    In 2010, I launched the first version of the [Android Asset Studio](https://romannurik.github.io/AndroidAssetStudio/), which is still used by thousands of people today.
+
+    In 2016, I built the [Android Icon Animator](https://github.com/romannurik/AndroidIconAnimator/), an attempt to make simple icon animation accessible to any developer or designer.
 
   pages:
-  - video: tools_sketch_artboard_tricks
-    color: '#F1F1F1'
-    color2: 'material teal 500'
-    caption: "Like many other designers, I've switched to using Sketch for most of my UI work. In my unrelenting quest to improve my own productivity, I started writing Sketch plugins. [Sketch Artboard Tricks](https://github.com/romannurik/sketch-artboardtricks) is one that I wrote that many designers on my current team now use."
-
-  - image: tools_androidiconanimator.gif
+  - video: tools_androidiconanimator
     color: 'material blue-grey 400'
     color2: '#0099CC'
-    device_frame: browser_light
-    caption: The [Android Icon Animator](https://github.com/romannurik/AndroidIconAnimator/) was a foray into motion design tooling, and the genesis for the new and awesome [Shape Shifter](https://shapeshifter.design/) tool by Alex Lockwood. Built with [AngularJS](https://angularjs.org/).
+    device_frame: browser
+    caption: |
+        2016 – The [Android Icon Animator](https://github.com/romannurik/AndroidIconAnimator/) was a foray into motion design tooling, and the genesis for the new and awesome [Shape Shifter](https://shapeshifter.design/) tool by Alex Lockwood.
 
   - video: tools_assetstudio
     color: 'material light-blue 100'
     color2: '#0099CC'
-    device_frame: browser_light
-    caption: The [Android Asset Studio](https://romannurik.github.io/AndroidAssetStudio/) was one of the first tools I wrote, aiming to take the guesswork out of Android app icon sizing and effects. Plug in some values and it generates all the necessary assets for each screen density.
+    device_frame: browser
+    caption: |
+        2010 – The [Android Asset Studio](https://romannurik.github.io/AndroidAssetStudio/) took the guesswork out of designing Android app icons. Plug some values and it generates all the assets you need. This was later ported into [Android Studio](https://developer.android.com/studio/write/image-asset-studio)
 
+################################################################################
+
+- name: Other Design Tools
+  date: 2012 – Present
+  tags: web android
+  description: |
+    Here are a few additional designer and developer tools I've built over the years.
+
+  pages:
   - video: tools_layervisualizer
     color: 'material cyan 100'
     color2: 'material cyan 500'
-    device_frame: browser_light
-    caption: The [Layer Visualizer](https://github.com/romannurik/LayerVisualizer) was a quick tool I built for helping [teach material design](https://www.udacity.com/course/material-design-for-android-developers--ud862), specifically the depth relationships of material surfaces. [See on Dribbble](https://dribbble.com/shots/2238573-Google-I-O-App-Layer-Visualization)
+    device_frame: browser
+    caption: |
+        2016 – The [Layer Visualizer](https://github.com/romannurik/LayerVisualizer) was a quick tool I built for helping [teach material design](https://www.udacity.com/course/material-design-for-android-developers--ud862), specifically the depth relationships of material surfaces. [See on Dribbble](https://dribbble.com/shots/2238573-Google-I-O-App-Layer-Visualization)
 
   - video: tools_designpreview
     extra_classes: no-padding
-    color: '#2D2D2D'
+    color: '#385574'
     color2: 'material deep-orange 500'
-    caption: "[Android Design Preview](https://github.com/romannurik/AndroidDesignPreview) is a tool I co-wrote that allows designers to get a more realistic view of their UIs by mirroring a portion of their computer screen to an Android device."
-
-  - video: tools_ninepatch
-    color: 'material light-blue 100'
-    color2: '#0099CC'
-    device_frame: browser_light
-    caption: Nine-patches are notoriously tedious to produce, especially in bulk. I built the [nine-patch generator](http://romannurik.github.io/AndroidAssetStudio/nine-patches.html), to simplify the process of creating optimized nine-patches for all densities.
-
-  - video: tools_deviceart
-    color: 'material green 100'
-    color2: '#6ab344'
-    device_frame: browser_light
-    caption: I recognized several years ago that developers were using device frames inconsistently, with poor lighting/sheen, shadows, etc. I decided to make an easy-to-use [generator](http://developer.android.com/distribute/tools/promote/device-art.html) for Nexus device-framed images.
+    caption: |
+        2013 – [Android Design Preview](https://github.com/romannurik/AndroidDesignPreview) was a tool I co-wrote that allows designers to get a more realistic view of their UIs by mirroring a portion of their computer screen to an Android device.
 
 
-###################################################################################################
+################################################################################
 
 
-- name: Material Product Icons
-
+- name: FORM Type Maker and Wear OS app
+  date: 2014
+  tags: web
   description: |
-    I’ve created a number of product icons following the [material design guidelines](https://www.google.com/design/spec/style/icons.html), for a number of purposes, including official Google products such as [Google Cloud Messaging](https://developers.google.com/cloud-messaging/), as well as unofficial apps such as [Nick Butcher](http://twitter.com/crafty)’s [Plaid](https://dribbble.com/shots/2344334-Plaid-Product-Icon).
+    I cofounded [FORM](https://design.google.com/form-2014/), Google's first external design conference. I also built a web-based playground for FORM's custom typeface (created by the Material team). The app lets users type a message, choose a color, and create an [animated GIF to share on social media](https://twitter.com/tanyawuethrich/status/534276313537052672).
 
-    The gallery showcases a sampling of the icons I’ve worked on.
+    Due to the conference's small size, the app was a key part of the social media strategy, ensuring those who couldn't attend could still participate.
 
-  pages:
-  - color: 'material blue-grey 50'
-    image: material_icon_plaid.png
-    caption: Product icon for Nick Butcher's [Plaid](https://dribbble.com/shots/2344334-Plaid-Product-Icon) design inspiration app. [See on Dribbble](https://dribbble.com/shots/2344334-Plaid-Product-Icon)
-    extra_classes: no-fullscreen
-
-  - color: '#C6DAFC'
-    image: material_icon_gcm.png
-    caption: Official product icon for [Google Cloud Messaging](https://developers.google.com/cloud-messaging/).
-    extra_classes: no-fullscreen
-
-  - color: 'material purple 50'
-    image: material_icon_gutenberg.png
-    caption: Product icon for an internal team working on an attendee check-in system for Google Developer events.
-    extra_classes: no-fullscreen
-
-  - color: 'material amber 50'
-    image: material_icon_muzei.png
-    caption: Product icon for my app, [Muzei Live Wallpaper](https://play.google.com/store/apps/details?id=net.nurik.roman.muzei).
-    extra_classes: no-fullscreen
-
-  - color: 'material light-blue 50'
-    image: material_icon_dashclock.png
-    caption: Product icon for my app, [DashClock Widget](https://play.google.com/store/apps/details?id=net.nurik.roman.dashclock).
-    extra_classes: no-fullscreen
-
-
-###################################################################################################
-
-
-- name: FORM Type Maker & Watch Face
-  date: October 2014
-  extra_classes: tall
-  description: |
-    In addition to my strategy work for our [FORM conference](https://design.google.com/form-2014/) (which I co-created), I built a web-based playground for the brand's display typeface (created by the material team). The desktop and mobile web app let users type a message, choose a color, and created an [animated GIF to share on social media](https://twitter.com/tanyawuethrich/status/534276313537052672).
-
-    Because the conference was invite-only and very small, the playground was a **key part of the social media strategy for the event**, ensuring that those who couldn't attend could still participate in the conversation.
-
-    I designed and developed the app, building a `<canvas>`-based glyph animation framework in the process. This project was a great exercise in creative technology for me, and I learned a ton about modern web animation, performance, and more along the way.
-
-    Finally, I built an Android Wear watch face based on the font, and helped [integrate it with Muzei](https://medium.com/google-developers/only-on-android-45ff04d5722e).
+    I built a `<canvas>`-based glyph animation framework for the app. It was a great exercise in creative technology, and I learned a ton about modern web animation, performance, and more.
 
   actions:
   - caption: Open app
     url: http://formtypemaker.appspot.com
-  - caption: Install watch face
-    url: https://play.google.com/store/apps/details?id=net.nurik.roman.formwatchface
+  - caption: See the code
+    url: https://github.com/romannurik/FORMTypeMaker
 
   pages:
   - color: '#02A8F3'
     color2: 'material light-blue 500'
     video: formtypemaker
-    device_frame: browser_light
+    device_frame: browser
 
   - color: '#4EC2F6'
     color2: 'material light-blue 500'
     video: formtypemaker_watchface
-    device_frame: wear_round_light
+    device_frame: wear
     extra_classes: circle no-fullscreen
-    caption: I also designed, developed, launched and open-sourced a [watch face for Android Wear](https://play.google.com/store/apps/details?id=net.nurik.roman.formwatchface) using the FORM typeface.
+    caption: I also built a corresponding [watch face for Wear OS](https://play.google.com/store/apps/details?id=net.nurik.roman.formwatchface) and [integrated it with Muzei](https://medium.com/google-developers/only-on-android-45ff04d5722e).

@@ -1,0 +1,24 @@
+:root {
+  @include theme-light;
+  @media (prefers-color-scheme: dark) {
+    @include theme-dark;
+  }
+
+  min-height: 100%;
+  -webkit-font-smoothing: antialiased;
+  font-family: var(--font-stack-body);
+  font-weight: var(--font-weight-body-regular);
+  background-color: var(--background-color);
+}
+
+.theme-light {
+  @include theme-light;
+}
+
+.theme-dark {
+  @include theme-dark;
+}
+
+body {
+  margin: 0;
+}
