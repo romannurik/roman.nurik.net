@@ -22,6 +22,7 @@
     "nunjucks": "^3.2.2",
     "postcss-loader": "^2.1.6",
     "sass-loader": "^7.0.3",
+    "terser-webpack-plugin": "^4.2.3",
     "to-string-loader": "^1.1.6",
     "webpack": "^4.16.2",
     "webpack-cli": "^4.3.1",

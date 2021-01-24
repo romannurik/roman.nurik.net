@@ -1,5 +1,4 @@
-require('./app.entry.scss');
-
+import './app.entry.scss';
 import { LandingPage } from './pages/landing/landing';
 import { ProjectsPage } from './pages/projects/projects';
 

@@ -1,7 +1,8 @@
-import process from 'process';
-import path from 'path';
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import path from 'path';
+import process from 'process';
+import TerserPlugin from 'terser-webpack-plugin';
 
 const stats = {
   modules: false,
@@ -44,6 +45,8 @@ module.exports = {
     hints: false,
   },
   optimization: {
+    minimize: true,
+    minimizer: [new TerserPlugin()],
     splitChunks: {
       cacheGroups: {
         vendor: {
