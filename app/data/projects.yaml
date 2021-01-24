@@ -118,13 +118,13 @@
     extra_classes: crop-y crop-scale-half
     crop_position: 0%
     color: '#E66B59'
-    bg_image: macos_desktop_bg.png
+    bg_image: macos_desktop_bg.jpg
 
   - image_set: materialcolors_search_dark
     extra_classes: crop-y
     crop_position: 0%
     color: '#222352'
-    bg_image: macos_desktop_bg_dark.png
+    bg_image: macos_desktop_bg_dark.jpg
 
 
 ################################################################################
@@ -194,7 +194,7 @@
   - video: sketch_stickers
     color: '#E66B59'
     device_frame: mac_window
-    bg_image: macos_desktop_bg.png
+    bg_image: macos_desktop_bg.jpg
 
 ################################################################################
 
@@ -209,14 +209,14 @@
   pages:
   - video: figma_contrast
     color: '#222352'
-    bg_image: macos_desktop_bg_dark.png
+    bg_image: macos_desktop_bg_dark.jpg
     device_frame: mac_window
     caption: |
         Contrast — A plugin for [Figma](https://www.figma.com/community/plugin/911262488575486588/Contrast) and [Sketch](https://github.com/romannurik/Sketch-Contrast) that offers a different take on checking color contrast, rendering a visual pass/fail report for text layers across artboards.
 
   - video: figma_artboard_tricks
     color: '#E66B59'
-    bg_image: macos_desktop_bg.png
+    bg_image: macos_desktop_bg.jpg
     device_frame: mac_window
     caption: |
         Artboard Tricks — A plugin for [Figma](https://www.figma.com/community/plugin/911261236876701307/Artboard-Tricks) and [Sketch](https://github.com/romannurik/Sketch-ArtboardTricks) that primarily rearrange artboards in an uneven grid (rows of columns), with a few extra features.
