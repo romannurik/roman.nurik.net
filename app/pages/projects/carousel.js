@@ -19,9 +19,11 @@ export class Carousel extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
+    // WARNING: for some reason if this is below the resizeObserver,
+    // it never takes effect on iOS Safari (at least in the simulator)
+    this.classList.remove('cloak');
     this.resizeObserver = new ResizeObserver(() => this.recomputeMetrics());
     this.resizeObserver.observe(this);
-    this.classList.remove('cloak');
     setTimeout(() => this.childrenChange());
   }
 
