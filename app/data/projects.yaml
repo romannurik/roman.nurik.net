@@ -17,7 +17,7 @@
     bg_image: firebase_intro_lottie_bg.svg
     color: '#F6F7F9'
 
-  - image: firebase_overview.png
+  - image_set: firebase_overview
     color: '#D2E3FC'
     device_frame: browser
     caption: |
@@ -29,13 +29,13 @@
     caption: |
         I've overseen most of our visual refreshes over the years. The latest (in 2019) was focused on accessibility.
 
-  - image: firebase_design_system.png
+  - image_set: firebase_design_system
     color: '#E5EAF0'
     extra_classes: no-padding
     caption: |
         I've played a big role in design system adoption, expansion and refinement.
 
-  - image: firebase_abtesting.png
+  - image_set: firebase_abtesting
     color: 'material teal 100'
     device_frame: browser
     caption: |
@@ -114,13 +114,13 @@
     url: https://github.com/romannurik/MaterialColorsApp
 
   pages:
-  - image: materialcolors_light.png
+  - image_set: materialcolors_light
     extra_classes: crop-y crop-scale-half
     crop_position: 0%
     color: '#E66B59'
     bg_image: macos_desktop_bg.png
 
-  - image: materialcolors_search_dark.png
+  - image_set: materialcolors_search_dark
     extra_classes: crop-y
     crop_position: 0%
     color: '#222352'
@@ -238,11 +238,11 @@
     url: https://github.com/romannurik/dataurl.app
 
   pages:
-  - image: dataurl_social.png
+  - image_set: dataurl_social
     color: '#3D5AFE'
     bg_image: dataurl_social_bg.png
 
-  - image: dataurlapp.png
+  - image_set: dataurlapp
     color: 'material indigo a100'
     device_frame: browser
 
@@ -276,7 +276,7 @@
     color2: '#3c6caf'
     device_frame: nexus5
 
-  - image: muzei_detail1.png
+  - image_set: muzei_detail1
     color: '#c2d6f2'
     color2: '#3c6caf'
     device_frame: nexus5
@@ -321,15 +321,15 @@
     device_frame: browser
     caption: I published a popular [article](https://medium.com/google-design/material-design-in-the-2014-google-i-o-app-e3b22caffae6) and [video](https://www.youtube.com/watch?v=XOcCOBe8PTc) detailing some of our design decisions for the 2014 app.
 
-  - image: iosched_2014_vignette.png
+  - image_set: iosched_2014_vignette
     color: 'material indigo 100'
     caption: The 2014 app was one of the very first apps to adopt material design.
 
-  - image: iosched_2013_vignette.png
+  - image_set: iosched_2013_vignette
     color: '#fff'
     caption: The 2013 app was one of the first to support 7-inch tablets for Android, helping light the path for Android tablet UI design.
 
-  - image: iosched_2011_vignette.png
+  - image_set: iosched_2011_vignette
     color: 'material grey 100'
     caption: The 2011 app was one of the first to support the new tablet form factor with multi-pane UIs.
 

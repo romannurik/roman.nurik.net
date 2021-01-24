@@ -54,6 +54,12 @@ More on [Dribbble](https://dribbble.com/romannurik).
                    {% if page.crop_position %}--crop-position: {{ page.crop_position }};{% endif %}
                    {% if page.color2 %}color:{{ page.color2 | material_color }}{% endif %}">
           <div {% if page.device_frame %}class="device-frame device-{{ page.device_frame }}"{% endif %}>
+          {% if page.image_set %}
+            <picture>
+              <source srcset="/media/{{ page.image_set }}.webp" type="image/webp">
+              <img src="/media/{{ page.image_set }}.png">
+            </picture>
+          {% endif %}
           {% if page.image %}
             <img src="/media/{{ page.image }}">
           {% endif %}
@@ -64,7 +70,10 @@ More on [Dribbble](https://dribbble.com/romannurik).
             <video loop muted preload="none">
               <source src="/media/{{ page.video }}.mp4" type="video/mp4">
             </video>
-            <img class="thumb" src="/media/{{ page.video }}-thumb.png">
+            <picture>
+              <source srcset="/media/{{ page.video }}-thumb.webp" type="image/webp">
+              <img class="thumb" src="/media/{{ page.video }}-thumb.png">
+            </picture>
           {% endif %}
           </div>
           <div class="loader"></div>
