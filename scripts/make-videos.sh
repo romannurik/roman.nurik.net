@@ -1,5 +1,7 @@
 #!/bin/sh
 # https://gist.github.com/Vestride/278e13915894821e1d6f
+# dependencies:
+# - ffmpeg
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
