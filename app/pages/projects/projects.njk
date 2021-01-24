@@ -67,13 +67,9 @@ More on [Dribbble](https://dribbble.com/romannurik).
             <rn-lottie-player src="/media/{{ page.lottie }}"></rn-lottie-player>
           {% endif %}
           {% if page.video %}
-            <video loop muted preload="none">
+            <video loop muted poster="/media/{{ page.video }}-thumb.jpg" preload="none">
               <source src="/media/{{ page.video }}.mp4" type="video/mp4">
             </video>
-            <picture>
-              <source srcset="/media/{{ page.video }}-thumb.webp" type="image/webp">
-              <img class="thumb" src="/media/{{ page.video }}-thumb.png">
-            </picture>
           {% endif %}
           </div>
           <div class="loader"></div>

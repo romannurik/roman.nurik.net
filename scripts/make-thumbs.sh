@@ -1,12 +1,13 @@
 #!/bin/bash
 # dependencies:
 # - ffmpeg
-# - optipng
-# - pngquant
+# - imagemagick (convert)
+# - imagemin + imagemin-mozjpeg
 function process() {
   base=${1%.mp4}
-  thumb="${base}-thumb.png"
+  thumb="${base}-thumb.jpg"
   tempfile="${base}-thumb.tmp.png"
+  tempfile2="${base}-thumb.tmp.jpg"
   ffmpeg \
       -y \
       -i "$1" \
@@ -14,9 +15,9 @@ function process() {
       -vframes 1 \
       -vf colorspace=all=bt709:iall=bt601-6-625:fast=1 \
       "$tempfile"
-  optipng "$tempfile"
-  pngquant --force "$tempfile" --output "$thumb"
-  rm "$tempfile"
+  convert "$tempfile" "$tempfile2"
+  imagemin "$tempfile2" --plugin=mozjpeg > "$thumb"
+  rm "$tempfile" "$tempfile2"
 }
 
 if [[ "$1" != "" ]]; then

@@ -352,22 +352,11 @@
             video {
               transform: translate3d(0, 0, 0); // removes scroll snap jank
               pointer-events: none;
-              display: none;
             }
 
             .loader {
               visibility: hidden;
               opacity: 0;
-            }
-
-            &.is-loaded {
-              video {
-                display: block;
-              }
-
-              .thumb {
-                display: none;
-              }
             }
 
             &.is-loading {
