@@ -130,6 +130,10 @@ body.page-landing {
       text-align: center;
       margin: 16px auto;
       @include mobile { margin: 8px; }
+
+      a {
+        white-space: nowrap; // hack to avoid weird ::before positioning
+      }
     }
   }
 
