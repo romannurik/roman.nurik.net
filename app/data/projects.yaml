@@ -56,7 +56,7 @@
   description: |
     The Firebase team was using an old, clunky publishing system for documenting the "best practices" side of our design system. After considering alternatives available at the time (from [Storybook](https://storybook.js.org/), to Google Docs, to a one-off site), I decided to build something new.
 
-    Styleguide is a spec publishing system built with React focuses on rapid publishing and easy maintenance, including features like:
+    Styleguide is a spec publishing system built with React that focuses on rapid publishing and easy maintenance, including features like:
 
     - Markdown-based authoring + layout language, extensible through plugins
     - Drag+drop or paste an image from the clipoard to upload.
