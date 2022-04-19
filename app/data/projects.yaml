@@ -47,6 +47,45 @@
     caption: |
         I had the opportunity to design and implement a few small-scale icon animations throughout the console.
 
+################################################################################
+
+- name: IconKitchen and Icon Animator
+  date: 2010 – 2021
+  tags: featured web android
+  description: |
+    One of my biggest passions is creating designer and developer tools. Since 2010, I've particularly been interested in tools that foster design creation for engineers and novice users.
+
+    In 2010, I launched the first version of the [Android Asset Studio](https://romannurik.github.io/AndroidAssetStudio/), which is still used by thousands of people today, and which I later revamped as [IconKitchen](https://icon.kitchen). IconKitchen was the #4 product of the day when it [launched on Product Hunt](https://www.producthunt.com/posts/iconkitchen)!
+
+    I also built the [Android Icon Animator](https://github.com/romannurik/AndroidIconAnimator/) in 2016, which was an attempt to make simple icon animation accessible to any developer or designer. That tool later became the foundation of the more complete [Shape Shifter](https://shapeshifter.design/) icon animation tool by Alex Lockwood.
+
+  pages:
+  - video: iconkitchen
+    color: '#b79cff'
+    color2: '#b79cff'
+    device_frame: browser
+    caption: |
+        2021 – [IconKitchen](https://icon.kitchen) takes the guesswork out of designing app icons for Android, iOS, web apps, and more. Plug some values and it generates all the assets you need.
+
+  - image: iconkitchen_examples.png
+    color: '#3627E5'
+    bg_image: iconkitchen_examples_bg.svg
+    caption: |
+        I'm particularly excited about IconKitchen's expressiveness despite having only a small set of customization options.
+
+  - video: tools_androidiconanimator
+    color: 'material blue-grey 400'
+    color2: '#0099CC'
+    device_frame: browser
+    caption: |
+        2016 – The [Android Icon Animator](https://github.com/romannurik/AndroidIconAnimator/) was a foray into motion design tooling, and the genesis for the new and awesome [Shape Shifter](https://shapeshifter.design/) tool by Alex Lockwood.
+
+  - video: tools_assetstudio
+    color: 'material light-blue 100'
+    color2: '#0099CC'
+    device_frame: browser
+    caption: |
+        2010 – The [Android Asset Studio](https://romannurik.github.io/AndroidAssetStudio/) was the predecessor to IconKitchen and was later ported into [Android Studio](https://developer.android.com/studio/write/image-asset-studio) directly.
 
 ################################################################################
 
@@ -333,9 +372,7 @@
     color: 'material grey 100'
     caption: The 2011 app was one of the first to support the new tablet form factor with multi-pane UIs.
 
-
 ################################################################################
-
 
 - name: DashClock Widget for Android
   date: 2012
@@ -358,35 +395,6 @@
     color: 'material teal 100'
     color2: 'material teal 500'
     device_frame: nexus5
-
-
-################################################################################
-
-
-- name: Android Asset Studio and Icon Animator
-  date: 2010 – 2016
-  tags: web android
-  description: |
-    One of my biggest passions is creating designer and developer tools. Since 2010, I've particularly been interested in tools that foster design creation for engineers and novice users.
-
-    In 2010, I launched the first version of the [Android Asset Studio](https://romannurik.github.io/AndroidAssetStudio/), which is still used by thousands of people today.
-
-    In 2016, I built the [Android Icon Animator](https://github.com/romannurik/AndroidIconAnimator/), an attempt to make simple icon animation accessible to any developer or designer.
-
-  pages:
-  - video: tools_androidiconanimator
-    color: 'material blue-grey 400'
-    color2: '#0099CC'
-    device_frame: browser
-    caption: |
-        2016 – The [Android Icon Animator](https://github.com/romannurik/AndroidIconAnimator/) was a foray into motion design tooling, and the genesis for the new and awesome [Shape Shifter](https://shapeshifter.design/) tool by Alex Lockwood.
-
-  - video: tools_assetstudio
-    color: 'material light-blue 100'
-    color2: '#0099CC'
-    device_frame: browser
-    caption: |
-        2010 – The [Android Asset Studio](https://romannurik.github.io/AndroidAssetStudio/) took the guesswork out of designing Android app icons. Plug some values and it generates all the assets you need. This was later ported into [Android Studio](https://developer.android.com/studio/write/image-asset-studio)
 
 ################################################################################
 
@@ -411,9 +419,7 @@
     caption: |
         2013 – [Android Design Preview](https://github.com/romannurik/AndroidDesignPreview) was a tool I co-wrote that allows designers to get a more realistic view of their UIs by mirroring a portion of their computer screen to an Android device.
 
-
 ################################################################################
-
 
 - name: FORM Type Maker and Wear OS app
   date: 2014
