@@ -1,3 +1,4 @@
+@use 'sass:math';
 @import '@app/shared';
 
 body.page-landing {
@@ -45,10 +46,10 @@ body.page-landing {
       top: 0;
       box-shadow: 0 $thickness 0 var(--accent-color);
       width: 100%;
-      height: $avatarSize / 2 + $mainPadding - $thickness / 2;
+      height: math.div($avatarSize, 2) + $mainPadding - math.div($thickness, 2);
 
       @include mobile {
-        height: $avatarSizeSmall / 2 + $avatarBorderSmall + $mainPadding;
+        height: math.div($avatarSizeSmall, 2) + $avatarBorderSmall + $mainPadding;
       }
     }
   }
@@ -60,6 +61,7 @@ body.page-landing {
     color: var(--on-color-secondary);
     display: flex;
     flex-direction: column;
+    align-items: center;
 
     // tweak
     font-family: var(--font-stack-display);
@@ -168,15 +170,15 @@ body.page-landing {
     @include mobile { margin: 0; }
 
     a {
-      --size: 32px;
+      --size: 24px;
 
       @include mobile {
-        --size: 24px;
+        --size: 20px;
       }
 
       display: flex;
       justify-content: center;
-      flex: 1;
+      flex: 1 1 0;
       padding: 8px; // make the touch target bigger
 
       &::before {
@@ -189,6 +191,7 @@ body.page-landing {
         border-radius: 50%;
         transform: translate(-50%, -50%) scale(.8, .8);
         transform-origin: 50% 50%;
+        pointer-events: none;
       }
 
       &:hover::before,

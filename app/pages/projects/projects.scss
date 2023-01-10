@@ -58,7 +58,12 @@
     padding: 16px 0;
     background-color: rgba(var(--background-rgb), .95);
     border-bottom: 1px solid var(--thin-border-color);
+    overflow-x: auto;
     z-index: 999;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
 
     @include narrow {
       margin: 0px calc(0px - var(--page-side-margin)) 64px calc(0px - var(--page-side-margin));
