@@ -1,0 +1,162 @@
+---
+import Markdown from "@/components/Markdown.astro";
+import PROJECTS from "@/data/projects.yaml";
+import Subpage from "@/layouts/Subpage.astro";
+import materialColor from "@/util/material-color";
+import cn from "classnames";
+import "./_projects.scss";
+
+function parseColor(s: string) {
+  let parts = s.toLowerCase().split(/\s+/g);
+  if (parts[0] == "material" && parts.length >= 3) {
+    return materialColor(parts[1], parts[2]);
+  }
+  return s;
+}
+---
+
+<script>
+  import "./_projects";
+</script>
+
+<Subpage title="Projects">
+  <header class="top-header">
+    <h1>Projects</h1>
+    <div class="intro">
+      <Markdown>
+        What I've worked on over the years, including work at Google and side
+        projects. More at [GitHub](https://github.com/romannurik).
+      </Markdown>
+    </div>
+  </header>
+
+  <header class="filter">
+    <label
+      ><input type="radio" name="filter-tag" value="featured" /><span
+        >Featured</span
+      ></label
+    >
+    <label
+      ><input type="radio" name="filter-tag" value="all" /><span>All</span
+      ></label
+    >
+    <label
+      ><input type="radio" name="filter-tag" value="web" /><span>Web</span
+      ></label
+    >
+    <label
+      ><input type="radio" name="filter-tag" value="desktop" /><span
+        >Desktop</span
+      ></label
+    >
+    <label
+      ><input type="radio" name="filter-tag" value="android" /><span
+        >Android</span
+      ></label
+    >
+  </header>
+
+  <main>
+    {
+      PROJECTS.map((project: any) => (
+        <section
+          class={cn("project", project.extra_classes)}
+          data-tags={project.tags}
+        >
+          <div class="info">
+            <h2>{project.name}</h2>
+            <p class="date">{project.date}</p>
+            <Markdown>{project.description}</Markdown>
+            {project.actions?.length && (
+              <div class="actions">
+                {project.actions.map((action: any) => (
+                  <a href={action.url}>{action.caption}</a>
+                ))}
+              </div>
+            )}
+          </div>
+          <rn-carousel class="cloak">
+            {project.pages.map((page: any) => (
+              <rn-carousel-page
+                class={cn(page.extra_classes, {
+                  "has-bg-image": !!page.bg_image,
+                  lottie: !!page.lottie,
+                  video: !!page.video,
+                  image: !!page.image,
+                })}
+                style={{
+                  "--background-color": parseColor(page.color),
+                }}
+              >
+                <div
+                  class="media loader-parent"
+                  style={{
+                    "background-image": page.bg_image
+                      ? `url(/media/${page.bg_image})`
+                      : undefined,
+                    "--crop-position": page.crop_position ?? undefined,
+                    color: page.color2 ? parseColor(page.color2) : undefined,
+                  }}
+                >
+                  <div
+                    class={cn({
+                      "device-frame": !!page.device_frame,
+                      [`device-${page.device_frame}`]: !!page.device_frame,
+                    })}
+                  >
+                    {page.image_set && (
+                      <picture>
+                        <source
+                          srcset={`/media/${page.image_set}.webp`}
+                          type="image/webp"
+                        />
+                        <img src={`/media/${page.image_set}.png`} />
+                      </picture>
+                    )}
+                    {page.image && <img src={`/media/${page.image}`} />}
+                    {page.lottie && (
+                      <rn-lottie-player src={`/media/${page.lottie}`} />
+                    )}
+                    {page.video && (
+                      <video
+                        loop
+                        muted
+                        poster={`/media/${page.video}-thumb.jpg`}
+                        preload="none"
+                      >
+                        <source
+                          src={`/media/${page.video}.mp4`}
+                          type="video/mp4"
+                        />
+                      </video>
+                    )}
+                  </div>
+                  <div class="loader" />
+                </div>
+                {page.caption && (
+                  <div class="caption">
+                    <Markdown>{page.caption}</Markdown>
+                  </div>
+                )}
+              </rn-carousel-page>
+            ))}
+          </rn-carousel>
+        </section>
+      ))
+    }
+
+    <section class="show-all">
+      <button class="show-all-projects-button">
+        <span>Show all projects</span>
+        <i class="material-icons">expand_more</i>
+      </button>
+    </section>
+  </main>
+
+  <footer>
+    <Markdown>
+      Code by me. [See it on
+      GitHub](https://github.com/romannurik/roman.nurik.net)
+    </Markdown>
+  </footer>
+</Subpage>

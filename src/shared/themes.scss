@@ -1,0 +1,57 @@
+// theming
+@use 'sass:color';
+
+@mixin __theme-common() {
+  @include typography-vars();
+  --link-color: var(--accent-color);
+  --link-color-2: var(--accent-color-2);
+  font-family: var(--font-stack-body);
+}
+
+@mixin theme-light() {
+  @include __theme-common();
+  --on-rgb: 0, 0, 0;
+  --on-color-primary: #{idx-color('gray', '800')};
+  --on-color-secondary: #{rgba(#000, .54)};
+  --on-color-tertiary: #{rgba(#000, .38)};
+
+  $accentColor: idx-color('purple', '600');
+  --accent-rgb: #{color-to-rgb-tuple($accentColor)};
+  --accent-color: #{$accentColor};
+  $accentColor2: idx-color('purple', '400');
+  --accent-color-2: #{$accentColor2};
+  --accent-rgb-2: #{color-to-rgb-tuple($accentColor2)};
+
+  --code-color: #{idx-color('green', '500')};
+  --thin-border-color: #{rgba(#000, .12)};
+  $backgroundColor: color.mix(#fff, idx-color('gray', '50'), 50%);
+  --background-rgb: #{color-to-rgb-tuple($backgroundColor)};
+  --background-color: #{$backgroundColor};
+  --background-color-2: #{material-color('grey', '50')};
+  --background-color-3: #{material-color('grey', '100')};
+  --background-color-4: #{material-color('grey', '200')};
+}
+
+@mixin theme-dark() {
+  @include __theme-common();
+  --on-rgb: 255, 255, 255;
+  --on-color-primary: #{idx-color('gray', '50')};
+  --on-color-secondary: #{idx-color('gray', '300')};
+  --on-color-tertiary: #{idx-color('gray', '500')};
+
+  $accentColor: color.mix(idx-color('purple', '300'), idx-color('purple', '400'), 70%);
+  --accent-rgb: #{color-to-rgb-tuple($accentColor)};
+  --accent-color: #{$accentColor};
+  $accentColor2: color.mix(idx-color('purple', '200'), idx-color('purple', '300'), 30%);
+  --accent-color-2: #{$accentColor2};
+  --accent-rgb-2: #{color-to-rgb-tuple($accentColor2)};
+
+  --code-color: #{idx-color('green', '300')};
+  --thin-border-color: #{idx-color('gray', '700')};
+  $backgroundColor: idx-color('gray', '900');
+  --background-rgb: #{color-to-rgb-tuple($backgroundColor)};
+  --background-color: #{$backgroundColor};
+  --background-color-2: idx-color('gray', '920');
+  --background-color-3: idx-color('gray', '950');
+  --background-color-4: idx-color('gray', '975');
+}

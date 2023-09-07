@@ -1,0 +1,212 @@
+@use 'sass:math';
+@import '@/shared';
+
+body {
+  min-height: 100%;
+  height: calc(var(--vh) * 100);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: var(--background-color);
+}
+
+
+  $avatarSize: 128px;
+  $avatarSizeSmall: 96px;
+  $avatarBorder: 20px;
+  $avatarBorderSmall: $avatarBorder;
+
+  $mainPadding: 24px;
+
+  @mixin mobile {
+    @media only screen and (max-width: 360px) { @content; }
+  }
+
+  // Teh stylez
+
+  .top,
+  .bottom {
+    flex: 1 0 auto;
+  }
+
+  .content-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex: 0 0 auto;
+
+    &::before {
+      $thickness: 2px;
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      box-shadow: 0 $thickness 0 var(--accent-color);
+      width: 100%;
+      height: math.div($avatarSize, 2) + $mainPadding - math.div($thickness, 2);
+
+      @include mobile {
+        height: math.div($avatarSizeSmall, 2) + $avatarBorderSmall + $mainPadding;
+      }
+    }
+  }
+
+  .content {
+    position: relative;
+    padding: $mainPadding;
+    width: 300px;
+    color: var(--on-color-secondary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    // tweak
+    font-family: var(--font-stack-display);
+    font-size: 24px;
+    line-height: 32px;
+
+    a {
+      position: relative;
+      font-weight: var(--font-weight-display-bold);
+      color: var(--on-color-primary);
+      text-decoration: none;
+      z-index: 0;
+
+      $animSpeed: .1s;
+
+      &::before {
+        position: absolute;
+        content: '';
+        background-color: var(--accent-color);
+        left: -4px;
+        right: -4px;
+        bottom: 0;
+        height: 50%;
+        z-index: -1;
+        visibility: hidden;
+        opacity: 0;
+        will-change: transform;
+        transition:
+            transform $animSpeed ease,
+            opacity $animSpeed,
+            visibility 0s linear $animSpeed;
+        transform: scale(1, 0);
+        transform-origin: 50% 100%;
+        display: block;
+        pointer-events: none;
+      }
+
+      &:hover::before,
+      &:active::before {
+        visibility: visible;
+        transform: scale(1, 1);
+        transition:
+            opacity $animSpeed ease,
+            transform $animSpeed ease;
+      }
+
+      &:hover::before {
+        opacity: .3;
+      }
+
+      &:active::before {
+        opacity: .7;
+      }
+    }
+
+    p:first-of-type {
+      margin-top: 32px;
+      @include mobile { margin-top: 24px; }
+    }
+
+    p:last-of-type {
+      margin-bottom: 40px;
+      @include mobile { margin-bottom: 32px; }
+    }
+
+    p {
+      width: 280px;
+      text-align: center;
+      margin: 16px auto;
+      @include mobile { margin: 8px; }
+
+      a {
+        white-space: nowrap; // hack to avoid weird ::before positioning
+      }
+    }
+  }
+
+  .avatar {
+    width: $avatarSize;
+    height: $avatarSize;
+
+    @include mobile {
+      width: $avatarSizeSmall;
+      height: $avatarSizeSmall;
+    }
+
+    background: url('/images/avatar.png');
+    background-size: cover;
+    border-radius: 50%;
+    background-color: #525252;
+    align-self: center;
+    border-left: $avatarBorder solid var(--background-color);
+    border-right: $avatarBorder solid var(--background-color);
+
+    @include mobile {
+      border: $avatarBorderSmall solid var(--background-color);
+    }
+  }
+
+  .icons {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+
+    margin: 0 -8px; // account for extra icon padding
+    @include mobile { margin: 0; }
+
+    a {
+      --size: 24px;
+
+      @include mobile {
+        --size: 20px;
+      }
+
+      display: flex;
+      justify-content: center;
+      flex: 1 1 0;
+      padding: 8px; // make the touch target bigger
+
+      &::before {
+        left: 50%;
+        right: auto;
+        bottom: auto;
+        top: 50%;
+        width: calc(var(--size) * 1.75);
+        height: calc(var(--size) * 1.75);
+        border-radius: 50%;
+        transform: translate(-50%, -50%) scale(.8, .8);
+        transform-origin: 50% 50%;
+        pointer-events: none;
+      }
+
+      &:hover::before,
+      &:active::before {
+        transform: translate(-50%, -50%) scale(1, 1);
+      }
+    }
+
+    span {
+      display: none;
+    }
+
+    svg {
+      width: var(--size);
+      height: var(--size);
+      fill: var(--on-color-primary);
+    }
+  }

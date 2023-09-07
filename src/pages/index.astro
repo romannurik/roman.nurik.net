@@ -1,0 +1,78 @@
+---
+import SocialIcon from "@/components/SocialIcon.astro";
+import Base from "@/layouts/Base.astro";
+import "./_index.scss";
+---
+
+<Base>
+  <div class="top"></div>
+  <div class="content-container">
+    <div class="content">
+      <div class="avatar"></div>
+
+      <p>Hi, I’m Roman.</p>
+      <p>
+        I’m a design lead on <a href="https://idx.dev">Project IDX</a>
+         and <a href="https://firebase.google.com">Firebase</a>
+         at Google in New York.
+      </p>
+      <p>
+        I work on design and developer tools, and have done Android stuff too.
+        See my <a href="/projects/">projects</a>.
+      </p>
+
+      <!-- icons thanks to https://github.com/shalinguyen/socialicious -->
+      <div class="icons">
+        <a rel="me" href="https://github.com/romannurik">
+          <SocialIcon icon="github" />
+          <span>GitHub</span>
+        </a>
+        <a rel="me" href="https://twitter.com/romannurik">
+          <SocialIcon icon="twitter" />
+          <span>Twitter</span>
+        </a>
+        <a rel="me" href="https://mastodon.social/@romannurik">
+          <SocialIcon icon="mastodon" />
+          <span>Mastodon</span>
+        </a>
+        <a rel="me" href="https://medium.com/@romannurik">
+          <SocialIcon icon="medium" />
+          <span>Medium</span>
+        </a>
+        <a rel="me" href="https://dribbble.com/romannurik">
+          <SocialIcon icon="dribbble" />
+          <span>Dribbble</span>
+        </a>
+        <a
+          rel="me"
+          href=""
+          class="obfuscated-email"
+          data-email="roman nurik net"
+        >
+          <SocialIcon icon="email" />
+          <span>Email</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="bottom"></div>
+</Base>
+
+<script>
+  let update = () =>
+    document.body.style.setProperty("--vh", `${window.innerHeight / 100}px`);
+  update();
+  window.addEventListener("resize", update, false);
+
+  window.addEventListener("load", () => {
+    for (let link of document.querySelectorAll(".obfuscated-email")) {
+      let email = link.getAttribute("data-email");
+      if (email) {
+        link.setAttribute(
+          "href",
+          "mailto:" + email.replace(/ /, "@").replace(/ /, ".")
+        );
+      }
+    }
+  });
+</script>

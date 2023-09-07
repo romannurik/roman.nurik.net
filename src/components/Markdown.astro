@@ -1,0 +1,36 @@
+---
+import { Markdown as MarkdownRaw } from "astro-remote";
+
+export interface Props {
+  content?: string;
+}
+
+const dedent = (str: string) => {
+  const _str = str.split("\n").filter((s) => s.trimStart().length > 0);
+  if (_str.length === 0) {
+    return str.trimStart();
+  }
+  const trimmedSpace = _str[0].replace(_str[0].trimStart(), "");
+  return str
+    .split("\n")
+    .map((ln) =>
+      ln.startsWith(trimmedSpace) ? ln.replace(trimmedSpace, "") : ln
+    )
+    .join("\n");
+};
+
+let { content } = Astro.props;
+
+// If no content prop provided, use the slot.
+if (!content) {
+  content = await Astro.slots.render("default");
+  if (content !== undefined && content !== null) {
+    content = dedent(content);
+  }
+}
+
+// TODO: How can we avoid needing to unescape this?
+content = content.replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+---
+
+<MarkdownRaw content={content} />
