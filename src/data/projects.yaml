@@ -1,5 +1,39 @@
 # List of my projects.
 
+- name: Project IDX
+  date: 2021 – Present
+  tags: featured web
+  description: |
+    I'm a designer and engineer working on [Project IDX](https://idx.dev), an experimental web-based development environment from Google. I currently lead design across product, design system and brand/identity.
+
+    I was also one of the founding members of the team, contributing to product strategy, technical
+    architecture, and cross-Google stakeholder communication.
+
+    Finally, I contributed foundational prototypes that shaped the generative AI and tool-integrations roadmap for Project IDX, in addition to considerable production code contributions across Docker, Angular, React, VS Code extensions, etc.
+
+  actions:
+  - caption: Visit site
+    url: https://idx.dev
+
+  pages:
+  - lottie: idx_logo_lottie.json
+    bg_image: idx_logo_lottie_bg.png
+    color: 'idx gray 925'
+    extra_classes: background-contain
+
+  - video: idx_dot_dev
+    color: 'idx purple 500'
+    device_frame: browser
+    caption: |
+        I partnered closely with [Monogram](https://monogram.io/) to design and build the Project IDX [marketing site](https://idx.dev), including custom JS and CSS animations and more.
+
+  - image_set: idx_color_theme
+    color: 'idx cyan 200'
+    caption: |
+        I built custom light and dark color themes, hand-crafted to balance foreground/background contrast with adjacent-token contrast in the editor. It's bold enough for our unique visual identity, yet restrained enough for the sustained use (hours per day) needed for a core editor experience. More details in my [tweet](https://twitter.com/romannurik/status/1697252388292514198).
+
+################################################################################
+
 - name: Firebase
   date: 2015 – Present
   tags: featured web
@@ -49,7 +83,46 @@
 
 ################################################################################
 
-- name: IconKitchen and Icon Animator
+- name: Drew’s Art Box
+  date: 2016 – Present
+  tags: featured web
+  description: |
+    My wife runs Drew's Art Box, a business that ships art lessons in a box, right to your (and your kid's!) door.
+
+    I operate most of the tech behind the site, which is powered by:
+
+    * [Astro](https://astro.build) and React+Vue for the shop
+    * [Angular](https://angular.io) for the back office portal
+    * [Google App Engine](https://cloud.google.com/appengine) and [Cloud Firestore](https://firebase.google.com/docs/firestore) for the backend
+    * [tRPC](https://trpc.io/) API server
+    * [Sanity.io](https://sanity.io) for content management
+
+  actions:
+  - caption: Visit site
+    url: https://drewsartbox.com
+
+  pages:
+  - video: drews_web
+    color: 'material deep-orange 200'
+    device_frame: browser
+    caption: |
+        The eCommerce site is powered by [Astro](https://astro.build) and React+Vue, with a number of integrated payment platforms (Stripe, PayPal, and specialized ed-tech platforms)
+
+  - image_set: drews_admin
+    color: 'material cyan 100'
+    device_frame: browser
+    caption: |
+        The back office portal is built on [Angular](https://angular.io) and offers order management, inventory management, shipping, and more.
+
+  - video: drews_interactive
+    color: 'material pink 100'
+    device_frame: browser
+    caption: |
+        Some of the art lessons come with access to interactive digital apps that enable students to play with and reinforce concepts discussed in the videos.
+
+################################################################################
+
+- name: IconKitchen and Icon&nbsp;Animator
   date: 2010 – 2021
   tags: featured web android
   description: |

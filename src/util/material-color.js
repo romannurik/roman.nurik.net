@@ -311,7 +311,7 @@ const COLORS = {
   }
 };
 
-export default function(hue, value) {
+export default function (hue, value) {
   hue = (hue || '').toString().toLowerCase();
   value = (value || '').toString().toLowerCase();
 

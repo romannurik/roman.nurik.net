@@ -14,4 +14,9 @@ function scroll(numStops, delay = 3000) {
   console.log('back to top');
 }
 
-scroll(2, 1000);
+// idx.dev
+// let stops = [0, 686, 1342, 2128, 2918, 3700, 4418]; stop = 0;
+
+// drews
+let stops = [0, 652, 1214, 1735, 2346];
+window.scrollTo({ top: stops[stop++], behavior: 'smooth' });

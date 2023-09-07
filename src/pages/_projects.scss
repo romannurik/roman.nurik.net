@@ -273,6 +273,11 @@ section.project {
         padding: 0;
       }
 
+      &.background-contain .media {
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+
       img {
         pointer-events: none;
       }
@@ -328,6 +333,8 @@ section.project {
         @include device-frame('browser', 44px 0 0 0) {
           width: 1440px;
           height: auto;
+          border-bottom-left-radius: 16px;
+          border-bottom-right-radius: 16px;
         }
 
         @include device-frame('wear', 180px 38px 180px 38px) {
@@ -342,10 +349,6 @@ section.project {
           box-shadow:
             0 0 20px rgba(#000, .15),
             0 25px 30px rgba(#000, .35);
-
-          video,
-          img,
-          rn-lottie-player {}
         }
       }
 

@@ -2,14 +2,17 @@
 import Markdown from "@/components/Markdown.astro";
 import PROJECTS from "@/data/projects.yaml";
 import Subpage from "@/layouts/Subpage.astro";
+import idxColor from "@/util/idx-color";
 import materialColor from "@/util/material-color";
 import cn from "classnames";
 import "./_projects.scss";
 
 function parseColor(s: string) {
   let parts = s.toLowerCase().split(/\s+/g);
-  if (parts[0] == "material" && parts.length >= 3) {
+  if (parts[0] === "material" && parts.length >= 3) {
     return materialColor(parts[1], parts[2]);
+  } else if (parts[0] === "idx" && parts.length >= 3) {
+    return idxColor(parts[1], parts[2]);
   }
   return s;
 }
@@ -64,7 +67,7 @@ function parseColor(s: string) {
           data-tags={project.tags}
         >
           <div class="info">
-            <h2>{project.name}</h2>
+            <h2 set:html={project.name} />
             <p class="date">{project.date}</p>
             <Markdown>{project.description}</Markdown>
             {project.actions?.length && (

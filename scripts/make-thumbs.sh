@@ -26,7 +26,7 @@ if [[ "$1" != "" ]]; then
     shift
   done
 else
-  for f in app/**/*.mp4; do
+  for f in ../public/**/*.mp4; do
     process "$f"
   done
 fi

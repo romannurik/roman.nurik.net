@@ -17,9 +17,9 @@ while [[ "$1" != "" ]]; do
       -r 60 \
       -pix_fmt yuv420p \
       -profile:v baseline -level 3 -strict -2 \
-      "${SCRIPT_DIR}/../app/media/${base}.mp4"
+      "${SCRIPT_DIR}/../public/media/${base}.mp4"
 
-  $SCRIPT_DIR/make-thumbs.sh "${SCRIPT_DIR}/../app/media/${base}.mp4"
+  $SCRIPT_DIR/make-thumbs.sh "${SCRIPT_DIR}/../public/media/${base}.mp4"
   echo "Wrote ${base}.mp4"
   shift
 done

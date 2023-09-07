@@ -127,8 +127,14 @@ export class Carousel extends LitElement {
 
   handleKeydown(ev: KeyboardEvent) {
     // custom left/right key handling because focus-visible is hard (see below)
-    if (ev.key === 'ArrowLeft' || ev.key === 'ArrowRight') {
-      this.snapToPage(this.activePage + (ev.key === 'ArrowLeft' ? -1 : 1), {
+    if (ev.key === 'ArrowLeft' || ev.key === 'ArrowRight' || ev.key == 'PageUp' || ev.key === 'PageDown') {
+      this.snapToPage(this.activePage + (ev.key === 'ArrowLeft' || ev.key === 'PageUp' ? -1 : 1), {
+        immediate: true, // to make left/right as snappy as possible
+        focusPage: true
+      });
+      ev.preventDefault();
+    } else if (ev.key === 'Home' || ev.key === 'End') {
+      this.snapToPage((ev.key === 'Home' ? 0 : (this.pages?.length || 1) - 1), {
         immediate: true, // to make left/right as snappy as possible
         focusPage: true
       });
