@@ -1,5 +1,7 @@
 import '@/components/carousel/carousel';
 import '@/components/lottie-player';
+import '@/components/sliding-indicator';
+import type { SlidingIndicator } from '@/components/sliding-indicator';
 
 window.addEventListener('load', () => {
   setupMediaSizing();
@@ -12,6 +14,9 @@ window.addEventListener('load', () => {
 });
 
 function setupFiltering() {
+  let tabs = [...document.querySelectorAll('.filter input')] as HTMLInputElement[];
+  let slidingIndicator = document.querySelector('.filter rn-sliding-indicator') as SlidingIndicator;
+
   let applyFilter = (filter: string, scrollTop = true) => {
     filter = filter || 'all';
     for (let project of document.querySelectorAll('section.project')) {
@@ -28,6 +33,14 @@ function setupFiltering() {
     if (scrollTop) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+
+    let tab = tabs.find(t => t.value === filter);
+    if (tab) {
+      tab.checked = true;
+      slidingIndicator.slideTo(tab,
+        parseFloat(window.getComputedStyle(tab).getPropertyValue('--filter-padding-x')));
+    }
+
     // kinda hacky
     setTimeout(() => sizeAllMedia!());
   };
@@ -35,10 +48,6 @@ function setupFiltering() {
   let applyFilterFromHash = () => {
     let filter = (window.location.hash || '').substring(1) || 'featured';
     applyFilter(filter, false);
-    let tab = ([...document.querySelectorAll('.filter input')] as HTMLInputElement[]).find(t => t.value === filter);
-    if (tab) {
-      tab.checked = true;
-    }
   };
 
   for (let tab of document.querySelectorAll('.filter input')) {

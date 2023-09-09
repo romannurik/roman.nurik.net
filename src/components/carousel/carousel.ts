@@ -1,39 +1,18 @@
+import { invLerp, invLerpClamp, lerp } from '@/util/lerp';
+import BezierEasing from 'bezier-easing';
 import cn from 'classnames';
 import { LitElement, html, unsafeCSS } from 'lit';
-import { customElement, queryAssignedElements, state } from 'lit/decorators.js';
+import { customElement, query, queryAssignedElements, state } from 'lit/decorators.js';
 import { CarouselPage } from './carousel-page';
 import styleSheet from './carousel.lit.scss?inline';
-import BezierEasing from 'bezier-easing';
-
-// combined, these parameters control the exaggeration of the indicator blob
-// movement
-const INDICATOR_EASING = BezierEasing(0.9, 0, 0.1, 1);
-const TRAILING_START = 0.4; // trailing animation runs between t = [n, 1]
-const LEADING_END = 0.6; // leading animation runs between t = [0, n]
-
-// probably over-engineered pagination indicator animation
-interface IndicatorState {
-  // if the current animation is based on a precise request like clicking an exact
-  // page dot or left/right keys
-  animatingPrecisely?: boolean;
-  animStartTime?: number;
-  animDuration?: number;
-  left: number;
-  right: number;
-  srcLeft: number;
-  srcRight: number;
-  targetLeft: number;
-  targetRight: number;
-  indicator?: HTMLElement;
-  cancel?: number;
-}
+import { type SlidingIndicator } from '@/components/sliding-indicator';
+import '@/components/sliding-indicator';
 
 @customElement('rn-carousel')
 export class Carousel extends LitElement {
   pageCenters: number[] = [];
   prevEdgeThreshold = 0;
   nextEdgeThreshold = 0;
-  indicatorState: IndicatorState = { left: 0, right: 0, targetLeft: 0, targetRight: 0, srcLeft: 0, srcRight: 0 };
   resizeObserver?: ResizeObserver;
 
   @state() numPages = 0;
@@ -41,8 +20,10 @@ export class Carousel extends LitElement {
   @state() prevEdgeVisible = false;
   @state() nextEdgeVisible = false;
 
-  @queryAssignedElements({ selector: 'rn-carousel-page' }) // TODO: filter to rn-carousel-page once the lit-element bug is fixed
-  pages?: Array<CarouselPage>;
+  indicatorAnimatingPrecisely = false;
+  @query('rn-sliding-indicator') indicator?: SlidingIndicator;
+
+  @queryAssignedElements({ selector: 'rn-carousel-page' }) pages?: Array<CarouselPage>;
 
   connectedCallback() {
     super.connectedCallback();
@@ -170,13 +151,13 @@ export class Carousel extends LitElement {
   }
 
   updateIndicator(page?: number) {
-    let dots = this.shadowRoot!.querySelector('.dots');
-    if (!dots) {
+    if (!this.indicator) {
       return;
     }
 
+    let dots = this.shadowRoot!.querySelector('.dots') as HTMLElement;
     let preciseAnimation = page !== undefined;
-    if (this.indicatorState.animatingPrecisely && !preciseAnimation) {
+    if (this.indicatorAnimatingPrecisely && !preciseAnimation) {
       // currently animating precisely, don't interrupt unless this is
       // also a precise animation
       return;
@@ -189,67 +170,15 @@ export class Carousel extends LitElement {
     let targetLeft = (dotsRect.width - dotsRect.height) * f;
     let targetRight = (dotsRect.width - dotsRect.height) * f + dotsRect.height;
 
-    if (this.indicatorState.targetLeft === targetLeft &&
-      this.indicatorState.targetRight === targetRight) {
+    if (this.indicator.targetLeft === targetLeft &&
+      this.indicator.targetRight === targetRight) {
       // already animating to the right location
       return;
     }
 
-    // kick off a new, or change the current animation
-    this.indicatorState.targetLeft = targetLeft;
-    this.indicatorState.targetRight = targetRight;
-
-    // kick off new indicator animation if it isn't already happening
-    this.indicatorState.indicator = this.shadowRoot!.querySelector('.dot-indicator') || undefined;
-    this.indicatorState.cancel && window.cancelAnimationFrame(this.indicatorState.cancel);
-
-    this.indicatorState.srcLeft = this.indicatorState.left;
-    this.indicatorState.srcRight = this.indicatorState.right;
-    this.indicatorState.animatingPrecisely = preciseAnimation;
-    this.indicatorState.animStartTime = Date.now();
-    this.indicatorState.animDuration = 500; // fixed duration
-    if (this.indicatorState.left === this.indicatorState.right) {
-      this.indicatorState.animDuration = 1; // hack for initial state
-    }
-
-    // dynamic duration doesn't quite work with smooth scrollto, as they start competing
-    // const speed = 100; // pixels per second
-    // this.indicatorState.animDuration = Math.max(
-    //   Math.abs(this.indicatorState.targetLeft - this.indicatorState.srcLeft),
-    //   Math.abs(this.indicatorState.targetRight - this.indicatorState.srcRight)) * 1000 / speed;
-
-    this.indicatorState.cancel = window.requestAnimationFrame(() => this.tickIndicator());
-  }
-
-  tickIndicator() {
-    // indicator animation tick
-    let { indicator, animStartTime, animDuration, srcLeft, srcRight, targetLeft, targetRight } = this.indicatorState;
-    let t = invLerpClamp(animStartTime || 0, (animStartTime || 0) + (animDuration || 1), Date.now());
-    if (t >= 1) {
-      // animation is done!
-      this.indicatorState.left = this.indicatorState.targetLeft;
-      this.indicatorState.right = this.indicatorState.targetRight;
-      indicator!.style.left = this.indicatorState.left + 'px';
-      indicator!.style.width = (this.indicatorState.right - this.indicatorState.left) + 'px';
-      this.indicatorState.animStartTime = undefined;
-      this.indicatorState.animDuration = undefined;
-      this.indicatorState.animatingPrecisely = undefined; // reset flag
-      return;
-    }
-
-    // leading = movement in first part of anim, trailing = last part of anim
-    // the discrepancy between leading and trailing creates the blob effect
-    let leftTrailing = targetLeft > srcLeft;
-    let rightTrailing = targetRight < srcRight;
-    let leftT = leftTrailing ? invLerpClamp(TRAILING_START, 1, t) : invLerpClamp(0, LEADING_END, t);
-    let rightT = rightTrailing ? invLerpClamp(TRAILING_START, 1, t) : invLerpClamp(0, LEADING_END, t);
-
-    this.indicatorState.left = lerp(srcLeft, targetLeft, INDICATOR_EASING(leftT));
-    this.indicatorState.right = lerp(srcRight, targetRight, INDICATOR_EASING(rightT));
-    indicator!.style.left = this.indicatorState.left + 'px';
-    indicator!.style.width = (this.indicatorState.right - this.indicatorState.left) + 'px';
-
-    this.indicatorState.cancel = window.requestAnimationFrame(() => this.tickIndicator());
+    this.indicatorAnimatingPrecisely = preciseAnimation;
+    this.indicator.targetLeft = targetLeft;
+    this.indicator.targetRight = targetRight;
   }
 
   render() {
@@ -276,7 +205,7 @@ export class Carousel extends LitElement {
             <div class=${cn('dot', { 'is-active': this.activePage === idx })}
                 @click=${() => this.snapToPage(idx)}></div>
           `)}
-          <div class="dot-indicator"></div>
+          <rn-sliding-indicator @animationend=${() => this.indicatorAnimatingPrecisely = false}></rn-sliding-indicator>
         </div>
       </div>` : ''}
       <button
@@ -297,33 +226,4 @@ export class Carousel extends LitElement {
       </button>
     `;
   }
-}
-
-/**
- * Compute value V that is fraction T of the way from A to B
- */
-function lerp(a: number, b: number, t: number): number {
-  return a + (b - a) * t;
-}
-
-/**
- * lerp, but clamped between A and B
- */
-function lerpClamp(a: number, b: number, t: number): number {
-  return Math.max(Math.min(a, b), Math.min(Math.max(a, b), lerp(a, b, t)));
-}
-
-/**
- * Compute fraction T that value V is along the way from A to B
- */
-function invLerp(a: number, b: number, v: number): number {
-  if (b === a) return 0;
-  return (v - a) / (b - a);
-}
-
-/**
- * invLerp, but clamped between 0 and 1
- */
-function invLerpClamp(a: number, b: number, v: number): number {
-  return Math.max(0, Math.min(1, invLerp(a, b, v)));
 }

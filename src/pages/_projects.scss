@@ -72,6 +72,7 @@ header.filter {
     right: 0;
     height: 1px;
     background-color: var(--thin-border-color);
+    z-index: -1;
   }
 
   &::-webkit-scrollbar {
@@ -81,14 +82,37 @@ header.filter {
   @include narrow {
     margin: 0px calc(0px - var(--page-side-margin)) 64px calc(0px - var(--page-side-margin));
     padding: 0 var(--page-side-margin);
+
+    &::after {
+      left: 0;
+    }
+  }
+
+  .filter-items {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-left: calc(0px - var(--filter-padding-x));
+
+    rn-sliding-indicator {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: calc(1px - 16px);
+      height: 1px;
+
+      @include narrow {
+        bottom: 1px;
+      }
+
+      &::part(indicator) {
+        background-color: var(--accent-color);
+      }
+    }
   }
 
   label {
     position: relative;
-
-    &:first-child {
-      margin-left: calc(0px - var(--filter-padding-x));
-    }
 
     input {
       position: absolute;

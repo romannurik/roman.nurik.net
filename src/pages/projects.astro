@@ -34,29 +34,29 @@ function parseColor(s: string) {
   </header>
 
   <header class="filter">
-    <label
-      ><input type="radio" name="filter-tag" value="featured" /><span
-        >Featured</span
-      ></label
-    >
-    <label
-      ><input type="radio" name="filter-tag" value="all" /><span>All</span
-      ></label
-    >
-    <label
-      ><input type="radio" name="filter-tag" value="web" /><span>Web</span
-      ></label
-    >
-    <label
-      ><input type="radio" name="filter-tag" value="desktop" /><span
-        >Desktop</span
-      ></label
-    >
-    <label
-      ><input type="radio" name="filter-tag" value="android" /><span
-        >Android</span
-      ></label
-    >
+    <div class="filter-items">
+      <label>
+        <input type="radio" name="filter-tag" value="featured" />
+        <span>Featured</span>
+      </label>
+      <label>
+        <input type="radio" name="filter-tag" value="all" />
+        <span>All</span>
+      </label>
+      <label>
+        <input type="radio" name="filter-tag" value="web" />
+        <span>Web</span>
+      </label>
+      <label>
+        <input type="radio" name="filter-tag" value="desktop" />
+        <span>Desktop</span>
+      </label>
+      <label>
+        <input type="radio" name="filter-tag" value="android" />
+        <span>Android</span>
+      </label>
+      <rn-sliding-indicator></rn-sliding-indicator>
+    </div>
   </header>
 
   <main>

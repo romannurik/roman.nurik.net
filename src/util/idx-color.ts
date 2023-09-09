@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-const COLORS = {
+const COLORS: Record<string, Record<string,string>> = {
   'gray': {
     '50': '#f4f7fd',
     '100': '#d9dfe7',
@@ -128,17 +128,17 @@ const COLORS = {
   },
 };
 
-export default function (hue, value) {
+export default function (hue: string, value: string) {
   hue = (hue || '').toString().toLowerCase();
   value = (value || '').toString().toLowerCase();
 
   if (!(hue in COLORS)) {
-    return null;
+    return '';
   }
 
   let h = COLORS[hue];
   if (!(value in h)) {
-    return null;
+    return '';
   }
 
   return h[value];

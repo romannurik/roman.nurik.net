@@ -169,24 +169,27 @@
     }
   }
 
-  .dot-indicator {
+  rn-sliding-indicator {
     position: absolute;
     left: 0;
     top: 0;
-    width: var(--page-dot-size);
+    width: 100%;
     height: 100%;
-    padding: var(--page-dot-padding);
-    pointer-events: none;
-    box-sizing: border-box;
-    display: flex;
 
-    &::after {
-      content: '';
-      display: block;
-      border-radius: 999px;
-      background-color: $indicatorColor;
-      height: 100%;
-      width: 100%;
+    &::part(indicator) {
+      background-color: transparent;
+      padding: var(--page-dot-padding);
+      box-sizing: border-box;
+      display: flex;
+
+      &::after {
+        content: '';
+        display: block;
+        border-radius: 999px;
+        background-color: $indicatorColor;
+        height: 100%;
+        width: 100%;
+      }
     }
   }
 }

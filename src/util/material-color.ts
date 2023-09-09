@@ -15,7 +15,7 @@
  */
 
 // based on https://github.com/minusfive/sass-material-colors
-const COLORS = {
+const COLORS: Record<string, Record<string,string>> = {
   'red': {
     '50': '#ffebee',
     '100': '#ffcdd2',
@@ -311,17 +311,17 @@ const COLORS = {
   }
 };
 
-export default function (hue, value) {
+export default function (hue: string, value: string): string {
   hue = (hue || '').toString().toLowerCase();
   value = (value || '').toString().toLowerCase();
 
   if (!(hue in COLORS)) {
-    return null;
+    return '';
   }
 
   let h = COLORS[hue];
   if (!(value in h)) {
-    return null;
+    return '';
   }
 
   return h[value];
