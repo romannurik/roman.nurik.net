@@ -1,15 +1,12 @@
 # List of my projects.
 
-- name: Project IDX
-  date: 2021 – Present
+- name: Project IDX (now Firebase Studio)
+  date: 2021 – 2025
   tags: featured web
   description: |
-    I'm a designer and engineer working on [Project IDX](https://idx.dev), an experimental web-based development environment from Google. I currently lead design across product, design system and brand/identity.
+    I was a founding designer and engineer on [Project IDX](https://idx.dev) (now [Firebase Studio](https://firebase.studio)), an experimental web-based development environment from Google. I led product and systems design, brand/identity, and contributed to product + internal strategy, technical architecture.
 
-    I was also one of the founding members of the team, contributing to product strategy, technical
-    architecture, and cross-Google stakeholder communication.
-
-    Finally, I contributed foundational prototypes that shaped the generative AI and tool-integrations roadmap for Project IDX, in addition to considerable production code contributions across Docker, Angular, React, VS Code extensions, etc.
+    I also contributed foundational prototypes that shaped the generative AI and tool-integrations roadmap, and was a top-3 production eng contributor across AI (custom agent harnesses), frontend (Angular/React), IDE extensions, and infra (Docker).
 
   actions:
   - caption: Visit site
@@ -35,7 +32,7 @@
 ################################################################################
 
 - name: Firebase
-  date: 2015 – Present
+  date: 2015 – 2025
   tags: featured web
   description: |
     I was a design lead and manager on the Firebase UX team for many years, overseeing:
